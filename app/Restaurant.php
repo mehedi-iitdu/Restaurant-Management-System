@@ -39,4 +39,8 @@ class Restaurant extends Model
     public function photos(){
         return $this->hasMany(Photo::class);
     }
+
+    public function holidays(){
+        return $this->hasMany(Holiday::class);
+    }
 }

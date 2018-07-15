@@ -44,11 +44,16 @@
             </div>
 
             <div class="submit-section">
-                <form action="<?php echo e(route('photos.upload')); ?>" class="dropzone" enctype="multipart/form-data">
+                <form action="<?php echo e(route('photos.upload')); ?>" class="dropzone dz-clickable" enctype="multipart/form-data">
+                    <div class="dz-default dz-message"><span><i class="sl sl-icon-plus"></i> Click here or drop files to upload</span></div>
                     <?php echo csrf_field(); ?>
                     <input type="hidden" name="code", value="<?php echo e($code); ?>">
                 </form>
             </div>
+
+<!--             <div class="submit-section">
+                <form action="/file-upload" class="dropzone dz-clickable"></form>
+            </div> -->
 
         </div>
     </div>

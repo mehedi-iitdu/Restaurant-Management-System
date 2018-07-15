@@ -46,11 +46,16 @@
             </div>
 
             <div class="submit-section">
-                <form action="{{ route('photos.upload') }}" class="dropzone" enctype="multipart/form-data">
+                <form action="{{ route('photos.upload') }}" class="dropzone dz-clickable" enctype="multipart/form-data">
+                    <div class="dz-default dz-message"><span><i class="sl sl-icon-plus"></i> Click here or drop files to upload</span></div>
                     @csrf
                     <input type="hidden" name="code", value="{{ $code }}">
                 </form>
             </div>
+
+<!--             <div class="submit-section">
+                <form action="/file-upload" class="dropzone dz-clickable"></form>
+            </div> -->
 
         </div>
     </div>

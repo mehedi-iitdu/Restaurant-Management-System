@@ -46,6 +46,17 @@
                                                 @endforeach
                                             </ul>
                                         </div>
+                                        <div>
+                                            <ul>
+                                                @foreach($restaurant->holidays as $holiday)
+                                                    @if($timeConfig->opening_time == 'Closed' || $timeConfig->closing_time == 'Closed')
+                                                        <li>{{ $timeConfig->day.' Closed' }}</li><br>
+                                                    @else
+                                                        <li>{{ $timeConfig->day.' '.date('h:i A', strtotime($timeConfig->opening_time)).'-'.date('h:i A', strtotime($timeConfig->closing_time)) }}</li><br>
+                                                    @endif
+                                                @endforeach
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

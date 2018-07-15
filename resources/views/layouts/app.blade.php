@@ -15,25 +15,12 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/colors/main.css') }}" id="colors">
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/plugins/datedropper.css') }}">
 
     <!-- Scripts -->
     <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
     <!-- Latest compiled and minified JavaScript -->
-    <script type="text/javascript" src="{{ asset('js/jquery-2.2.0.min.js') }}"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="{{ asset('js/mmenu.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/chosen.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/slick.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/rangeslider.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/magnific-popup.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/waypoints.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/waypoints.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/counterup.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/jquery-ui.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/tooltips.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/custom.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/switcher.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/dropzone.js') }}"></script>
+
 
     <!-- <div id="style-switcher">
         <h2>Color Switcher <a href="#"><i class="sl sl-icon-settings"></i></a></h2>
@@ -115,18 +102,35 @@
     </div>
 </body>
 
+
+<script type="text/javascript" src="{{ asset('js/jquery-2.2.0.min.js') }}"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="{{ asset('js/mmenu.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/chosen.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/slick.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/rangeslider.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/magnific-popup.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/waypoints.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/waypoints.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/counterup.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/jquery-ui.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/tooltips.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/custom.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/switcher.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/dropzone.js') }}"></script>
+
 <script type="text/javascript">
 
-$( document ).ready(function() {
-    $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
-    $('.nav-link').each(function(){
-        var url = window.location.pathname,
-        urlRegExp = new RegExp(url.replace(/\/$/,''));
-        if(urlRegExp.test(this.href)){
-            $(this).parent().addClass('active');
-        }  
+    $( document ).ready(function() {
+        $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
+        $('.nav-link').each(function(){
+            var url = window.location.pathname,
+            urlRegExp = new RegExp(url.replace(/\/$/,''));
+            if(urlRegExp.test(this.href)){
+                $(this).parent().addClass('active');
+            }  
+        });
     });
-});
 
 </script>
 
