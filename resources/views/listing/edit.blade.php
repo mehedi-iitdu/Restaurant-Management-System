@@ -184,10 +184,12 @@
 								<h5>City</h5>
 								<select class="chosen-select-no-single" name="city">
 									<option label="blank">Select City</option>	
-									<option value="New York" @if($restaurant->city == "New York") {{ "selected"}} @endif >New York</option>
-									<option value="Los Angeles" @if($restaurant->city == "Los Angeles") {{ "selected"}} @endif>Los Angeles</option>
-									<option value="Chicago" @if($restaurant->city == "Chicago") {{ "selected"}} @endif>Chicago</option>
-									<option value="Austin" @if($restaurant->city == "Austin") {{ "selected"}} @endif>Austin</option>
+									<option value="Den Haag" @if($restaurant->city == "Den Haag") {{ "selected"}} @endif >Den Haag</option>
+									<option value="Leiden" @if($restaurant->city == "Leiden") {{ "selected"}} @endif>Leiden</option>
+									<option value="Voorschoten" @if($restaurant->city == "Voorschoten") {{ "selected"}} @endif>Voorschoten</option>
+									<option value="Amsterdam" @if($restaurant->city == "Amsterdam") {{ "selected"}} @endif>Amsterdam</option>
+									<option value="Haarlem" @if($restaurant->city == "Haarlem") {{ "selected"}} @endif>Haarlem</option>
+									<option value="Hoofddorp" @if($restaurant->city == "Hoofddorp") {{ "selected"}} @endif>Hoofddorp</option>
 								</select>
 							</div>
 

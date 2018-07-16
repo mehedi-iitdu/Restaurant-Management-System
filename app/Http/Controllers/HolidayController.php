@@ -24,6 +24,8 @@ class HolidayController extends Controller
     	$holiday->purpose = $request->purpose;
     	$holiday->restaurant_id = Restaurant::where('code', $request->code)->first()->id;
     	$holiday->date = strtotime($request->date);
+        $holiday->opening_time = $request->opening_time;
+        $holiday->closing_time = $request->closing_time;
 
     	if($holiday->save()){
     		flash('Holiday inserted')->success();
@@ -36,6 +38,8 @@ class HolidayController extends Controller
     	$holiday = Holiday::find($request->id);
     	$holiday->purpose = $request->purpose;
     	$holiday->date = strtotime($request->date);
+        $holiday->opening_time = $request->opening_time;
+        $holiday->closing_time = $request->closing_time;
 
     	if($holiday->save()){
     		flash('Holiday updated')->success();

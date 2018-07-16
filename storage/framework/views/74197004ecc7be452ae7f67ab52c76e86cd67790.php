@@ -33,17 +33,31 @@
                                 <div class="list-box-listing-content">
                                     <div class="inner">
                                         <h3><a href="#"><?php echo e($restaurant->name); ?></a></h3>
-                                        <div>
-                                            <ul>
-                                                <?php $__currentLoopData = $restaurant->timeConfigs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $timeConfig): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                    <?php if($timeConfig->opening_time == 'Closed' || $timeConfig->closing_time == 'Closed'): ?>
-                                                        <li><?php echo e($timeConfig->day.' Closed'); ?></li><br>
-                                                    <?php else: ?>
-                                                        <li><?php echo e($timeConfig->day.' '.date('h:i A', strtotime($timeConfig->opening_time)).'-'.date('h:i A', strtotime($timeConfig->closing_time))); ?></li><br>
-                                                    <?php endif; ?>
-                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                            </ul>
+                                        <div class="row">
+                                            <div class="col-lg-6 col-sm-12">
+                                                <ul>
+                                                    <?php $__currentLoopData = $restaurant->timeConfigs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $timeConfig): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                        <?php if($timeConfig->opening_time == 'Closed' || $timeConfig->closing_time == 'Closed'): ?>
+                                                            <li><?php echo e($timeConfig->day.' Closed'); ?></li><br>
+                                                        <?php else: ?>
+                                                            <li><?php echo e($timeConfig->day.' '.date('h:i A', strtotime($timeConfig->opening_time)).'-'.date('h:i A', strtotime($timeConfig->closing_time))); ?></li><br>
+                                                        <?php endif; ?>
+                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                </ul>
+                                            </div>
+                                            <div class="col-lg-6 col-sm-12">
+                                                <ul>
+                                                    <?php $__currentLoopData = $restaurant->holidays; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $holiday): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                        <?php if($holiday->opening_time == 'Closed' || $holiday->closing_time == 'Closed'): ?>
+                                                            <li><?php echo e($holiday->purpose.': Closed'); ?></li><br>
+                                                        <?php else: ?>
+                                                            <li><?php echo e($holiday->purpose.': '.date('h:i A', strtotime($holiday->opening_time)).'-'.date('h:i A', strtotime($holiday->closing_time))); ?></li><br>
+                                                        <?php endif; ?>
+                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                </ul>
+                                            </div>
                                         </div>
+                                        
                                     </div>
                                 </div>
                             </div>

@@ -176,12 +176,14 @@
 								<!-- City -->
 								<div class="col-md-6">
 									<h5>City</h5>
-									<select class="chosen-select-no-single" name="city">
+									<select class="chosen-select-no-single" name="city" required>
 										<option label="blank">Select City</option>	
-										<option value="New York">New York</option>
-										<option value="Los Angeles">Los Angeles</option>
-										<option value="Chicago">Chicago</option>
-										<option value="Austin">Austin</option>
+										<option value="Den Haag">Den Haag</option>
+										<option value="Leiden">Leiden</option>
+										<option value="Voorschoten">Voorschoten</option>
+										<option value="Amsterdam">Amsterdam</option>
+										<option value="Haarlem">Haarlem</option>
+										<option value="Hoofddorp">Hoofddorp</option>
 									</select>
 								</div>
 
