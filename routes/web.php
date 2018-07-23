@@ -98,7 +98,20 @@ Route::prefix('widget')->group(function () {
 	Route::get('/processing', function(){
 		return view('widget.processing');
 	});
+	Route::get('/allvouchers', function(){
+		return view('widget.allvouchers');
+	});
+	Route::get('/redeem', function(){
+		return view('widget.redeem');
+	});
+	Route::get('/suggestions', function(){
+		return view('widget.suggestions');
+	});
+	Route::get('/voucher-checkout', function(){
+		return view('widget.voucher-checkout');
+	});
 
 	Route::post('/available-times', 'WidgetController@getAvailableTimes')->name('available-times');
-	Route::post('/maximum-people', 'WidgetController@getMaximumPeopleNumber')->name('maximum-people');
+	Route::post('/book-request', 'WidgetController@storeBookRequest')->name('book-request');
+	/*Route::post('/maximum-people', 'WidgetController@getMaximumPeopleNumber')->name('maximum-people');*/
 });

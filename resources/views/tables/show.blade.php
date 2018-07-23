@@ -46,7 +46,7 @@
                                         <td>
                                             <div class="fm-input pricing-name"><input type="text" placeholder="" value="{{ $restaurantTable->name }}" disabled></div>
 
-                                            <div class="fm-input pricing-ingredients"><input type="text" placeholder="" value="{{ $restaurantTable->capacity }}" disabled></div>
+                                            <div class="fm-input pricing-ingredients"><input type="text" placeholder="" value="{{ $restaurantTable->capacity.' Person(s)' }}" disabled></div>
 
                                                 <form method="POST" action="{{ route('tables.edit') }}">
                                                     @csrf

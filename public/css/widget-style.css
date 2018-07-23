@@ -24,6 +24,21 @@
     height: 0;
     clear: both;
 }
+option {
+    font-weight: normal;
+    display: block;
+    white-space: pre;
+    min-height: 1.2em;
+    padding: 0px 2px 1px;
+}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type="number"] {
+    -moz-appearance: textfield;
+}
 input, textarea {
     -moz-appearance: none;
     -webkit-appearance: none;
@@ -49,6 +64,14 @@ input, textarea {
 }
 [type="radio"]:checked, [type="checkbox"]:checked {
     background: #333;
+}
+input.checkbox:checked:after {
+    content: "";
+    opacity: 1;
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
 }
 input.checkbox {
     background: none;
@@ -87,6 +110,9 @@ input.checkbox:after {
     transition: 0.3s ease;
     opacity: 0;
 }
+strong {
+    font-weight: 700;
+}
 .step-options .step-option.selected,
 .checkout-summary .checkout-total .redeem-row input:focus,
 .billing .billing-type-inputs input:focus,
@@ -105,6 +131,22 @@ input:focus, select:focus, textarea:focus {
 }
 a{
     cursor: pointer;
+}
+a.button {
+    display: inline-block;
+    line-height: 40px;
+    background: white;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    line-height: 35px;
+    padding: 0 15px;
+    font-weight: 600;
+    font-size: 14px;
+}
+.disabled {
+    pointer-events: none;
+    opacity: 0.4;
 }
 .scroll {
     overflow-y: auto;
@@ -155,6 +197,42 @@ body .widget {
     -ms-transform: translateY(40px);
     transform: translateY(40px);
 }
+.widget-button .promote-label {
+    -moz-transition: .3s ease-in-out;
+    -o-transition: .3s ease-in-out;
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+    position: absolute;
+    z-index: 9;
+    right: 0;
+    left: 0;
+    text-align: center;
+    top: -8px;
+    height: 14px;
+}
+.widget-open .widget-button .promote-label {
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transform: translate3d(0, 50%, 0);
+    -moz-transform: translate3d(0, 50%, 0);
+    -o-transform: translate3d(0, 50%, 0);
+    transform: translate3d(0, 50%, 0);
+}
+.widget-button .promote-label span{
+    background: #333;
+    display: inline-block;
+    top: -8px;
+    line-height: 14px;
+    border-radius: 3px;
+    color: white;
+    padding: 0 2px;
+    font-size: 9px;
+    vertical-align: top;
+}
+.vouchers-active .widget-button {
+    width: 320px;
+}
+
 .widget-normal .widget-button {
     opacity: 1;
     visibility: visible;
@@ -163,7 +241,18 @@ body .widget {
     -ms-transform: translateY(0);
     transform: translateY(0);
 }
-.widget-open .widget-button {
+/* .widget-open.vouchers-active .widget-button {
+    opacity: 1;
+    visibility: visible;
+    -webkit-transform: translateY(0px);
+    -moz-transform: translateY(0px);
+    -ms-transform: translateY(0px);
+    transform: translateY(0px);
+} */
+.widget-open .widget-button,
+.vouchers-active.fullw-widget .widget-button,
+.widget-open.redeem-open .widget-button,
+.widget-open.vouchers-active.redeem-open .widget-button {
     opacity: 0;
     visibility: hidden;
     -webkit-transform: translateY(40px);
@@ -179,15 +268,37 @@ body .widget {
     background: white;
     box-shadow: 5px 5px 15px rgba(0,0,0,0.1), -2px -2px 10px rgba(0,0,0,0.05);
     border-radius: 4px;
+    position: relative;
+}
+.vouchers-active.widget-open .widget-btn-wrapper {
+    border-radius: 0 0 4px 4px;
 }
 .widget-btn-wrapper .scooper-logo{
     display: block;
-    height: 40px;
     box-sizing: border-box;
-    -webkit-box-flex: 0 0 40px;
-    -ms-flex: 0 0 40px;
-    flex: 0 0 40px;
-    border-right: 1px solid rgba(0,0,0,0.1);
+    position: absolute;
+    right: -10px;
+    top: -15px;
+    z-index: 9;
+}
+.widget-btn-wrapper .btn-language-switch{
+    z-index: 9;
+    position: absolute;
+    left: -15px;
+    top: -15px;
+}
+.btn-language-switch{
+    background: #fff;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    border-radius: 50%;
 }
 .widget-btn-wrapper .scooper-logo a{
     display: -webkit-box;
@@ -199,9 +310,11 @@ body .widget {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     align-self: center;
+    background: #fff;
+    border-radius: 50%;
 }
 .widget-btn-wrapper .widget-action-wrap{
     display: -webkit-box;
@@ -321,9 +434,25 @@ body .widget {
     -webkit-transition-timing-function: ease-in-out;
     transition-timing-function: ease-in-out;
     box-shadow: 0px 0px 20px rgba(0,0,0,0.15);
-    overflow: hidden;
     border-radius: 15px;
     height: 230px;
+}
+.show-redeem .widget-wrap {
+    height: 272px;
+}
+.w-select-open .widget-wrap {
+    height: 525px;
+}
+.widget-normal.show-redeem.redeem-open .widget-wrap {
+    height: 600px;
+    max-height: calc(100% - (15px * 2));
+}
+.widget-normal.suggestion-open .widget-wrap {
+    height: calc(100% - (15px * 2));
+    -moz-transition-delay: 0.1s;
+    -o-transition-delay: 0.1s;
+    -webkit-transition-delay: 0.1s;
+    transition-delay: 0.1s;
 }
 .widget-open .widget-wrap {
     -webkit-transform: translateY(0);
@@ -333,9 +462,11 @@ body .widget {
     opacity: 1;
     visibility: visible;
 }
-.w-select-open .widget-wrap {
-    height: 525px;
-}
+/* .vouchers-active .widget-wrap {
+    bottom: calc(40px + 22px);
+    border-radius: 15px 15px 0 0;
+    max-height: calc(100% - 40px - (15px * 2));
+} */
 .fullw-widget .widget-wrap {
     width: 1000px;
     height: calc(100% - (15px * 2));
@@ -350,7 +481,21 @@ body .widget {
     max-height: 100%;
     max-width: calc(100% - (15px * 2));
 }
-
+.widget-closed .widget-wrap {
+    -moz-transition-duration: .3s;
+    -o-transition-duration: .3s;
+    -webkit-transition-duration: .3s;
+    transition-duration: .3s;
+    -moz-transition-delay: .1s;
+    -o-transition-delay: .1s;
+    -webkit-transition-delay: .1s;
+    transition-delay: .1s;
+}
+.widget-normal.vouchers-active.fullw-widget .widget-wrap,
+.widget-normal.vouchers-active.redeem-open .widget-wrap {
+    border-radius: 15px;
+    bottom: 15px;
+}
 
 .widget-wrap .widget-container {
     display: block;
@@ -393,7 +538,24 @@ body .widget {
     -webkit-box-flex: 0 0 40px;
     -ms-flex: 0 0 40px;
     flex: 0 0 40px;
+    border-radius: 15px 15px 0 0;
 }
+.booking .widget-header .back{
+    height: 60px;
+    width: 60px;
+    left: -15px;
+    top: -25px;
+    background: #333;
+    border-radius: 50%;
+}
+.booking .widget-header .btn-language-switch{
+    z-index: 9;
+    position: absolute;
+    right: -12px;
+    top: -12px;
+    background: #333;
+}
+
 .back {
     position: absolute;
     height: 40px;
@@ -455,6 +617,11 @@ body .widget {
     text-transform: uppercase;
     letter-spacing: 1px;
 }
+.widget-header .widget-title svg{
+    vertical-align: top;
+    margin: 11px 6px 0px 0px;
+    fill: white;
+}
 .checkout-icon {
     float: right;
     position: absolute;
@@ -471,6 +638,7 @@ body .widget {
     fill: #fff;
 }
 .widget-content {
+    border-radius: 0 0 15px 15px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -504,6 +672,11 @@ body .widget {
     -ms-flex: 0 0 190px;
     flex: 0 0 190px;
     min-height: 0;
+}
+.show-redeem .booking-form-wrap {
+    -webkit-box-flex: 0 0 230px;
+    -ms-flex: 0 0 230px;
+    flex: 0 0 230px;
 }
 .booking-form-wrap .field-wrapper {
     padding: 0 10px;
@@ -578,6 +751,18 @@ body .widget {
     color: #333;
     fill: #333;
     cursor: pointer;
+}
+.booking-form-wrap .field-wrapper .widget-book-button a span{
+    display: inline-block;
+    width: auto;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    border-radius: 3px;
+    color: white;
+    padding: 0 5px;
+    margin-left: 3px;
+    background-color: #333;
 }
 .booking-form-wrap .booking-field{
     opacity: 1;
@@ -684,7 +869,31 @@ body .widget {
 }
 
 
-
+.redeem-option {
+    padding: 0;
+    text-align: center;
+    color: white;
+    height: 50px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-packt: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+.redeem-option a {
+    color: rgba(255,255,255,0.9);
+    text-decoration: none;
+    font-size: 12px;
+    background: rgba(0,0,0,0.3);
+    padding: 0 12px;
+    line-height: 26px;
+    display: inline-block;
+    border-radius: 30px;
+}
 .booking-form-wrap .options.dropdown {
     position: absolute;
     box-shadow: 0 5px 30px rgba(0,0,0,0.3);
@@ -879,14 +1088,14 @@ body .widget {
     top: 88px;
 }
 
-.date-dropdown .ui-datepicker{
+.ui-datepicker{
     width: auto;
     border: 0;
     border-radius: 0;
     padding: 0 10px 10px;
     font-family: inherit;
 }
-.date-dropdown .ui-datepicker .ui-datepicker-header {
+.ui-datepicker .ui-datepicker-header {
     padding: 0;
     border: 0;
     background: transparent;
@@ -937,6 +1146,13 @@ body .widget {
     transform: rotate(-45deg);
     -webkit-transform: rotate(-45deg);
     margin-left: -8px;
+}
+.ui-datepicker .ui-datepicker-header .ui-state-disabled{
+    background: transparent;
+    opacity: 1;
+}
+.ui-datepicker .ui-datepicker-header .ui-state-disabled span{
+    border-color: rgba(0,0,0,0.2);
 }
 .ui-datepicker .ui-datepicker-title {
     margin: 0 52px;
@@ -1071,6 +1287,30 @@ html .ui-button.ui-state-disabled:active {
     max-width: 100%;
     width: 700px;
 }
+
+.checkout .checkout-intro{
+    background: #333;
+    margin-bottom: 50px;
+    position: relative;
+}
+.checkout .checkout-intro:before,
+.checkout .checkout-intro:after {
+    content: "";
+    height: 100%;
+    width: 100%;
+    right: 100%;
+    top: 0;
+    background: #333;
+    position: absolute;
+}
+.checkout .checkout-intro:after {
+    right: auto;
+    left: 100%;
+}
+.checkout .checkout-intro h1 {
+    color: #fff;
+}
+
 .checkout-intro {
     text-align: center;
 }
@@ -1089,9 +1329,89 @@ html .ui-button.ui-state-disabled:active {
     white-space: nowrap;
 }
 .checkout-summary {
-    border: 1px solid #ddd;
+    /* border: 1px solid #ddd; */
     border-radius: 5px;
     margin-bottom: 50px;
+}
+.checkout-summary .checkout-total .summary-row>div {
+    -webkit-box-flex: 0 0 50%;
+    -ms-flex: 0 0 50%;
+    flex: 0 0 50%;
+}
+.payment-summary>div:first-child {
+    border-top: 1px solid #ddd;
+    border-radius: 5px 5px 0 0;
+}
+.checkout-summary .checkout-total>div {
+    padding: 15px 20px;
+}
+.checkout-summary .checkout-total .summary-row {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    border-left: 1px solid;
+    border-right: 1px solid;
+    border-bottom: 1px solid;
+    border-color: rgba(0,0,0,0.1);
+    color: #666;
+    font-weight: 600;
+}
+.checkout-summary .checkout-total .redeem-row {
+    border-bottom: none;
+    border-top: 1px solid;
+    border-color: rgba(0,0,0,0.1);
+    border-radius: 5px 5px 0 0;
+    -webkit-box-packt: space-between;
+    -ms-flex-pack: space-between;
+    justify-content: space-between;
+}
+.checkout-summary .checkout-total .redeem-row input {
+    background: transparent;
+    color: rgba(0,0,0,0.7);
+    line-height: 36px;
+    -webkit-box-flex: 0 1 150px;
+    -ms-flex: 0 1 150px;
+    flex: 0 1 150px;
+    padding: 0 15px;
+    font-family: inherit;
+    font-size: 14px;
+    border: 2px solid rgba(0,0,0,0.15);
+    border-radius: 5px;
+    font-weight: 600;
+    line-height: 38px;
+    height: 40px;
+    min-width: 0;
+}
+.checkout-summary .checkout-total .redeem-row .button {
+    background: #333;
+    font-weight: 600;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid rgba(0,0,0,0.13);
+    line-height: 41px;
+    color: white;
+}
+.checkout-summary .checkout-total .redeem-row .voucher-validation {
+    -webkit-box-flex: 0 0 100%;
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+}
+.checkout-summary .checkout-total>div.refund-info {
+    padding: 5px 20px;
+    background: #f5f5f5;
+    border-left: 1px solid;
+    border-right: 1px solid;
+    border-bottom: 1px solid;
+    border-color: rgba(0,0,0,0.1);
+    border-radius: 0 0 5px 5px;
+}
+.checkout-summary .checkout-total>div.refund-info p {
+    text-align: center;
+    color: #666;
+    font-weight: 600;
+    font-size: 12px;
 }
 
 .checkout-step {
@@ -1207,6 +1527,26 @@ html .ui-button.ui-state-disabled:active {
     color: #333;
     background: white;
 }
+
+.billing .billing-type-inputs input::-webkit-input-placeholder,
+.billing .billing-type-inputs textarea::-webkit-input-placeholder {
+    color: rgba(0, 0, 0, 0.4)
+}
+
+.billing .billing-type-inputs input::-moz-placeholder,
+.billing .billing-type-inputs textarea::-moz-placeholder {
+    color: rgba(0, 0, 0, 0.4)
+}
+
+.billing .billing-type-inputs input:-ms-input-placeholder,
+.billing .billing-type-inputs textarea:-ms-input-placeholder {
+    color: rgba(0, 0, 0, 0.4)
+}
+
+.billing .billing-type-inputs input:-moz-placeholder,
+.billing .billing-type-inputs textarea:-moz-placeholder {
+    color: rgba(0, 0, 0, 0.4)
+}
 .billing .billing-type-inputs textarea {
     height: 100px;
     line-height: 20px;
@@ -1315,172 +1655,172 @@ html .ui-button.ui-state-disabled:active {
 
 
 .finish-screen {
-	height: 100%;
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-flex-direction: column;
-	-ms-flex-direction: column;
-	flex-direction: column;
-	-webkit-box-packt: center;
-	-ms-flex-pack: center;
-	justify-content: center;
-	position: relative
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-packt: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    position: relative
 }
 
 .finish-screen.finish-loading-screen:after {
-	z-index: 1;
-	content: "";
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background: #f5f5f5;
-	-webkit-transform-origin: center;
-	-moz-transform-origin: center;
-	-ms-transform-origin: center;
-	transform-origin: center;
-	-webkit-animation-delay: 0s;
-	-webkit-animation-duration: 2s;
-	-webkit-animation-name: fadeLoading;
-	-webkit-animation-fill-mode: forward;
-	-moz-animation-delay: 0s;
-	-moz-animation-duration: 2s;
-	-moz-animation-name: fadeLoading;
-	-moz-animation-fill-mode: forward;
-	-o-animation-delay: 0s;
-	-o-animation-duration: 2s;
-	-o-animation-name: fadeLoading;
-	-o-animation-fill-mode: forward;
-	animation-delay: 0s;
-	animation-duration: 2s;
-	animation-name: fadeLoading;
-	animation-fill-mode: forward;
-	animation-iteration-count: infinite
+    z-index: 1;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #f5f5f5;
+    -webkit-transform-origin: center;
+    -moz-transform-origin: center;
+    -ms-transform-origin: center;
+    transform-origin: center;
+    -webkit-animation-delay: 0s;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-name: fadeLoading;
+    -webkit-animation-fill-mode: forward;
+    -moz-animation-delay: 0s;
+    -moz-animation-duration: 2s;
+    -moz-animation-name: fadeLoading;
+    -moz-animation-fill-mode: forward;
+    -o-animation-delay: 0s;
+    -o-animation-duration: 2s;
+    -o-animation-name: fadeLoading;
+    -o-animation-fill-mode: forward;
+    animation-delay: 0s;
+    animation-duration: 2s;
+    animation-name: fadeLoading;
+    animation-fill-mode: forward;
+    animation-iteration-count: infinite
 }
 
 .finish-screen .finish-wrapper {
-	overflow: auto;
-	-webkit-overflow-scrolling: touch;
-	padding: 50px 0px;
-	position: relative;
-	z-index: 3
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 50px 0px;
+    position: relative;
+    z-index: 3
 }
 
 .finish-screen .finish-wrapper>div {
-	margin: 0 auto;
-	max-width: 600px;
-	width: 100%
+    margin: 0 auto;
+    max-width: 600px;
+    width: 100%
 }
 
 .finish-screen .finish-wrapper strong {
-	font-weight: 600
+    font-weight: 600
 }
 
 .finish-screen .finish-wrapper .finish-header {
-	padding-bottom: 0px
+    padding-bottom: 0px
 }
 .status-icon {
     text-align: center;
     padding: 30px 0;
 }
 .finish-screen .finish-wrapper .status-icon {
-	opacity: 1;
-	-webkit-animation-delay: .5s;
-	-webkit-animation-duration: .6s;
-	-webkit-animation-name: finish-fade;
-	-webkit-animation-fill-mode: forwards;
-	-moz-animation-delay: .5s;
-	-moz-animation-duration: .6s;
-	-moz-animation-name: finish-fade;
-	-moz-animation-fill-mode: forwards;
-	-o-animation-delay: .5s;
-	-o-animation-duration: .6s;
-	-o-animation-name: finish-fade;
-	-o-animation-fill-mode: forwards;
-	animation-delay: .5s;
-	animation-duration: .6s;
-	animation-name: finish-fade;
-	animation-fill-mode: forwards;
-	padding: 0 0 30px 0
+    opacity: 1;
+    -webkit-animation-delay: .5s;
+    -webkit-animation-duration: .6s;
+    -webkit-animation-name: finish-fade;
+    -webkit-animation-fill-mode: forwards;
+    -moz-animation-delay: .5s;
+    -moz-animation-duration: .6s;
+    -moz-animation-name: finish-fade;
+    -moz-animation-fill-mode: forwards;
+    -o-animation-delay: .5s;
+    -o-animation-duration: .6s;
+    -o-animation-name: finish-fade;
+    -o-animation-fill-mode: forwards;
+    animation-delay: .5s;
+    animation-duration: .6s;
+    animation-name: finish-fade;
+    animation-fill-mode: forwards;
+    padding: 0 0 30px 0
 }
 
 .finish-screen .finish-wrapper .status-icon svg {
-	vertical-align: top;
-	fill: orange
+    vertical-align: top;
+    fill: orange
 }
 
 .finish-screen .finish-wrapper .status-icon svg.success-icon {
-	fill: #66d600
+    fill: #66d600
 }
 
 .finish-screen .finish-wrapper .status-icon svg.gift-card-icon {
-	fill: #FF3939
+    fill: #FF3939
 }
 
 .finish-screen .finish-wrapper .status-title {
-	line-height: 28px;
-	font-size: 16px;
-	opacity: 1;
-	-webkit-animation-delay: .5s;
-	-webkit-animation-duration: .6s;
-	-webkit-animation-name: finish-fade;
-	-webkit-animation-fill-mode: forwards;
-	-moz-animation-delay: .5s;
-	-moz-animation-duration: .6s;
-	-moz-animation-name: finish-fade;
-	-moz-animation-fill-mode: forwards;
-	-o-animation-delay: .5s;
-	-o-animation-duration: .6s;
-	-o-animation-name: finish-fade;
-	-o-animation-fill-mode: forwards;
-	animation-delay: .5s;
-	animation-duration: .6s;
-	animation-name: finish-fade;
-	animation-fill-mode: forwards;
-	padding: 0 20px;
+    line-height: 28px;
+    font-size: 16px;
+    opacity: 1;
+    -webkit-animation-delay: .5s;
+    -webkit-animation-duration: .6s;
+    -webkit-animation-name: finish-fade;
+    -webkit-animation-fill-mode: forwards;
+    -moz-animation-delay: .5s;
+    -moz-animation-duration: .6s;
+    -moz-animation-name: finish-fade;
+    -moz-animation-fill-mode: forwards;
+    -o-animation-delay: .5s;
+    -o-animation-duration: .6s;
+    -o-animation-name: finish-fade;
+    -o-animation-fill-mode: forwards;
+    animation-delay: .5s;
+    animation-duration: .6s;
+    animation-name: finish-fade;
+    animation-fill-mode: forwards;
+    padding: 0 20px;
     text-align: center;
 }
 
 .finish-screen .finish-wrapper .status-title h2 {
-	color: #333;
-	font-weight: 600;
-	font-size: 20px;
-	padding-bottom: 10px
+    color: #333;
+    font-weight: 600;
+    font-size: 20px;
+    padding-bottom: 10px
 }
 
 .finish-screen .finish-wrapper .status-title p {
-	color: #666
+    color: #666
 }
 
 .finish-screen .finish-wrapper .status-title p a {
-	color: inherit
+    color: inherit
 }
 
 .finish-screen .finish-wrapper .status-title p span {
-	font-weight: 600
+    font-weight: 600
 }
 .finish-screen .finish-wrapper .finish-footer {
-	padding: 20px;
-	text-align: center;
-	opacity: 1;
-	-webkit-animation-delay: .5s;
-	-webkit-animation-duration: .6s;
-	-webkit-animation-name: finish-fade;
-	-webkit-animation-fill-mode: forwards;
-	-moz-animation-delay: .5s;
-	-moz-animation-duration: .6s;
-	-moz-animation-name: finish-fade;
-	-moz-animation-fill-mode: forwards;
-	-o-animation-delay: .5s;
-	-o-animation-duration: .6s;
-	-o-animation-name: finish-fade;
-	-o-animation-fill-mode: forwards;
-	animation-delay: .5s;
-	animation-duration: .6s;
-	animation-name: finish-fade;
-	animation-fill-mode: forwards
+    padding: 20px;
+    text-align: center;
+    opacity: 1;
+    -webkit-animation-delay: .5s;
+    -webkit-animation-duration: .6s;
+    -webkit-animation-name: finish-fade;
+    -webkit-animation-fill-mode: forwards;
+    -moz-animation-delay: .5s;
+    -moz-animation-duration: .6s;
+    -moz-animation-name: finish-fade;
+    -moz-animation-fill-mode: forwards;
+    -o-animation-delay: .5s;
+    -o-animation-duration: .6s;
+    -o-animation-name: finish-fade;
+    -o-animation-fill-mode: forwards;
+    animation-delay: .5s;
+    animation-duration: .6s;
+    animation-name: finish-fade;
+    animation-fill-mode: forwards
 }
 .finish-screen .finish-wrapper .finish-footer a.button {
     display: inline-block;
@@ -1495,4 +1835,643 @@ html .ui-button.ui-state-disabled:active {
     letter-spacing: 2px;
     border: 1px solid #ddd;
     color: #666;
+}
+
+
+/* redeem style */
+
+.redeem .redeem-wrapper {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    padding: 20px 0;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+.redeem-open .back a {
+    background: #ddd;
+}
+.redeem-open .back a svg {
+    fill: #666;
+}
+.redeem .redeem-wrapper .redeem-intro {
+    text-align: center;
+    padding: 30px 20px 0px 20px;
+}
+.redeem .redeem-wrapper .redeem-intro h2 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    display: inline-block;
+}
+.redeem .redeem-wrapper .redeem-intro .redeem-help {
+    font-size: 13px;
+    line-height: 24px;
+    padding: 10px 0;
+    color: #666;
+}
+.redeem .redeem-wrapper .redeem-box {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    border-radius: 5px;
+    padding: 0 20px;
+    margin: 10px 0;
+}
+.redeem .redeem-wrapper .redeem-box input {
+    border-radius: 5px;
+    border: 2px solid rgba(0,0,0,0.15);
+    line-height: 36px;
+    height: 40px;
+    -webkit-box-flex: 1 1 0px;
+    -ms-flex: 1 1 0px;
+    flex: 1 1 0px;
+    min-width: 0;
+    margin-right: 5px;
+    font-weight: 600;
+}
+.redeem .redeem-wrapper .redeem-box a.redeem-btn{
+    background: #333;
+    height: 40px;
+    border-radius: 5px;
+    display: block;
+    line-height: 40px;
+    padding: 0 15px;
+    font-weight: 600;
+    color: white;
+    font-size: 14px;
+}
+.redeem .redeem-wrapper .redeem-message {
+    text-align: center;
+    background: #f5f5f5;
+    line-height: 30px;
+    border-radius: 30px;
+    font-size: 13px;
+    color: #666;
+    margin: 0 20px;
+}
+
+
+
+/* voucher style */
+
+.vouchers-wrapper {
+    padding: 0 0 20px 0;
+    width: 100%;
+    margin: 0 auto;
+}
+.vouchers-wrapper .vouchers-intro {
+    width: 100%;
+    padding: 10px 30px;
+    max-width: 100%;
+    margin: 0 auto;
+    color: white;
+    text-align: center;
+    margin-bottom: 20px;
+    background: #333;
+}
+.vouchers-wrapper .vouchers-intro .vouchers-intro-wrap {
+    padding: 20px 0;
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
+}
+.vouchers-wrapper .vouchers-intro h2 {
+    font-size: 20px;
+    padding: 0 0 20px 0;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+}
+.vouchers-wrapper .vouchers-intro p {
+    padding: 5px 0;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+}
+.vouchers-wrapper .vouchers-wrap {
+    margin: 0 auto;
+    width: 1000px;
+    max-width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-packt: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+.vouchers-wrapper .voucher-item {
+    width: 50%;
+    max-width: 420px;
+    padding: 30px 30px 0 30px;
+}
+.voucher {
+    -moz-transition: 0.3s cubic-bezier(0.21, 0.37, 0.13, 0.98);
+    -o-transition: 0.3s cubic-bezier(0.21, 0.37, 0.13, 0.98);
+    -webkit-transition: 0.3s cubic-bezier(0.21, 0.37, 0.13, 0.98);
+    transition: 0.3s cubic-bezier(0.21, 0.37, 0.13, 0.98);
+    border-radius: 15px;
+    position: relative;
+    color: white;
+    border-radius: 10px;
+    box-shadow: 1px 2px 3px rgba(0,0,0,0.15), 0px 0px 30px rgba(0,0,0,0.15);
+    max-width: 100%;
+    width: 380px;
+    overflow: hidden;
+}
+.vouchers-wrapper .voucher {
+    width: calc((100% - 24px * 2) / 3);
+    margin-right: 24px;
+    margin-bottom: 24px;
+}
+.vouchers-wrapper .voucher-item .voucher {
+    cursor: pointer;
+    width: 100%;
+}
+.voucher .voucher-visual {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 100%;
+    display: block;
+    background-size: cover !important;
+    background-position: center !important;
+}
+.voucher .voucher-visual:after {
+    content: "";
+    padding-bottom: 60%;
+    position: relative;
+    height: 0;
+    width: 100%;
+    display: block;
+}
+.voucher .voucher-visual .voucher-text span {
+    font-size: 40%;
+    vertical-align: middle;
+    padding-right: 5px;
+    margin-left: -20px;
+    display: none;
+}
+.voucher .voucher-visual .voucher-logo {
+    padding: 30px 30px 50px 30px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-packt: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+.voucher .voucher-visual .voucher-logo img {
+    object-fit: contain;
+    object-position: center;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.voucher .voucher-visual .voucher-text {
+    font-size: 10vw;
+    font-family: 'Spectral';
+    font-weight: 400;
+    z-index: 2;
+    color: black;
+    display: none;
+}
+.voucher .voucher-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    font-weight: 700;
+    line-height: 40px;
+}
+.voucher .voucher-footer .voucher-amount {
+    border-radius: 30px;
+    background: #333;
+    color: #fff;
+    font-size: 16px;
+    padding: 0 15px;
+    box-shadow: -3px -3px 20px rgba(0,0,0,0.1);
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+.voucher .voucher-footer .restaurant-name {
+    padding: 0 20px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    background: #333;
+    border-radius: 30px 0 0 30px;
+    font-size: 12px;
+    color: #fff;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: -3px -3px 20px rgba(0,0,0,0.1);
+    position: absolute;
+    right: 0;
+    bottom: 10px;
+}
+.voucher .voucher-footer .voucher-code {
+    border-radius: 0 0 10px 0;
+    background: white;
+    letter-spacing: 2px;
+    font-size: 12px;
+    padding: 0 10px;
+    text-transform: uppercase;
+    display: none;
+}
+.voucher .voucher-footer .voucher-code span {
+    background: #ddd;
+    border-radius: 25px;
+    line-height: 26px;
+    display: inline-block;
+    padding: 0 15px;
+    color: #666;
+}
+.vouchers-wrapper .voucher-item .voucher-info {
+    padding-bottom: 30px;
+}
+.vouchers-wrapper .voucher-item .voucher-info .voucher-info-row {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 30px;
+}
+.vouchers-wrapper .voucher-item .voucher-info .voucher-info-row .voucher-title {
+    -webkit-box-flex: 1 0 0px;
+    -ms-flex: 1 0 0px;
+    flex: 1 0 0px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.vouchers-wrapper .voucher-item .voucher-info .voucher-info-row .voucher-price {
+    -webkit-box-flex: 0 0 auto;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    padding-left: 10px;
+}
+.vouchers-wrapper .voucher-item .voucher-info .voucher-info-row .voucher-amount {
+    display: none;
+}
+.vouchers-wrapper .voucher-item .voucher-info .voucher-info-row span.per-person {
+    font-size: 16px;
+}
+.vouchers-wrapper .voucher-item .voucher-info .voucher-description {
+    font-size: 14px;
+    color: #666;
+}
+.vouchers-wrapper .voucher-item .voucher-info .voucher-description p {
+    white-space: pre-line;
+    margin: 15px 0 25px 0;
+}
+.vouchers-wrapper .voucher-item .voucher-info .voucher-info-row {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 30px;
+}
+.vouchers-wrapper .voucher-item .voucher-info a.button {
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 11px;
+    padding: 0 15px;
+    line-height: 40px;
+    text-align: center;
+    background: #ddd;
+    color: #666;
+    border-radius: 0;
+}
+
+
+
+
+/* voucher checkout style */
+.voucherCheckout .checkout-intro h1 {
+    padding: 40px 0 0 0;
+}
+.voucher-preview {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-packt: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    padding: 30px 0 0 0;
+}
+.voucher-preview .voucher-title {
+    padding: 14px 0;
+    margin: 0 auto;
+    width: 380px;
+}
+.voucher-preview .voucher-title h3 {
+    font-weight: 600;
+    font-size: 18px;
+    padding: 15px 0;
+    text-align: left;
+}
+.voucher-preview .voucher-title p {
+    color: #666;
+    white-space: pre-line;
+    text-align: left;
+}
+.voucher-preview .voucher-info {
+    width: calc(100% - 40px);
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    padding: 0 20px;
+    margin-top: 30px;
+}
+.voucher-preview .voucher-info .voucher-info-row {
+    border-bottom: 1px solid #ddd;
+    line-height: 40px;
+    padding: 10px 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-packt: space-between;
+    -ms-flex-pack: space-between;
+    justify-content: space-between;
+}
+.voucher-preview .voucher-info .voucher-info-row.select-people>div:first-child {
+    width: 100px;
+}
+.select-quantity-wrap {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+.select-quantity-wrap a {
+    display: block;
+    width: 30px;
+    text-align: center;
+    background: #ddd;
+    color: #666;
+    height: 30px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-packt: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 4px;
+}
+.select-quantity-wrap .quantity-value {
+    text-align: center;
+    font-weight: 600;
+    font-size: 16px;
+}
+.select-quantity-wrap .quantity-value input {
+    margin: 0;
+    padding: 0;
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+    width: 50px;
+    text-align: center;
+    font-weight: 600;
+    height: 40px;
+}
+.quantity-total {
+    font-size: 20px;
+    font-weight: 600;
+    width: 100px;
+    text-align: right;
+}
+.voucher-preview .voucher-info .voucher-info-row:last-child {
+    border-bottom: none;
+}
+.checkbox-option {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+    padding: 10px 0;
+    font-weight: 600;
+    background: #f5f5f5;
+    padding: 10px 10px;
+    border-radius: 5px;
+    margin: 5px;
+}
+.sub-options {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    width: 100%;
+    padding-top: 10px;
+}
+.option-settings-col {
+    width: calc((100% / 2) - 10px);
+    padding: 10px 0;
+    margin: 5px;
+}
+.sub-options .option-settings-col {
+    padding: 0;
+}
+.option-settings-col span.select-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #666;
+    width: 100%;
+    display: block;
+    padding-bottom: 10px;
+}
+select, .dp-select {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 0;
+    border: none;
+    padding: 0 40px 0 15px;
+    font-size: 14px;
+    font-family: inherit;
+    line-height: 38px;
+    height: 40px;
+    cursor: pointer;
+}
+.option-settings-col .select,
+.dp-date-picker .dp-select {
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    min-width: 200px;
+    font-weight: 600;
+}
+.dp-date-picker .dp-select {
+    width: calc(100% - 55px);
+}
+.option-settings-col .dp-date-picker{
+    position: relative
+}
+.dp-date-picker .dp-calendar-container {
+    position: absolute;
+    width: 300px;
+    left: 0;
+    opacity: 0;
+    visibility: hidden;
+}
+.dp-date-picker .dp-calendar-container.active {
+    opacity: 1;
+    visibility: visible;
+}
+.dp-calendar-container .ui-datepicker.ui-widget {
+    background: white;
+    border-radius: 4px;
+    box-shadow: 0 0px 30px rgba(0,0,0,0.3);
+    max-width: 300px;
+    border-color: transparent;
+}
+
+
+
+.step-options {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    padding: 10px 0px;
+    width: 100%;
+}
+.step-options .step-option.selected {
+    background-color: #333;
+    color: #fff;
+}
+.step-options .step-option {
+    -webkit-box-flex: 0;
+    -ms-flex-positive: 0;
+    flex-grow: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-packt: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    width: calc((100% / 2) - 37px);
+    line-height: 40px;
+    padding: 0px 10px 0px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    margin: 5px;
+    font-weight: 600;
+    font-size: 13px;
+}
+.payment-methods .step-options .step-option {
+    text-align: left;
+    -webkit-box-packt: space-between;
+    -ms-flex-pack: space-between;
+    justify-content: space-between;
+}
+.step-options .step-option .checkout-payment-fee {
+    font-weight: 600;
+    font-size: 11px;
+    color: gray;
+    padding: 0 15px;
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    text-align: right;
+    display: inline-block;
+    width: auto;
+    line-height: 30px;
+}
+.step-options .step-option img {
+    width: auto;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    height: 20px;
+    vertical-align: middle;
+}
+.step-option-settings {
+    height: 0;
+    margin: 0 5px;
+    border-radius: 5px;
+    background: #f5f5f5;
+    padding: 0 15px;
+    line-height: 40px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.step-option-settings .method-header {
+    padding-right: 10px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+.step-option-settings .method-header img {
+    width: 20px;
+    display: inline-block;
+    vertical-align: sub;
+}
+.checkout-summary.voucher-summary {
+    padding: 30px 0 0 0;
+    margin: 0 auto;
+    border: none;
+}
+.checkout-summary.voucher-summary .checkout-total {
+    padding: 0 5px;
+    border: none;
+}
+.checkout-summary>div {
+    margin-bottom: 10px;
+}
+.checkout-summary.voucher-summary .checkout-total .total-price {
+    border-top: 3px solid rgba(0,0,0,0.1);
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    padding: 10px 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-packt: space-between;
+    -ms-flex-pack: space-between;
+    justify-content: space-between;
+    font-size: 16px;
+    font-weight: 600;
 }

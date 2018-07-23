@@ -1,33 +1,44 @@
 var BASE_URL = "http://127.0.0.1:8000";
-var number_of_people = null;
+var number_of_people = 8;
 var date = null;
 var time = null;
 var SelectOutput = "today";
+var checkout_email = null;
 
 window.addEventListener('message', function (e) {
         $(document.body).find('#restaurant_code').val( e.data );
     });
 
 function widgetOpen(booking){
-    if(booking == 'booking'){
-        $(document.body).addClass('widget-open');
+    if($(document.body).hasClass('widget-open')){
+        $(document.body).removeClass('widget-open').addClass('widget-closed');
+        parent.postMessage({"command":"both", "addClass":"widget-closed", "removeClass":"widget-open"}, '*');
+    }else {
+        $(document.body).removeClass('widget-closed').addClass('widget-open');
         parent.postMessage({"command":"both", "addClass":"widget-open", "removeClass":"widget-closed"}, '*');
     }
-    getMaximumPeopleNumber();
-    openDatePicker();
+    datepickOpen();
 }
 function widgetClose(){
     if($(document.body).hasClass('fullw-widget')){
+        setTimeout(function() {
+            parent.postMessage({"command":"removeClass", "removeClass":"fullw-widget"}, '*');
+            $(document.body).removeClass('fullw-widget');
+        }, 400);
         $('.widget-container').delay(400).queue(function( nxt ) {
-            $('.widget-container').load('booking.html', function(){
+            $('.widget-container').load('booking', function(){
                 $('.widget-container').fadeIn('slow');
+                datepickOpen();
             });
             nxt();
         });
+        setTimeout(function() {
+            $(".widget-container").removeClass('vouchers checkout').addClass('booking');
+        }, 500);
     }
     if($(document.body).hasClass('widget-open')){
-        $(document.body).removeClass('widget-open w-select-open fullw-widget');
-        parent.postMessage({"command":"both", "addClass":"widget-closed", "removeClass":"widget-open w-select-open fullw-widget"}, '*');
+        $(document.body).removeClass('widget-open w-select-open').addClass('widget-closed');
+        parent.postMessage({"command":"both", "addClass":"widget-closed", "removeClass":"widget-open w-select-open"}, '*');
         $('.options.dropdown, .booking-field.person').removeClass('opened');
     }
 }
@@ -87,7 +98,8 @@ function personSelect(el){
         $(el).addClass('selected');
     }
 
-    number_of_people = $(el).children('#people').text();
+    number_of_people = PersonInputNum;
+    console.log(number_of_people);
 }
 
 function timeSelect(el){
@@ -109,13 +121,12 @@ function timeSelect(el){
     }
 
     time = $(el).children("input[name=time]").val();
-    
 }
 
-function openDatePicker(){
+function datepickOpen(){
     $( "#datepicker" ).datepicker({
         altField: "#dateAlter",
-        altFormat: "dd-mm-yy",
+        altFormat: "MM d",
         defaultDate: 0,
         minDate: 0,
         firstDay: 1,
@@ -130,8 +141,8 @@ function openDatePicker(){
                 default: suffix = 'th';
             }
 
+            var SelectOutput = "";
             var outputDayName = $.datepicker.formatDate("DD", $(this).datepicker("getDate"));
-            var outputDate = $.datepicker.formatDate("MM d", $(this).datepicker("getDate"));
             var today = new Date();
             var day1 = today.getDate().toString();
             var day2 = (new Date(today.getTime() + 24 * 60 * 60 * 1000).getDate()).toString();
@@ -145,10 +156,11 @@ function openDatePicker(){
                 case day1: SelectOutput = 'today'; break;
                 case day2: SelectOutput = 'tomorrow'; break;
                 case day3 : case day4 : case day5 : case day6 : case day7 : SelectOutput = 'next ' + outputDayName; break;
-                default: SelectOutput = outputDate + suffix;
+                default: SelectOutput = $("#dateAlter").val() + suffix;
             }
 
             $(".date-select.select .selected-value").html(SelectOutput);
+
 
             parent.postMessage({"command":"removeClass", "removeClass":"w-select-open"}, '*');
             $(document.body).removeClass('w-select-open');
@@ -157,38 +169,88 @@ function openDatePicker(){
             date = $('#dateAlter').val();
             getAvailableTimes();
         },
-    });
+    }).datepicker("setDate", new Date());
 
     date = $('#dateAlter').val();
     getAvailableTimes();
 }
 
 // $(document).on("click", function() {
-//     openDatePicker();
+//     datepickOpen();
+// });
+// $(document).addEventListener("change", function() {
+//     datepickOpen();
 // });
 
-$(document).ready(function() {
-    $('.widget-container').load('/widget/booking');
-    openDatePicker();
-});
+datepickOpen();
+
+
+function redeemOpen(location){
+    if (location == 'booking-form') {
+        $(document.body).addClass('redeem-open');
+        parent.postMessage({"command":"addClass", "addClass":"redeem-open"}, '*');
+        $(".widget-container").removeClass('booking').addClass('redeem');
+        $('.widget-container').fadeOut(300, function(){
+            $('.widget-container').delay(100).queue(function( nxt ) {
+                $(this).load('redeem', function(){
+                    $('.widget-container').fadeIn(300);
+                });
+                nxt();
+            });
+        });
+    }
+}
+function redeemClose(location){
+    if (location == 'booking-form') {
+        $(document.body).removeClass('redeem-open');
+        parent.postMessage({"command":"removeClass", "removeClass":"redeem-open"}, '*');
+        $(".widget-container").removeClass('redeem').addClass('booking');
+        $('.widget-container').fadeOut(50, function(){
+            $('.widget-container').delay(100).queue(function( nxt ) {
+                $(this).load('booking', function(){
+                    $('.widget-container').fadeIn(300);
+                });
+                nxt();
+            });
+        });
+    }
+}
+
 
 function bookDirect(){
-    parent.postMessage({"command":"addClass", "addClass":"fullw-widget"}, '*');
-    $(document.body).addClass('fullw-widget');
-    $(".widget-container").removeClass('booking').addClass('checkout');
+    // if($(document.body).hasClass('vouchers-active')){
+    //     parent.postMessage({"command":"addClass", "addClass":"fullw-widget"}, '*');
+    //     $(document.body).addClass('fullw-widget');
+    //     $(".widget-container").removeClass('booking').addClass('checkout');
+    //
+    //     $('.widget-container').fadeOut(300, function(){
+    //         $('.widget-container').delay(400).queue(function( nxt ) {
+    //             $(this).load('checkout.html', function(){
+    //                 $('.widget-container').fadeIn(400);
+    //             });
+    //             nxt();
+    //         });
+    //     });
+    // }else {
+        parent.postMessage({"command":"addClass", "addClass":"fullw-widget"}, '*');
+        $(document.body).addClass('fullw-widget');
+        setTimeout(function() {
+            $(".widget-container").removeClass('booking').addClass('checkout');
+        }, 400);
+        $('.widget-container').fadeOut(300, function(){
+            $('.widget-container').delay(400).queue(function( nxt ) {
+                $(this).load('checkout', function(){
+                    $('.widget-container').fadeIn(400);
 
-    $('.widget-container').fadeOut(300, function(){
-        $('.widget-container').delay(400).queue(function( nxt ) {
-            $(this).load('/widget/checkout', function(){
-                $('.widget-container').fadeIn(400);
+                    $('#checkout-people').html(number_of_people + " people(s)");
+                    $('#checkout-date').html(SelectOutput);
+                    $('#checkout-time').html(DisplayCurrentTime(new Date(date + " "+ time)));
 
-                $('#checkout-people').html(number_of_people + " people(s)");
-                $('#checkout-date').html(SelectOutput);
-                $('#checkout-time').html(DisplayCurrentTime(new Date(date + " "+ time)));
+                });
+                nxt();
             });
-            nxt();
         });
-    });
+    // }
 }
 
 function DisplayCurrentTime(date) {
@@ -205,33 +267,103 @@ function DisplayCurrentTime(date) {
 function backToBooking(){
     parent.postMessage({"command":"hasDelayRemove", "removeClass":"fullw-widget", "duration":300}, '*');
     $(document.body).removeClass('fullw-widget');
-    $(".widget-container").removeClass('checkout').addClass('booking');
-
+    setTimeout(function() {
+        $(".widget-container").removeClass('checkout').addClass('booking');
+    }, 300);
     $('.widget-container').fadeOut(100, function(){
         $('.widget-container').delay(400).queue(function( nxt ) {
-            $(this).load('/widget/booking', function(){
+            $(this).load('booking', function(){
                 $('.widget-container').fadeIn('slow');
-                openDatePicker();
+                datepickOpen();
+            });
+
+            nxt();
+        });
+    });
+
+
+
+}
+function checkout(){
+
+    checkout_email = $("input[name=orderInfo_email]").val();
+
+    if(checkout_email !=null ){
+        $('.widget-container').fadeOut(400, function(){
+            $(this).load('/widget/processing', function(){
+                $('.widget-container').fadeIn(400);
+
+                sendBookRequest();
+            });
+        });
+    }
+    
+}
+
+function voucherOpen() {
+    parent.postMessage({"command":"both", "addClass":"widget-open fullw-widget", "removeClass":"widget-closed"}, '*');
+    $(document.body).addClass('widget-open fullw-widget').removeClass('widget-closed');
+    $(".widget-container").removeClass('booking').addClass('vouchers');
+
+    $('.widget-container').fadeOut(300, function(){
+        $('.widget-container').delay(400).queue(function( nxt ) {
+            $(this).load('/widget/allvouchers', function(){
+                $('.widget-container').fadeIn(400);
             });
             nxt();
         });
     });
 }
 
-function checkout(){
-    $('.widget-container').fadeOut(400, function(){
-        $(this).load('/widget/processing', function(){
-            $('.widget-container').fadeIn(400);
+function selectVoucher(){
+    $(".widget-container").removeClass('vouchers').addClass('voucherCheckout');
+    $('.widget-container').fadeOut(300, function(){
+        $('.widget-container').delay(400).queue(function( nxt ) {
+            $(this).load('voucher-checkout', function(){
+                $('.widget-container').fadeIn(400);
+            });
+            nxt();
         });
-    });
-    $('.widget-container').delay(300).queue(function( nghfgxt ) {
-        $(this).load('/widget/confirm', function(){
-            $('.widget-container').fadeIn(400);
-        });
-        nghfgxt();
     });
 }
 
+
+function selectPaymentMethod(el){
+
+    if( $(el).hasClass('selected') ){
+        return;
+    }else {
+        $(el).parent().find('.payment-method.selected').removeClass('selected');
+        $(el).addClass('selected');
+    }
+}
+
+
+function backToAllVouchers(){
+    $(".widget-container").removeClass('voucherCheckout').addClass('vouchers');
+    $('.widget-container').fadeOut(100, function(){
+        $('.widget-container').delay(400).queue(function( nxt ) {
+            $(this).load('/widget/allvouchers', function(){
+                $('.widget-container').fadeIn('slow');
+            });
+            nxt();
+        });
+    });
+}
+
+function showSuggestion(){
+    $(document.body).addClass('suggestion-open').removeClass('vouchers-active');
+    parent.postMessage({"command":"addClass", "addClass":"suggestion-open"}, '*');
+    $(".widget-container").addClass('suggestion');
+    $('.widget-container').delay(100).queue(function( nxt ) {
+        $('.booking-form-wrap').append(
+            $('<div class="search-results"></div>').load('widget/suggestions', function(){
+                $('.widget-container').fadeIn(100);
+            })
+        );
+        nxt();
+    });
+}
 
 function getAvailableTimes(){
     $.ajax({
@@ -248,27 +380,52 @@ function getAvailableTimes(){
         dataType: "text",
         success: function(resultData) {
             $('#time_slots').html(resultData);
+            timeSelect($('#time-option-0'));
         }
     });
 }
 
-function getMaximumPeopleNumber(){
+function sendBookRequest(){
+    
     $.ajax({
         type: "POST",
         headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        url: BASE_URL + "/widget/maximum-people",
+        url: BASE_URL + "/widget/book-request",
         data: {
          _token : $('meta[name="csrf-token"]').attr('content'), 
-         code : $('#restaurant_code').val()
+         code : $('#restaurant_code').val(),
+         date : date,
+         number_of_people : number_of_people,
+         time : time,
+         title : $("input[name=orderInfo_title]").val(),
+         company : $("input[name=orderInfo_company]").val(),
+         first_name : $("input[name=orderInfo_firstName]").val(),
+         last_name : $("input[name=orderInfo_lastName]").val(),
+         email : checkout_email,
+         telephone : $("input[name=orderInfo_telephone]").val(),
+         note : $("input[name=orderInfo_note]").val(),
         },
         dataType: "text",
         success: function(resultData) {
-            number_of_people = 1;
-            for(var i=1; i <= resultData; i++){
-                var str = '<div class="persons-option" onclick="personSelect(this)"><span id="people">'+ i +'</span></div>';
-                $('#people-select').append(str);
+            if (resultData == "success") {
+                
+                $('.widget-container').delay(400).queue(function( nghfgxt ) {
+                    $(this).load('/widget/confirm', function(){
+                        $('.widget-container').fadeIn(400);
+
+                        $('#checkout-date').html(SelectOutput);
+                        $('#checkout-time').html(DisplayCurrentTime(new Date(date + " "+ time)));
+                        $('#checkout-email').html(checkout_email);
+
+                    });
+
+                    nghfgxt();
+                });
+            }
+            else{
+                alert("Try again!");
             }
         }
     });
