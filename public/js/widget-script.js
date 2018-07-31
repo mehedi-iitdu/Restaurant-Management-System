@@ -281,19 +281,58 @@ function backToBooking(){
         });
     });
 
-
-
 }
+
+function isValidEmailAddress(emailAddress) {
+    var pattern = new RegExp(/^(("[\w-+\s]+")|([\w-+]+(?:\.[\w-+]+)*)|("[\w-+\s]+")([\w-+]+(?:\.[\w-+]+)*))(@((?:[\w-+]+\.)*\w[\w-+]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][\d]\.|1[\d]{2}\.|[\d]{1,2}\.))((25[0-5]|2[0-4][\d]|1[\d]{2}|[\d]{1,2})\.){2}(25[0-5]|2[0-4][\d]|1[\d]{2}|[\d]{1,2})\]?$)/i);
+    return pattern.test(emailAddress);
+};
+
 function checkout(){
+
+    var isValid = true;
+    var title = $("input[name=orderInfo_title]").val();
+    var company = $("input[name=orderInfo_company]").val();
+    var first_name = $("input[name=orderInfo_firstName]").val();
+    var last_name = $("input[name=orderInfo_lastName]").val();
+    var telephone = $("input[name=orderInfo_telephone]").val();
+    var note = $("input[name=orderInfo_note]").val();
 
     checkout_email = $("input[name=orderInfo_email]").val();
 
-    if(checkout_email !=null ){
+    if(checkout_email == "" || !isValidEmailAddress(checkout_email)){
+        $("input[name=orderInfo_email]").addClass('input-error');    
+        isValid = false;
+    }
+    else{
+        $("input[name=orderInfo_email]").removeClass('input-error');
+    }
+    if(first_name == ""){
+        $("input[name=orderInfo_firstName]").addClass('input-error');
+        isValid = false;
+    }
+    else{
+        $("input[name=orderInfo_firstName]").removeClass('input-error');
+    }
+    if(last_name == ""){
+        $("input[name=orderInfo_lastName]").addClass('input-error');
+        isValid = false;
+    }
+    else{
+        $("input[name=orderInfo_lastName]").removeClass('input-error');
+    }
+    if(telephone == ""){
+        $("input[name=orderInfo_telephone]").addClass('input-error');
+        isValid = false;
+    }
+    else{
+        $("input[name=orderInfo_telephone]").removeClass('input-error');
+    }
+    if(isValid){
         $('.widget-container').fadeOut(400, function(){
             $(this).load('/widget/processing', function(){
                 $('.widget-container').fadeIn(400);
-
-                sendBookRequest();
+                sendBookRequest(title, company, first_name, last_name, telephone, note);
             });
         });
     }
@@ -385,7 +424,7 @@ function getAvailableTimes(){
     });
 }
 
-function sendBookRequest(){
+function sendBookRequest(title, company, first_name, last_name, telephone, note){
     
     $.ajax({
         type: "POST",
@@ -399,19 +438,19 @@ function sendBookRequest(){
          date : date,
          number_of_people : number_of_people,
          time : time,
-         title : $("input[name=orderInfo_title]").val(),
-         company : $("input[name=orderInfo_company]").val(),
-         first_name : $("input[name=orderInfo_firstName]").val(),
-         last_name : $("input[name=orderInfo_lastName]").val(),
+         title : title,
+         company : company,
+         first_name : first_name,
+         last_name : last_name,
          email : checkout_email,
-         telephone : $("input[name=orderInfo_telephone]").val(),
-         note : $("input[name=orderInfo_note]").val(),
+         telephone : telephone,
+         note : note,
         },
         dataType: "text",
         success: function(resultData) {
             if (resultData == "success") {
                 
-                $('.widget-container').delay(400).queue(function( nghfgxt ) {
+                $('.widget-container').delay(1000).queue(function( nghfgxt ) {
                     $(this).load('/widget/confirm', function(){
                         $('.widget-container').fadeIn(400);
 

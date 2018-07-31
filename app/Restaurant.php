@@ -43,4 +43,8 @@ class Restaurant extends Model
     public function holidays(){
         return $this->hasMany(Holiday::class);
     }
+    
+    public function reservationRequests(){
+        return $this->hasMany(ReservationRequest::class)->orderBy('date','asc')->orderBy('time','asc');
+    }
 }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 11, 2018 at 02:06 PM
+-- Generation Time: Jul 16, 2018 at 10:04 AM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.1.9
 
@@ -41,7 +41,7 @@ CREATE TABLE `food_category` (
 --
 
 INSERT INTO `food_category` (`id`, `name`, `restaurant_id`, `created_at`, `updated_at`) VALUES
-(2, 'Drinks', 11, '2018-05-28 04:51:52', '2018-05-28 04:51:52');
+(5, 'Drinks', 11, '2018-07-12 08:08:20', '2018-07-12 02:08:20');
 
 -- --------------------------------------------------------
 
@@ -65,7 +65,32 @@ CREATE TABLE `food_item` (
 --
 
 INSERT INTO `food_item` (`id`, `name`, `description`, `price`, `restaurant_id`, `food_category_id`, `created_at`, `updated_at`) VALUES
-(2, 'CocaCola', '250ml', '15', 11, 2, '2018-07-11 05:12:35', '2018-07-11 05:12:35');
+(12, 'Pepsi', '250ml', '20', 11, 5, '2018-07-12 02:07:22', '2018-07-12 02:07:22'),
+(13, 'Coca Cola', '250ml', '25', 11, 5, '2018-07-12 02:07:42', '2018-07-12 02:07:42');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `holiday`
+--
+
+CREATE TABLE `holiday` (
+  `id` int(11) NOT NULL,
+  `restaurant_id` int(11) NOT NULL,
+  `purpose` varchar(50) NOT NULL,
+  `date` int(20) NOT NULL,
+  `opening_time` varchar(10) DEFAULT NULL,
+  `closing_time` varchar(10) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `holiday`
+--
+
+INSERT INTO `holiday` (`id`, `restaurant_id`, `purpose`, `date`, `opening_time`, `closing_time`, `created_at`, `updated_at`) VALUES
+(3, 11, 'New Year 2019', 1546300800, '10:00:00', '14:00:00', '2018-07-16 01:54:00', '2018-07-16 01:54:00');
 
 -- --------------------------------------------------------
 
@@ -252,7 +277,7 @@ CREATE TABLE `time_config` (
 --
 
 INSERT INTO `time_config` (`id`, `restaurant_id`, `day`, `opening_time`, `closing_time`, `created_at`, `updated_at`) VALUES
-(1, 11, 'Monday', '11:00:00', '18:00:00', '2018-06-11 06:05:07', '2018-05-28 04:21:51'),
+(1, 11, 'Monday', '10:00:00', '18:00:00', '2018-07-16 07:35:33', '2018-07-16 01:35:33'),
 (2, 11, 'Tuesday', '11:00:00', '23:00:00', '2018-06-12 08:38:04', '2018-06-12 02:38:04'),
 (3, 11, 'Wednesday', '11:00:00', '22:00:00', '2018-06-12 08:36:06', '2018-06-12 02:36:06'),
 (4, 11, 'Thursday', 'Closed', 'Closed', '2018-05-28 04:20:19', '2018-05-28 04:20:19'),
@@ -315,6 +340,13 @@ ALTER TABLE `food_item`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk13` (`restaurant_id`),
   ADD KEY `fk14` (`food_category_id`);
+
+--
+-- Indexes for table `holiday`
+--
+ALTER TABLE `holiday`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `restaurant_id_fk_holiday` (`restaurant_id`);
 
 --
 -- Indexes for table `password_resets`
@@ -391,13 +423,19 @@ ALTER TABLE `food_category`
 -- AUTO_INCREMENT for table `food_item`
 --
 ALTER TABLE `food_item`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `holiday`
+--
+ALTER TABLE `holiday`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `photos`
 --
 ALTER TABLE `photos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `reservation`
@@ -415,7 +453,7 @@ ALTER TABLE `restaurant`
 -- AUTO_INCREMENT for table `restaurant_table`
 --
 ALTER TABLE `restaurant_table`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `restaurant_type`
@@ -457,6 +495,12 @@ ALTER TABLE `food_category`
 ALTER TABLE `food_item`
   ADD CONSTRAINT `fk13` FOREIGN KEY (`restaurant_id`) REFERENCES `restaurant` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk14` FOREIGN KEY (`food_category_id`) REFERENCES `food_category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `holiday`
+--
+ALTER TABLE `holiday`
+  ADD CONSTRAINT `restaurant_id_fk_holiday` FOREIGN KEY (`restaurant_id`) REFERENCES `restaurant` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `photos`

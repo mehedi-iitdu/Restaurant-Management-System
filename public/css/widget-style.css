@@ -24,6 +24,9 @@
     height: 0;
     clear: both;
 }
+input.input-error{
+    border-color: red!important;
+}
 option {
     font-weight: normal;
     display: block;

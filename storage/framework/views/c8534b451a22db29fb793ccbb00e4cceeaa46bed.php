@@ -44,7 +44,7 @@
                                         <td>
                                             <div class="fm-input pricing-name"><input type="text" placeholder="" value="<?php echo e($restaurantTable->name); ?>" disabled></div>
 
-                                            <div class="fm-input pricing-ingredients"><input type="text" placeholder="" value="<?php echo e($restaurantTable->capacity); ?>" disabled></div>
+                                            <div class="fm-input pricing-ingredients"><input type="text" placeholder="" value="<?php echo e($restaurantTable->capacity.' Person(s)'); ?>" disabled></div>
 
                                                 <form method="POST" action="<?php echo e(route('tables.edit')); ?>">
                                                     <?php echo csrf_field(); ?>

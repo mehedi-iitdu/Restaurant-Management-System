@@ -53,6 +53,10 @@ Route::get('/timeConfigs/add/{code?}', 'TimeConfigController@showAddTimeConfigFo
 Route::post('/timeConfigs/insert', 'TimeConfigController@insertTimeConfig')->name('timeConfig.insert');
 Route::post('/timeConfigs/update', 'TimeConfigController@updateTimeConfig')->name('timeConfig.update');
 
+//ReservationRequests_Admin
+Route::get('/reservation_requests', 'ReservationRequestController@index')->name('reservation_requests.index');
+Route::get('/reservation_requests/show/{code}', 'ReservationRequestController@show')->name('reservation_requests.show');
+
 //Holiday_Admin
 Route::get('/holidays/show/{code}', 'HolidayController@showHolidays')->name('holidays.show');
 Route::post('/holidays/add', 'HolidayController@insertHoliday')->name('holidays.insert');

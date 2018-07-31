@@ -1,6 +1,9 @@
 <?php if($timeConfig->opening_time != 'Closed' || $timeConfig->closing_time != 'Closed'): ?>
+	<?php
+		$i = 0;
+	?>
 	<?php for($time = strtotime($timeConfig->opening_time); $time <= strtotime($timeConfig->closing_time); $time = strtotime('+15 minutes', $time)): ?>
-		<div class="time-option" onclick="timeSelect(this)">
+		<div class="time-option" onclick="timeSelect(this)" id="time-option-<?php echo e($i); ?>">
 			<input type="hidden" name="time" value="<?php echo e(date("H:i:s", $time)); ?>">
 		    <div class="time-time">
 		    	<?php if($time>=strtotime('13:00:00')): ?>
@@ -17,5 +20,8 @@
 		        <div class="availability available">Available</div>
 		    </div>
 		</div>
+		<?php
+			$i++;
+		?>
 	<?php endfor; ?>
 <?php endif; ?>
