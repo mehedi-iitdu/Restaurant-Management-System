@@ -7,7 +7,9 @@ use App\Customer;
 
 class Reservation extends Model
 {
-    public function customer(){
-    	return $this->belongsTo(Customer::class);
-    }
+	protected $table = 'reservation';
+
+    // public function customer(){
+    // 	return $this->belongsTo(Customer::class);
+    // }
 }

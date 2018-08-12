@@ -23,7 +23,7 @@
              <li><a class="nav-link" href="{{ route('timeConfig.index') }}"><i class="sl sl-icon-heart"></i> Time Configuration</a></li>
              <li><a class="nav-link" href="{{ route('fooditem.index') }}"><i class="sl sl-icon-heart"></i> Food Menu</a></li>
              <li><a class="nav-link" href="{{ route('reservation_requests.index') }}"><i class="sl sl-icon-heart"></i> Reservation Requests</a></li>
-             <li><a class="nav-link" href="#"><i class="sl sl-icon-star"></i> Vouchers</a></li>
+             <!-- <li><a class="nav-link" href="#"><i class="sl sl-icon-star"></i> Vouchers</a></li> -->
              <li><a class="nav-link" href="{{ route('review') }}"><i class="sl sl-icon-star"></i> Reviews</a></li>
          </ul>
 

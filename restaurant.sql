@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.8.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Aug 12, 2018 at 07:14 AM
--- Server version: 10.1.26-MariaDB
--- PHP Version: 7.1.9
+-- Host: localhost
+-- Generation Time: Aug 12, 2018 at 12:52 PM
+-- Server version: 8.0.12
+-- PHP Version: 7.2.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -99,8 +99,8 @@ INSERT INTO `holiday` (`id`, `restaurant_id`, `purpose`, `date`, `opening_time`,
 --
 
 CREATE TABLE `password_resets` (
-  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -141,11 +141,21 @@ INSERT INTO `photos` (`id`, `photo`, `restaurant_id`, `created_at`, `updated_at`
 
 CREATE TABLE `reservation` (
   `id` int(11) NOT NULL,
-  `table_id` int(11) NOT NULL,
-  `start_time` datetime NOT NULL,
-  `end_time` datetime NOT NULL,
-  `number_of_people` int(5) NOT NULL
+  `reservation_request_id` int(11) NOT NULL,
+  `restaurant_table_id` int(11) NOT NULL,
+  `date` int(20) NOT NULL,
+  `start_time` varchar(20) NOT NULL,
+  `end_time` varchar(20) NOT NULL,
+  `created_at` timestamp NOT NULL,
+  `updated_at` timestamp NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `reservation`
+--
+
+INSERT INTO `reservation` (`id`, `reservation_request_id`, `restaurant_table_id`, `date`, `start_time`, `end_time`, `created_at`, `updated_at`) VALUES
+(1, 26, 7, 1532304000, '11:00:00', '14:00:00', '2018-08-12 12:16:44', '2018-08-12 12:16:44');
 
 -- --------------------------------------------------------
 
@@ -156,6 +166,7 @@ CREATE TABLE `reservation` (
 CREATE TABLE `reservation_requests` (
   `id` int(11) NOT NULL,
   `restaurant_id` int(11) NOT NULL,
+  `status` int(1) NOT NULL DEFAULT '0',
   `number_of_people` int(11) DEFAULT NULL,
   `date` int(20) DEFAULT NULL,
   `time` varchar(10) DEFAULT NULL,
@@ -167,16 +178,16 @@ CREATE TABLE `reservation_requests` (
   `email` varchar(30) DEFAULT NULL,
   `telephone` varchar(20) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `reservation_requests`
 --
 
-INSERT INTO `reservation_requests` (`id`, `restaurant_id`, `number_of_people`, `date`, `time`, `title`, `company`, `first_name`, `last_name`, `note`, `email`, `telephone`, `created_at`, `updated_at`) VALUES
-(1, 11, 8, 1532304000, '14:00:00', 'MALE', 'CreativeItem', 'Mehedi', 'Hasan', NULL, 'mehedi@gmail.com', '01521433075', '2018-07-23 06:28:01', '2018-07-23 06:28:01'),
-(26, 11, 8, 1532390400, '11:00:00', 'MALE', NULL, 'Santu', 'Roy', NULL, 'santu@gmail.com', '0949304930490', '2018-07-24 06:31:08', '2018-07-24 06:31:08');
+INSERT INTO `reservation_requests` (`id`, `restaurant_id`, `status`, `number_of_people`, `date`, `time`, `title`, `company`, `first_name`, `last_name`, `note`, `email`, `telephone`, `created_at`, `updated_at`) VALUES
+(1, 11, 0, 8, 1532304000, '14:00:00', 'MALE', 'CreativeItem', 'Mehedi', 'Hasan', NULL, 'mehedi@gmail.com', '01521433075', '2018-07-23 06:28:01', '2018-07-23 06:28:01'),
+(26, 11, 0, 8, 1532390400, '11:00:00', 'MALE', NULL, 'Santu', 'Roy', NULL, 'santu@gmail.com', '0949304930490', '2018-07-24 06:31:08', '2018-07-24 06:31:08');
 
 -- --------------------------------------------------------
 
@@ -236,9 +247,6 @@ CREATE TABLE `restaurant_table` (
 --
 
 INSERT INTO `restaurant_table` (`id`, `name`, `capacity`, `restaurant_id`, `created_at`, `updated_at`) VALUES
-(4, 'Table 4', 5, 7, '2018-05-20 08:50:38', '2018-05-20 02:50:38'),
-(5, 'Table 5', 5, 7, '2018-05-20 01:49:02', '2018-05-20 01:49:02'),
-(6, 'Table 1', 5, 9, '2018-05-20 04:45:30', '2018-05-20 04:45:30'),
 (7, 'Table 1', 20, 11, '2018-07-11 11:36:34', '2018-07-11 05:36:34'),
 (13, 'Table 2', 15, 11, '2018-07-11 05:57:43', '2018-07-11 05:57:43');
 
@@ -331,13 +339,13 @@ INSERT INTO `time_config` (`id`, `restaurant_id`, `day`, `opening_time`, `closin
 
 CREATE TABLE `users` (
   `id` int(10) UNSIGNED NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `phone` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `user_type` varchar(11) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Customer',
-  `photo` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_type` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Customer',
+  `photo` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `remember_token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -479,7 +487,7 @@ ALTER TABLE `photos`
 -- AUTO_INCREMENT for table `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `reservation_requests`

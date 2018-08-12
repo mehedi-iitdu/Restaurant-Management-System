@@ -54,7 +54,7 @@
                                                 <input type="text" placeholder="" value="{{ $reservation_request->email.', '.$reservation_request->telephone }}" disabled>
                                             </div>
 
-                                                <form method="POST" action="">
+                                                <form method="POST" action="{{ route('reservation_requests.accept') }}">
                                                     @csrf
                                                     <input type="hidden" name="id" value="{{ $reservation_request->id }}">
                                                     <button class="button" style="background: green"><i class="im im-icon-Yes"></i></button>

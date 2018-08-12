@@ -56,6 +56,7 @@ Route::post('/timeConfigs/update', 'TimeConfigController@updateTimeConfig')->nam
 //ReservationRequests_Admin
 Route::get('/reservation_requests', 'ReservationRequestController@index')->name('reservation_requests.index');
 Route::get('/reservation_requests/show/{code}', 'ReservationRequestController@show')->name('reservation_requests.show');
+Route::post('/reservation_requests/accept', 'ReservationRequestController@accept')->name('reservation_requests.accept');
 
 //Holiday_Admin
 Route::get('/holidays/show/{code}', 'HolidayController@showHolidays')->name('holidays.show');

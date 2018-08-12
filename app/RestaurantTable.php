@@ -15,4 +15,8 @@ class RestaurantTable extends Model
     public function restaurant(){
     	return $this->belongsTo(Restaurant::class);
     }
+
+    public function reservations(){
+    	return $this->hasMany(Reservation::class);
+    }
 }
