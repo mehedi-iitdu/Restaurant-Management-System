@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 16, 2018 at 10:04 AM
+-- Generation Time: Aug 12, 2018 at 07:14 AM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.1.9
 
@@ -150,6 +150,37 @@ CREATE TABLE `reservation` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `reservation_requests`
+--
+
+CREATE TABLE `reservation_requests` (
+  `id` int(11) NOT NULL,
+  `restaurant_id` int(11) NOT NULL,
+  `number_of_people` int(11) DEFAULT NULL,
+  `date` int(20) DEFAULT NULL,
+  `time` varchar(10) DEFAULT NULL,
+  `title` varchar(10) DEFAULT NULL,
+  `company` varchar(30) DEFAULT NULL,
+  `first_name` varchar(20) DEFAULT NULL,
+  `last_name` varchar(20) DEFAULT NULL,
+  `note` varchar(100) DEFAULT NULL,
+  `email` varchar(30) DEFAULT NULL,
+  `telephone` varchar(20) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `reservation_requests`
+--
+
+INSERT INTO `reservation_requests` (`id`, `restaurant_id`, `number_of_people`, `date`, `time`, `title`, `company`, `first_name`, `last_name`, `note`, `email`, `telephone`, `created_at`, `updated_at`) VALUES
+(1, 11, 8, 1532304000, '14:00:00', 'MALE', 'CreativeItem', 'Mehedi', 'Hasan', NULL, 'mehedi@gmail.com', '01521433075', '2018-07-23 06:28:01', '2018-07-23 06:28:01'),
+(26, 11, 8, 1532390400, '11:00:00', 'MALE', NULL, 'Santu', 'Roy', NULL, 'santu@gmail.com', '0949304930490', '2018-07-24 06:31:08', '2018-07-24 06:31:08');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `restaurant`
 --
 
@@ -182,7 +213,7 @@ CREATE TABLE `restaurant` (
 --
 
 INSERT INTO `restaurant` (`id`, `code`, `restaurant_type_id`, `user_id`, `status`, `name`, `city`, `address`, `latitude`, `longitude`, `description`, `amenities`, `facebook`, `website`, `phone`, `email`, `twitter`, `google_plus`, `keywords`, `created_at`, `updated_at`) VALUES
-(11, '3ebb77adccc0dd48461e', 1, 3, 'Active', 'Mr.', 'New York', 'Shahbagh, Dhaka, Bangladesh', '23.7397263', '90.39426100000003', NULL, '[\"Elevator in building\",\"Friendly workspace\",\"Instant Book\",\"Wireless Internet\",\"Free parking on street\",\"Smoking allowed\"]', NULL, NULL, '1642954885', 'mehedi.iitdu@gmail.com', NULL, NULL, NULL, '2018-07-11 11:55:32', '2018-07-11 05:55:32'),
+(11, '3ebb77adccc0dd48461e', 1, 3, 'Active', 'Burger King', 'New York', 'Shahbagh, Dhaka, Bangladesh', '23.7397263', '90.39426100000003', NULL, '[\"Elevator in building\",\"Friendly workspace\",\"Instant Book\",\"Wireless Internet\",\"Free parking on street\",\"Smoking allowed\"]', NULL, NULL, '1642954885', 'mehedi.iitdu@gmail.com', NULL, NULL, NULL, '2018-07-24 12:35:46', '2018-07-11 05:55:32'),
 (13, 'e41e32c46aebc9169355', 1, 3, 'Pending', 'Khabo koi', NULL, 'Housebuilding Counter, Dhaka, Bangladesh', '23.8721864', '90.4007891', NULL, '[\"Elevator in building\",\"Wireless Internet\",\"Free parking on street\",\"Smoking allowed\"]', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2018-06-10 10:26:21', '2018-06-10 04:26:21');
 
 -- --------------------------------------------------------
@@ -277,7 +308,7 @@ CREATE TABLE `time_config` (
 --
 
 INSERT INTO `time_config` (`id`, `restaurant_id`, `day`, `opening_time`, `closing_time`, `created_at`, `updated_at`) VALUES
-(1, 11, 'Monday', '10:00:00', '18:00:00', '2018-07-16 07:35:33', '2018-07-16 01:35:33'),
+(1, 11, 'Monday', '14:00:00', '18:00:00', '2018-07-23 10:54:19', '2018-07-16 01:35:33'),
 (2, 11, 'Tuesday', '11:00:00', '23:00:00', '2018-06-12 08:38:04', '2018-06-12 02:38:04'),
 (3, 11, 'Wednesday', '11:00:00', '22:00:00', '2018-06-12 08:36:06', '2018-06-12 02:36:06'),
 (4, 11, 'Thursday', 'Closed', 'Closed', '2018-05-28 04:20:19', '2018-05-28 04:20:19'),
@@ -368,6 +399,13 @@ ALTER TABLE `reservation`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `reservation_requests`
+--
+ALTER TABLE `reservation_requests`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `restaurant_id_fk_book_request` (`restaurant_id`);
+
+--
 -- Indexes for table `restaurant`
 --
 ALTER TABLE `restaurant`
@@ -444,6 +482,12 @@ ALTER TABLE `reservation`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `reservation_requests`
+--
+ALTER TABLE `reservation_requests`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+
+--
 -- AUTO_INCREMENT for table `restaurant`
 --
 ALTER TABLE `restaurant`
@@ -507,6 +551,12 @@ ALTER TABLE `holiday`
 --
 ALTER TABLE `photos`
   ADD CONSTRAINT `restaurant_id_fk_photos` FOREIGN KEY (`restaurant_id`) REFERENCES `restaurant` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `reservation_requests`
+--
+ALTER TABLE `reservation_requests`
+  ADD CONSTRAINT `restaurant_id_fk_book_request` FOREIGN KEY (`restaurant_id`) REFERENCES `restaurant` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `restaurant`
