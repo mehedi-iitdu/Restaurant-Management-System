@@ -90,4 +90,12 @@ class RestaurantTableController extends Controller
 
         return back();
     }
+
+    public function getTablesCapacity(Request $request){
+        $capacity = 0;
+        foreach ($request->table_ids as $key => $id) {
+            $capacity = $capacity + RestaurantTable::find($id)->capacity;
+        }
+        return $capacity;
+    }
 }

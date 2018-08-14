@@ -16,7 +16,7 @@
 
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
 
     <script type="text/javascript" src="{{ asset('js/jquery-2.2.0.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/mmenu.min.js') }}"></script>
@@ -24,7 +24,6 @@
     <script type="text/javascript" src="{{ asset('js/slick.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/rangeslider.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/magnific-popup.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/waypoints.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/waypoints.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/counterup.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/jquery-ui.min.js') }}"></script>

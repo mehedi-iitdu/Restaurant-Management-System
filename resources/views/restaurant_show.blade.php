@@ -6,10 +6,9 @@
 @section('content')
 
 <div class="listing-slider mfp-gallery-container margin-bottom-0">
-	<a href="{{ asset('images/single-listing-01.jpg')}}" data-background-image="{{ asset('images/single-listing-01.jpg')}}" class="item mfp-gallery" title="Title 1"></a>
-	<a href="{{ asset('images/single-listing-02.jpg')}}" data-background-image="{{ asset('images/single-listing-02.jpg')}}" class="item mfp-gallery" title="Title 3"></a>
-	<a href="{{ asset('images/single-listing-03.jpg')}}" data-background-image="{{ asset('images/single-listing-03.jpg')}}" class="item mfp-gallery" title="Title 2"></a>
-	<a href="{{ asset('images/single-listing-04.jpg')}}" data-background-image="{{ asset('images/single-listing-04.jpg')}}" class="item mfp-gallery" title="Title 4"></a>
+	@foreach($restaurant->photos as $key => $photo)
+		<a href="{{ asset($photo->photo)}}" data-background-image="{{ asset($photo->photo)}}" class="item mfp-gallery" title="Title {{ $key }}"></a>
+	@endforeach
 </div>
 
 <div class="container">
@@ -27,7 +26,7 @@
 						</a>
 					</span>
 					<div class="star-rating" data-rating="5">
-						<div class="rating-counter"><a href="#listing-reviews">(31 reviews)</a></div>
+						<div class="rating-counter"><a href="#listing-reviews">({{ count($restaurant->reviews) }} reviews)</a></div>
 					</div>
 				</div>
 			</div>
@@ -108,7 +107,7 @@
 				
 			<!-- Reviews -->
 			<div id="listing-reviews" class="listing-section">
-				<h3 class="listing-desc-headline margin-top-75 margin-bottom-20">Reviews <span>(12)</span></h3>
+				<h3 class="listing-desc-headline margin-top-75 margin-bottom-20">Reviews <span>({{ count($restaurant->reviews) }})</span></h3>
 
 				<div class="clearfix"></div>
 
@@ -116,67 +115,37 @@
 				<section class="comments listing-reviews">
 
 					<ul>
+						@foreach($restaurant->reviews as $key => $review)
 						<li>
-							<div class="avatar"><img src="http://www.gravatar.com/avatar/00000000000000000000000000000000?d=mm&amp;s=70" alt="" /></div>
+							@if($review->user->photo != null)
+								<div class="avatar"><img src="{{ asset($review->user->photo) }}" alt="" /></div>
+							@else
+								<div class="avatar"><img src="http://www.gravatar.com/avatar/00000000000000000000000000000000?d=mm&amp;s=70" alt=""></div>
+							@endif
 							<div class="comment-content"><div class="arrow-comment"></div>
-								<div class="comment-by">Kathy Brown<span class="date">June 2017</span>
-									<div class="star-rating" data-rating="5"></div>
+								<div class="comment-by">{{ $review->user->name }}<span class="date">{{ date('F Y', $review->date)}}</span>
+									<div class="star-rating" data-rating="5">
+										@for($i=0; $i<$review->rating; $i++)
+											<span class="star"></span>
+										@endfor
+									</div>
 								</div>
-								<p>Morbi velit eros, sagittis in facilisis non, rhoncus et erat. Nam posuere tristique sem, eu ultricies tortor imperdiet vitae. Curabitur lacinia neque non metus</p>
+								<p>{{ $review->review_content }}</p>
 								
 								<div class="review-images mfp-gallery-container">
 									<a href="images/review-image-01.jpg" class="mfp-gallery"><img src="images/review-image-01.jpg" alt=""></a>
 								</div>
-								<a href="#" class="rate-review"><i class="sl sl-icon-like"></i> Helpful Review <span>12</span></a>
+								<a href="#" class="rate-review"><i class="sl sl-icon-like"></i> Helpful Review <span>{{ $review->likes }}</span></a>
 							</div>
 						</li>
-
-						<li>
-							<div class="avatar"><img src="http://www.gravatar.com/avatar/00000000000000000000000000000000?d=mm&amp;s=70" alt="" /> </div>
-							<div class="comment-content"><div class="arrow-comment"></div>
-								<div class="comment-by">John Doe<span class="date">May 2017</span>
-									<div class="star-rating" data-rating="4"></div>
-								</div>
-								<p>Commodo est luctus eget. Proin in nunc laoreet justo volutpat blandit enim. Sem felis, ullamcorper vel aliquam non, varius eget justo. Duis quis nunc tellus sollicitudin mauris.</p>
-								<a href="#" class="rate-review"><i class="sl sl-icon-like"></i> Helpful Review <span>2</span></a>
-							</div>
-						</li>
-
-						<li>
-							<div class="avatar"><img src="http://www.gravatar.com/avatar/00000000000000000000000000000000?d=mm&amp;s=70" alt="" /></div>
-							<div class="comment-content"><div class="arrow-comment"></div>
-								<div class="comment-by">Kathy Brown<span class="date">June 2017</span>
-									<div class="star-rating" data-rating="5"></div>
-								</div>
-								<p>Morbi velit eros, sagittis in facilisis non, rhoncus et erat. Nam posuere tristique sem, eu ultricies tortor imperdiet vitae. Curabitur lacinia neque non metus</p>
-								
-								<div class="review-images mfp-gallery-container">
-									<a href="images/review-image-02.jpg" class="mfp-gallery"><img src="images/review-image-02.jpg" alt=""></a>
-									<a href="images/review-image-03.jpg" class="mfp-gallery"><img src="images/review-image-03.jpg" alt=""></a>
-								</div>
-								<a href="#" class="rate-review"><i class="sl sl-icon-like"></i> Helpful Review <span>4</span></a>
-							</div>
-						</li>
-
-						<li>
-							<div class="avatar"><img src="http://www.gravatar.com/avatar/00000000000000000000000000000000?d=mm&amp;s=70" alt="" /> </div>
-							<div class="comment-content"><div class="arrow-comment"></div>
-								<div class="comment-by">John Doe<span class="date">May 2017</span>
-									<div class="star-rating" data-rating="5"></div>
-								</div>
-								<p>Commodo est luctus eget. Proin in nunc laoreet justo volutpat blandit enim. Sem felis, ullamcorper vel aliquam non, varius eget justo. Duis quis nunc tellus sollicitudin mauris.</p>
-								<a href="#" class="rate-review"><i class="sl sl-icon-like"></i> Helpful Review</a>
-							</div>
-
-						</li>
+						@endforeach
 					 </ul>
 				</section>
 
 				<!-- Pagination -->
-				<div class="clearfix"></div>
+				<!-- <div class="clearfix"></div>
 				<div class="row">
 					<div class="col-md-12">
-						<!-- Pagination -->
 						<div class="pagination-container margin-top-30">
 							<nav class="pagination">
 								<ul>
@@ -188,10 +157,11 @@
 						</div>
 					</div>
 				</div>
-				<div class="clearfix"></div>
+				<div class="clearfix"></div> -->
 				<!-- Pagination / End -->
 			</div>
 
+			@if(Auth::check())
 
 			<!-- Add Review Box -->
 			<div id="add-review" class="add-review-box">
@@ -201,42 +171,44 @@
 				
 				<span class="leave-rating-title">Your rating for this listing</span>
 				
+				<form id="add-comment" class="add-comment" action="{{ route('reviews.store') }}" method="POST" enctype="multipart/form-data">
+					@csrf
 				<!-- Rating / Upload Button -->
-				<div class="row">
-					<div class="col-md-6">
-						<!-- Leave Rating -->
-						<div class="clearfix"></div>
-						<div class="leave-rating margin-bottom-30">
-							<input type="radio" name="rating" id="rating-1" value="1"/>
-							<label for="rating-1" class="fa fa-star"></label>
-							<input type="radio" name="rating" id="rating-2" value="2"/>
-							<label for="rating-2" class="fa fa-star"></label>
-							<input type="radio" name="rating" id="rating-3" value="3"/>
-							<label for="rating-3" class="fa fa-star"></label>
-							<input type="radio" name="rating" id="rating-4" value="4"/>
-							<label for="rating-4" class="fa fa-star"></label>
-							<input type="radio" name="rating" id="rating-5" value="5"/>
-							<label for="rating-5" class="fa fa-star"></label>
+					<div class="row">
+						<div class="col-md-6">
+							<!-- Leave Rating -->
+							<div class="clearfix"></div>
+							<div class="leave-rating margin-bottom-30">
+								<input type="radio" name="rating" id="rating-1" value="5"/>
+								<label for="rating-1" class="fa fa-star"></label>
+								<input type="radio" name="rating" id="rating-2" value="4"/>
+								<label for="rating-2" class="fa fa-star"></label>
+								<input type="radio" name="rating" id="rating-3" value="3"/>
+								<label for="rating-3" class="fa fa-star"></label>
+								<input type="radio" name="rating" id="rating-4" value="2"/>
+								<label for="rating-4" class="fa fa-star"></label>
+								<input type="radio" name="rating" id="rating-5" value="1"/>
+								<label for="rating-5" class="fa fa-star"></label>
+							</div>
+							<div class="clearfix"></div>
 						</div>
-						<div class="clearfix"></div>
-					</div>
 
-					<div class="col-md-6">
-						<!-- Uplaod Photos -->
-						<div class="add-review-photos margin-bottom-30">
-							<div class="photoUpload">
-							    <span><i class="sl sl-icon-arrow-up-circle"></i> Upload Photos</span>
-							    <input type="file" class="upload" />
+						<div class="col-md-6">
+							<!-- Uplaod Photos -->
+							<div class="add-review-photos margin-bottom-30">
+								<img id="image" src="" alt="" style="width: 250; height: 250px; padding: 20px;">
+								<div class="photoUpload">
+								    <span><i class="sl sl-icon-arrow-up-circle"></i> Upload Photos</span>
+								    <input type="file" class="upload" name="photo" id="photo" accept="image/*"/>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
 	
 				<!-- Review Comment -->
-				<form id="add-comment" class="add-comment">
 					<fieldset>
 
-						<div class="row">
+						<!-- <div class="row">
 							<div class="col-md-6">
 								<label>Name:</label>
 								<input type="text" value=""/>
@@ -246,12 +218,14 @@
 								<label>Email:</label>
 								<input type="text" value=""/>
 							</div>
-						</div>
+						</div> -->
 
 						<div>
 							<label>Review:</label>
-							<textarea cols="40" rows="3"></textarea>
+							<textarea cols="40" rows="3" name="review_content" required></textarea>
 						</div>
+
+						<input type="hidden" name="restaurant_id" value="{{ $restaurant->id }}">
 
 					</fieldset>
 
@@ -261,6 +235,8 @@
 
 			</div>
 			<!-- Add Review Box / End -->
+
+			@endif
 
 
 		</div>
@@ -321,27 +297,47 @@
 			<!-- Book Now / End -->
 		
 
-			<!-- Opening Hours -->
-			<div class="boxed-widget opening-hours margin-top-35">
-				<div class="listing-badge now-open">Now Open</div>
-				<h3><i class="sl sl-icon-clock"></i> Opening Hours</h3>
-				<ul>
-					<li>Monday <span>9 AM - 5 PM</span></li>
-					<li>Tuesday <span>9 AM - 5 PM</span></li>
-					<li>Wednesday <span>9 AM - 5 PM</span></li>
-					<li>Thursday <span>9 AM - 5 PM</span></li>
-					<li>Friday <span>9 AM - 5 PM</span></li>
-					<li>Saturday <span>9 AM - 3 PM</span></li>
-					<li>Sunday <span>Closed</span></li>
-				</ul>
-			</div>
-			<!-- Opening Hours / End -->
+			@if(count($restaurant->timeConfigs)>0)
+				<!-- Opening Hours -->
+				<div class="boxed-widget opening-hours margin-top-35">
+					@php
+						$time = date('H:i:s');
+            			$timeConfig = $restaurant->timeConfigs->where('day', date('l'))->first();
+            			if($timeConfig != null){
+            				if($time >= $timeConfig->opening_time && $time <= $timeConfig->closing_time){
+            					$status = 'now-open';
+            					$msg = 'Now Open';
+            				}
+            				else{
+            					$status = 'now-closed';
+            					$msg = 'Now Closed';
+            				}
+            			}
+            			else{
+                            $status = '';
+                            $msg = '';
+                        }
+					@endphp
+					<div class="listing-badge {{ $status }}">{{ $msg }}</div>
+					<h3><i class="sl sl-icon-clock"></i> Opening Hours</h3>
+					<ul>
+						@foreach($restaurant->timeConfigs as $timeConfig)
+						    @if($timeConfig->opening_time == 'Closed' || $timeConfig->closing_time == 'Closed')
+						        <li>{{ $timeConfig->day}} <span>Closed</span></li>
+						    @else
+						        <li>{{ $timeConfig->day}} <span>{{ date('h:i A', strtotime($timeConfig->opening_time)).'-'.date('h:i A', strtotime($timeConfig->closing_time)) }}</span></li>
+						    @endif
+						@endforeach
+					</ul>
+				</div>
+				<!-- Opening Hours / End -->
+			@endif
 
 
 			<!-- Contact -->
 			<div class="boxed-widget margin-top-35">
 				<div class="hosted-by-title">
-					<h4><span>Hosted by</span> <a href="pages-user-profile.html">{{ $restaurant->user->name }}</a></h4>
+					<h4><span>Hosted by</span> <a >{{ $restaurant->user->name }}</a></h4>
 					<a href="pages-user-profile.html" class="hosted-by-avatar"><img src="images/dashboard-avatar.jpg" alt=""></a>
 				</div>
 				<ul class="listing-details-sidebar">
@@ -351,8 +347,8 @@
 				</ul>
 
 				<ul class="listing-details-sidebar social-profiles">
-					<li><a href="#" class="facebook-profile"><i class="fa fa-facebook-square"></i> Facebook</a></li>
-					<li><a href="#" class="twitter-profile"><i class="fa fa-twitter"></i> Twitter</a></li>
+					<li><a href="{{ $restaurant->facebook }}" class="facebook-profile"><i class="fa fa-facebook-square"></i> Facebook</a></li>
+					<li><a href="{{ $restaurant->twitter }}" class="twitter-profile"><i class="fa fa-twitter"></i> Twitter</a></li>
 					<!-- <li><a href="#" class="gplus-profile"><i class="fa fa-google-plus"></i> Google Plus</a></li> -->
 				</ul>
 
@@ -379,9 +375,9 @@
 
 					<!-- Share Buttons -->
 					<ul class="share-buttons margin-top-40 margin-bottom-0">
-						<li><a class="fb-share" href="#"><i class="fa fa-facebook"></i> Share</a></li>
-						<li><a class="twitter-share" href="#"><i class="fa fa-twitter"></i> Tweet</a></li>
-						<li><a class="gplus-share" href="#"><i class="fa fa-google-plus"></i> Share</a></li>
+						<li><a class="fb-share" href="https://www.facebook.com/sharer/sharer.php?u="><i class="fa fa-facebook"></i> Share</a></li>
+						<li><a class="twitter-share" href="https://twitter.com/home?status="><i class="fa fa-twitter"></i> Tweet</a></li>
+						<li><a class="gplus-share" href="https://plus.google.com/share?url="><i class="fa fa-google-plus"></i> Share</a></li>
 						<!-- <li><a class="pinterest-share" href="#"><i class="fa fa-pinterest-p"></i> Pin</a></li> -->
 					</ul>
 					<div class="clearfix"></div>
@@ -496,6 +492,25 @@ var $clocks = $('.td-input');
 	clock.value = null;
 });
 </script> 
+<script type="text/javascript">
+	$('#image').hide();
+	var _URL = window.URL || window.webkitURL;
+	$("#photo").change(function (e) {
+	    var file, img;
+	    if ((file = this.files[0])) {
+	        img = new Image();
+	        img.onload = function () {
+            	var reader = new FileReader();
+            	reader.onload = function (e) {
+            	    $('#image').attr('src', e.target.result);
+            	    $('#image').show();
+            	}
+            	reader.readAsDataURL(file);
+	        };
+	        img.src = _URL.createObjectURL(file);
+	    }
+	});
+</script>
 
 <!-- Booking Widget - Quantity Buttons -->
 <script src="{{ asset('js/quantityButtons.js') }}"></script>

@@ -60,7 +60,7 @@
                                                     <button class="button" style="background: green"><i class="im im-icon-Yes"></i></button>
                                                 </form>
 
-                                                <form method="POST" action="">
+                                                <form method="POST" action="{{ route('reservation_requests.delete') }}">
                                                     @csrf
                                                     <input type="hidden" name="id" value="{{ $reservation_request->id }}">
                                                     <button class="button"><i class="sl sl-icon-close"></i></button>

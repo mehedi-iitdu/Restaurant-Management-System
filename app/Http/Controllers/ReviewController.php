@@ -38,4 +38,23 @@ class ReviewController extends Controller
 
         return view('partials_.reviews', ['visitor_reviews'=> $visitor_reviews]);
     }
+
+    public function store(Request $request)
+    {   
+        //dd($request->rating);
+        $review = new Review;
+        $review->user_id = Auth::user()->id;
+        $review->restaurant_id = $request->restaurant_id;
+        $review->date = strtotime(date("d-m-Y"));
+        $review->review_content = $request->review_content;
+        $review->rating = $request->rating;
+        if($request->file('photo') != null){
+            $path = $request->file('photo')->store('uploads');
+            $review->photo = $path;
+        }
+        if($review->save()){
+            //flash('Thanks for your review')->success();
+        }
+        return back();
+    }
 }

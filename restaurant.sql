@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Aug 12, 2018 at 12:52 PM
+-- Generation Time: Aug 14, 2018 at 12:59 PM
 -- Server version: 8.0.12
 -- PHP Version: 7.2.8
 
@@ -130,8 +130,12 @@ CREATE TABLE `photos` (
 --
 
 INSERT INTO `photos` (`id`, `photo`, `restaurant_id`, `created_at`, `updated_at`) VALUES
-(6, 'uploads/zHfnXGN9E4Xi9u9v6wP1uAdGj0RJOPF33y5zZuhN.png', 11, '2018-07-10 05:12:54', '2018-07-10 05:12:54'),
-(9, 'uploads/ES5iGSSAetxxkRK5hOd7D9jSRc7BuYLYR02MGW0o.png', 13, '2018-07-10 05:13:54', '2018-07-10 05:13:54');
+(10, 'uploads/x6Eolt2JMOiklH41Esg6WmrEdmFrqea3YN0yrRvg.jpeg', 11, '2018-08-14 04:15:58', '2018-08-14 04:15:58'),
+(11, 'uploads/Elcu3wk65mrLZNwiaCJIbFqPfvOpFEIWgBCWtkOH.jpeg', 13, '2018-08-14 04:16:11', '2018-08-14 04:16:11'),
+(12, 'uploads/8YxvnFmh5NeS3dmpjqmlkBVJ71897ocEvUqQTq17.jpeg', 11, '2018-08-14 04:32:03', '2018-08-14 04:32:03'),
+(13, 'uploads/PJKSdweFKR74quHKZL20ib90hPc5TjbZLJWjVj6N.jpeg', 11, '2018-08-14 04:32:09', '2018-08-14 04:32:09'),
+(14, 'uploads/RW3WHyfd19nJzk3nRKUn8K7iU1L6rsnS8zJJBpcb.jpeg', 11, '2018-08-14 04:32:13', '2018-08-14 04:32:13'),
+(15, 'uploads/oKOuSWjwUlTyt9mJS8UC0vXbKV3o5zPNsuzBaD6l.jpeg', 11, '2018-08-14 04:32:16', '2018-08-14 04:32:16');
 
 -- --------------------------------------------------------
 
@@ -155,7 +159,7 @@ CREATE TABLE `reservation` (
 --
 
 INSERT INTO `reservation` (`id`, `reservation_request_id`, `restaurant_table_id`, `date`, `start_time`, `end_time`, `created_at`, `updated_at`) VALUES
-(1, 26, 7, 1532304000, '11:00:00', '14:00:00', '2018-08-12 12:16:44', '2018-08-12 12:16:44');
+(11, 1, 13, 1532304000, '14:00:00', '15:30:00', '2018-08-14 03:32:23', '2018-08-14 03:32:23');
 
 -- --------------------------------------------------------
 
@@ -186,8 +190,7 @@ CREATE TABLE `reservation_requests` (
 --
 
 INSERT INTO `reservation_requests` (`id`, `restaurant_id`, `status`, `number_of_people`, `date`, `time`, `title`, `company`, `first_name`, `last_name`, `note`, `email`, `telephone`, `created_at`, `updated_at`) VALUES
-(1, 11, 0, 8, 1532304000, '14:00:00', 'MALE', 'CreativeItem', 'Mehedi', 'Hasan', NULL, 'mehedi@gmail.com', '01521433075', '2018-07-23 06:28:01', '2018-07-23 06:28:01'),
-(26, 11, 0, 8, 1532390400, '11:00:00', 'MALE', NULL, 'Santu', 'Roy', NULL, 'santu@gmail.com', '0949304930490', '2018-07-24 06:31:08', '2018-07-24 06:31:08');
+(1, 11, 1, 8, 1532304000, '14:00:00', 'MALE', 'CreativeItem', 'Mehedi', 'Hasan', NULL, 'mehedi@gmail.com', '01521433075', '2018-08-14 09:32:23', '2018-08-14 03:32:23');
 
 -- --------------------------------------------------------
 
@@ -247,8 +250,8 @@ CREATE TABLE `restaurant_table` (
 --
 
 INSERT INTO `restaurant_table` (`id`, `name`, `capacity`, `restaurant_id`, `created_at`, `updated_at`) VALUES
-(7, 'Table 1', 20, 11, '2018-07-11 11:36:34', '2018-07-11 05:36:34'),
-(13, 'Table 2', 15, 11, '2018-07-11 05:57:43', '2018-07-11 05:57:43');
+(7, 'Table 1', 8, 11, '2018-08-13 11:32:05', '2018-07-11 05:36:34'),
+(13, 'Table 2', 10, 11, '2018-08-13 11:31:27', '2018-07-11 05:57:43');
 
 -- --------------------------------------------------------
 
@@ -279,9 +282,11 @@ CREATE TABLE `review` (
   `id` int(11) NOT NULL,
   `restaurant_id` int(11) NOT NULL,
   `user_id` int(10) UNSIGNED NOT NULL,
-  `date` date NOT NULL,
+  `date` int(20) NOT NULL,
   `review_content` varchar(500) NOT NULL,
   `rating` int(11) DEFAULT NULL,
+  `likes` int(10) NOT NULL DEFAULT '0',
+  `photo` varchar(64) DEFAULT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -290,10 +295,8 @@ CREATE TABLE `review` (
 -- Dumping data for table `review`
 --
 
-INSERT INTO `review` (`id`, `restaurant_id`, `user_id`, `date`, `review_content`, `rating`, `created_at`, `updated_at`) VALUES
-(1, 11, 2, '2018-05-02', 'Good environment', 5, '2018-05-29 12:22:21', '2018-06-06 07:01:51'),
-(2, 11, 4, '2018-05-02', 'Nice', 4, '2018-05-29 12:23:10', '2018-06-06 07:01:47'),
-(3, 13, 3, '2018-06-05', 'Nice', 5, '2018-06-05 16:24:52', '2018-06-06 07:01:54');
+INSERT INTO `review` (`id`, `restaurant_id`, `user_id`, `date`, `review_content`, `rating`, `likes`, `photo`, `created_at`, `updated_at`) VALUES
+(9, 11, 3, 1534204800, 'Nice Place to hangout', 4, 0, 'uploads/SiqtBRDKJX1heFD3JQrCp72TbxYgMyZowzaS2vOC.jpeg', '2018-08-14 12:42:44', '2018-08-14 06:42:44');
 
 -- --------------------------------------------------------
 
@@ -322,14 +325,7 @@ INSERT INTO `time_config` (`id`, `restaurant_id`, `day`, `opening_time`, `closin
 (4, 11, 'Thursday', 'Closed', 'Closed', '2018-05-28 04:20:19', '2018-05-28 04:20:19'),
 (5, 11, 'Friday', 'Closed', 'Closed', '2018-05-28 04:20:19', '2018-05-28 04:20:19'),
 (6, 11, 'Saturday', 'Closed', 'Closed', '2018-05-28 04:20:19', '2018-05-28 04:20:19'),
-(7, 11, 'Sunday', 'Closed', 'Closed', '2018-05-28 04:20:19', '2018-05-28 04:20:19'),
-(8, 13, 'Monday', '01:00:00', '01:00:00', '2018-06-12 02:36:23', '2018-06-12 02:36:23'),
-(9, 13, 'Tuesday', '02:00:00', '04:00:00', '2018-06-12 08:36:31', '2018-06-12 02:36:31'),
-(10, 13, 'Wednesday', '05:00:00', '18:00:00', '2018-06-12 08:37:15', '2018-06-12 02:37:15'),
-(11, 13, 'Thursday', '09:00:00', '22:00:00', '2018-06-12 08:37:30', '2018-06-12 02:37:30'),
-(12, 13, 'Friday', 'Closed', 'Closed', '2018-06-12 02:36:24', '2018-06-12 02:36:24'),
-(13, 13, 'Saturday', 'Closed', 'Closed', '2018-06-12 02:36:24', '2018-06-12 02:36:24'),
-(14, 13, 'Sunday', 'Closed', 'Closed', '2018-06-12 02:36:24', '2018-06-12 02:36:24');
+(7, 11, 'Sunday', 'Closed', 'Closed', '2018-05-28 04:20:19', '2018-05-28 04:20:19');
 
 -- --------------------------------------------------------
 
@@ -357,7 +353,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `email`, `phone`, `password`, `user_type`, `photo`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'Mehedi', 'mehedi.iitdu@gmail.com', '', '$2y$10$a5GHoTTIax59HnNF12wmNuE17ftC0pzn6aL14rO0HjcTZuKv2x4Dy', 'SystemAdmin', NULL, 'LfiTtgXi04ZAIQZYcFdxZ7KgZD95jmbHJTfgPqvxYQNt4wyiAYTERtAk7GJP', '2018-05-17 00:35:10', '2018-05-17 00:35:10'),
 (2, 'Rafi', 'rafi@gmail.com', '', '$2y$10$dkxF.nWD55xtvx5taVg.8u.yHWHT/TJJ/nkk/H.BpRtI4LCnomzrG', 'Admin', NULL, 'ClOod24M0kzobroKwE7dYc1qGLvLrC5klJTRT9WQflcjtuqlRiYcKBWoelV2', '2018-05-17 03:08:51', '2018-05-20 02:26:45'),
-(3, 'Santu Roy', 'santu@gmail.com', '015214332075', '$2y$10$/I82HoC8bsI3L4zvozjhcOoCgak02JRvl6gVFzi6hwvRDvydj5Q9K', 'Admin', 'uploads/4gGsx34twguAYDuqQn0eLL1H2ZAu6zvYldLas5np.png', 'hPyPdsh050557A1sAVGnBq1aeg0M5pGQDDHp4p0a02KLl2zpsNml3B4eJuSZ', '2018-05-17 03:23:25', '2018-06-12 04:07:18'),
+(3, 'Santu Roy', 'santu@gmail.com', '015214332075', '$2y$10$/I82HoC8bsI3L4zvozjhcOoCgak02JRvl6gVFzi6hwvRDvydj5Q9K', 'Admin', 'uploads/zPOv1ZeAv6DRLnNDCAwh1trWpYI7uf742OBMDt1d.jpeg', '9Gb9tsBrJ1nLSvIMkGEgoxDXOTjZC7rgzAi9LkuaSugfl7ck106eaggj6ERf', '2018-05-17 03:23:25', '2018-08-14 05:51:43'),
 (4, 'tanvir', 'tanvir@gmail.com', '', '$2y$10$nGs80nnacH0FNv4vep7rzOtk.9Q9Wt2Fatk9EhshopSOwSm9yRjlO', 'Customer', NULL, '9UnK3pz8m5mK8KGw2uLtnhUcJguCYRjUwv5k0EA6m4a7tIydTamwEw8u9hk1', '2018-05-20 04:43:39', '2018-05-20 04:44:43'),
 (5, 'Tanvir', 'tanvir.123@gmail.com', NULL, '$2y$10$YWSjqWhpRpL/SeDSnEy4eOEpaVlXBi13Avz5ePsipphDKuyURw/V6', 'Customer', NULL, 'jf68mfGw2lWyLfO1Pt5A1pkhxpobVLLSXr4wdJi0RYm7gG2pVOvwe6fLKskY', '2018-05-24 04:25:40', '2018-05-24 04:25:40');
 
@@ -481,13 +477,13 @@ ALTER TABLE `holiday`
 -- AUTO_INCREMENT for table `photos`
 --
 ALTER TABLE `photos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `reservation_requests`
@@ -517,7 +513,7 @@ ALTER TABLE `restaurant_type`
 -- AUTO_INCREMENT for table `review`
 --
 ALTER TABLE `review`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `time_config`

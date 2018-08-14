@@ -169,9 +169,26 @@
                     <div class="col-lg-4 col-md-6">
                         <a href="{{ route('restaurant.show', $restaurant->code) }}" class="listing-item-container compact">
                             <div class="listing-item">
-                                <img src="images/listing-item-01.jpg" alt="">
-
-                                <div class="listing-badge now-open">Now Open</div>
+                                <img src="{{ asset($restaurant->photos->first()->photo) }}" alt="">
+                                @php
+                                    $time = date('H:i:s');
+                                    $timeConfig = $restaurant->timeConfigs->where('day', date('l'))->first();
+                                    if($timeConfig != null){
+                                        if($time >= $timeConfig->opening_time && $time <= $timeConfig->closing_time){
+                                            $status = 'now-open';
+                                            $msg = 'Now Open';
+                                        }
+                                        else{
+                                            $status = 'now-closed';
+                                            $msg = 'Now Closed';
+                                        }
+                                    }
+                                    else{
+                                        $status = '';
+                                        $msg = '';
+                                    }
+                                @endphp
+                                <div class="listing-badge {{ $status }}">{{ $msg }}</div>
 
                                 <div class="listing-item-content">
                                     <div class="numerical-rating" data-rating="3.5"></div>

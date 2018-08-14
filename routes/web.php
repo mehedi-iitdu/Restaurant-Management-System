@@ -41,6 +41,7 @@ Route::get('/tables/add/{code?}', 'RestaurantTableController@showAddTableForm')-
 Route::post('/tables/insert', 'RestaurantTableController@insertRestaurantTable')->name('tables.insert');
 Route::post('/tables/add/auto', 'RestaurantTableController@showAddTableAutoForm')->name('tables.add.auto');
 Route::post('/tables/add/auto/all', 'RestaurantTableController@insertAutoRestaurantTable')->name('tables.add.all');
+Route::post('/tables/capacity', 'RestaurantTableController@getTablesCapacity')->name('tables.capacity');
 
 Route::post('/tables/edit', 'RestaurantTableController@showEditTableForm')->name('tables.edit');
 Route::post('/tables/update', 'RestaurantTableController@updateRestaurantTable')->name('tables.update');
@@ -57,6 +58,8 @@ Route::post('/timeConfigs/update', 'TimeConfigController@updateTimeConfig')->nam
 Route::get('/reservation_requests', 'ReservationRequestController@index')->name('reservation_requests.index');
 Route::get('/reservation_requests/show/{code}', 'ReservationRequestController@show')->name('reservation_requests.show');
 Route::post('/reservation_requests/accept', 'ReservationRequestController@accept')->name('reservation_requests.accept');
+Route::post('/reservation_requests/delete', 'ReservationRequestController@delete')->name('reservation_requests.delete');
+Route::post('/reservation_requests/confirm', 'ReservationController@store')->name('reservations.store');
 
 //Holiday_Admin
 Route::get('/holidays/show/{code}', 'HolidayController@showHolidays')->name('holidays.show');
@@ -85,6 +88,7 @@ Route::post('/profile/change_password','UserController@changePassword')->name('p
 //Review
 Route::get('/reviews','ReviewController@index')->name('review');
 Route::post('/reviews', 'ReviewController@showReview')->name('review.show');
+Route::post('/reviews/store', 'ReviewController@store')->name('reviews.store');
 
 //Widget
 Route::prefix('widget')->group(function () {

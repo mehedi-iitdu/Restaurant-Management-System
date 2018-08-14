@@ -19,12 +19,14 @@ class ReservationRequestController extends Controller
     	return view('reservation_requests.index');
     }
 
-    public function show($code){
-    	$reservation_requests = Restaurant::where('code', $code)->first()->reservationRequests;
+    public function show($code)
+    {
+    	$reservation_requests = Restaurant::where('code', $code)->first()->reservationRequests->where('status', 0);
     	return view('reservation_requests.show', compact('reservation_requests', 'code'));
     }
 
-    public function accept(Request $request){
+    public function accept(Request $request)
+    {
         $reservation_request = ReservationRequest::find($request->id);
         $tables = RestaurantTable::where('restaurant_id', $reservation_request->restaurant_id)->get();
         foreach ($tables as $key => $table) {
@@ -37,5 +39,16 @@ class ReservationRequestController extends Controller
             }
         }
         return view('reservation_requests.accept', compact('tables', 'reservation_request'));
+    }
+
+    public function delete(Request $request)
+    {
+        $reservation_request = ReservationRequest::find($request->id);
+
+        if($reservation_request->delete()){
+            flash('Reservation rejected')->success();
+        }
+
+        return back();
     }
 }

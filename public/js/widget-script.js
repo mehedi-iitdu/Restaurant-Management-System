@@ -1,4 +1,4 @@
-var BASE_URL = "http://127.0.0.1:8000";
+var BASE_URL = "http://localhost/restaurant/public";
 var number_of_people = 8;
 var date = null;
 var time = null;
