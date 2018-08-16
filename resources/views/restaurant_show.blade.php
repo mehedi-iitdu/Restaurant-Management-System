@@ -370,8 +370,8 @@
 
 			<!-- Share / Like -->
 			<div class="listing-share margin-top-40 margin-bottom-40 no-border">
-				<button class="like-button"><span class="like-icon"></span> Bookmark this listing</button> 
-				<span>159 people bookmarked this place</span>
+				<button class="like-button" id="bookmark-button"><span class="like-icon <?php if(\App\Bookmark::where('user_id', Auth::user()->id)->where('restaurant_id', $restaurant->id)->first() != null) echo "liked" ?>"></span> Bookmark this listing</button> 
+				<span id="total-bookmark">{{ count(\App\Bookmark::where('restaurant_id', $restaurant->id)->get()) }} people bookmarked this place</span>
 
 					<!-- Share Buttons -->
 					<ul class="share-buttons margin-top-40 margin-bottom-0">
@@ -514,5 +514,28 @@ var $clocks = $('.td-input');
 
 <!-- Booking Widget - Quantity Buttons -->
 <script src="{{ asset('js/quantityButtons.js') }}"></script>
+
+<script type="text/javascript">
+	$('#bookmark-button').on('click', function(){
+
+		var code = '{{ $restaurant->code }}';
+		
+		$.ajax({
+			type: "POST",
+			headers: {
+			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			},
+			url: "{{ route('bookmarks.store') }}",
+			data: {
+		     _token : $('meta[name="csrf-token"]').attr('content'), 
+		     code : code
+			},
+			dataType: "text",
+			success: function(resultData) {
+		   		$('#total-bookmark').html(resultData+' people bookmarked this place');
+		  	}
+		});
+	});
+</script>
 
 @endsection

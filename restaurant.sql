@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Aug 14, 2018 at 12:59 PM
+-- Generation Time: Aug 16, 2018 at 06:52 PM
 -- Server version: 8.0.12
 -- PHP Version: 7.2.8
 
@@ -21,6 +21,27 @@ SET time_zone = "+00:00";
 --
 -- Database: `restaurant`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bookmarks`
+--
+
+CREATE TABLE `bookmarks` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `restaurant_id` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `bookmarks`
+--
+
+INSERT INTO `bookmarks` (`id`, `user_id`, `restaurant_id`, `created_at`, `updated_at`) VALUES
+(30, 3, 11, '2018-08-16 05:06:25', '2018-08-16 05:06:25');
 
 -- --------------------------------------------------------
 
@@ -351,15 +372,46 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `phone`, `password`, `user_type`, `photo`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Mehedi', 'mehedi.iitdu@gmail.com', '', '$2y$10$a5GHoTTIax59HnNF12wmNuE17ftC0pzn6aL14rO0HjcTZuKv2x4Dy', 'SystemAdmin', NULL, 'LfiTtgXi04ZAIQZYcFdxZ7KgZD95jmbHJTfgPqvxYQNt4wyiAYTERtAk7GJP', '2018-05-17 00:35:10', '2018-05-17 00:35:10'),
+(1, 'Mehedi', 'mehedi.iitdu@gmail.com', '', '$2y$10$a5GHoTTIax59HnNF12wmNuE17ftC0pzn6aL14rO0HjcTZuKv2x4Dy', 'SystemAdmin', NULL, 'osNKdT9uTdfrrG6z3a28h7nEDdLMAvFIL70iXCkKKi6Sxv66SeaxPTEgfpNg', '2018-05-17 00:35:10', '2018-05-17 00:35:10'),
 (2, 'Rafi', 'rafi@gmail.com', '', '$2y$10$dkxF.nWD55xtvx5taVg.8u.yHWHT/TJJ/nkk/H.BpRtI4LCnomzrG', 'Admin', NULL, 'ClOod24M0kzobroKwE7dYc1qGLvLrC5klJTRT9WQflcjtuqlRiYcKBWoelV2', '2018-05-17 03:08:51', '2018-05-20 02:26:45'),
-(3, 'Santu Roy', 'santu@gmail.com', '015214332075', '$2y$10$/I82HoC8bsI3L4zvozjhcOoCgak02JRvl6gVFzi6hwvRDvydj5Q9K', 'Admin', 'uploads/zPOv1ZeAv6DRLnNDCAwh1trWpYI7uf742OBMDt1d.jpeg', '9Gb9tsBrJ1nLSvIMkGEgoxDXOTjZC7rgzAi9LkuaSugfl7ck106eaggj6ERf', '2018-05-17 03:23:25', '2018-08-14 05:51:43'),
+(3, 'Santu Roy', 'santu@gmail.com', '015214332075', '$2y$10$/I82HoC8bsI3L4zvozjhcOoCgak02JRvl6gVFzi6hwvRDvydj5Q9K', 'Admin', 'uploads/zPOv1ZeAv6DRLnNDCAwh1trWpYI7uf742OBMDt1d.jpeg', 'V18ppSenlZ1iTewnOqUJzePesIUNYKYG5TPHD1O97e1CBABHFE7gjjfl2zs7', '2018-05-17 03:23:25', '2018-08-14 05:51:43'),
 (4, 'tanvir', 'tanvir@gmail.com', '', '$2y$10$nGs80nnacH0FNv4vep7rzOtk.9Q9Wt2Fatk9EhshopSOwSm9yRjlO', 'Customer', NULL, '9UnK3pz8m5mK8KGw2uLtnhUcJguCYRjUwv5k0EA6m4a7tIydTamwEw8u9hk1', '2018-05-20 04:43:39', '2018-05-20 04:44:43'),
 (5, 'Tanvir', 'tanvir.123@gmail.com', NULL, '$2y$10$YWSjqWhpRpL/SeDSnEy4eOEpaVlXBi13Avz5ePsipphDKuyURw/V6', 'Customer', NULL, 'jf68mfGw2lWyLfO1Pt5A1pkhxpobVLLSXr4wdJi0RYm7gG2pVOvwe6fLKskY', '2018-05-24 04:25:40', '2018-05-24 04:25:40');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vouchers`
+--
+
+CREATE TABLE `vouchers` (
+  `id` int(11) NOT NULL,
+  `restaurant_id` int(11) NOT NULL,
+  `title` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `description` varchar(500) NOT NULL,
+  `price` double(8,2) NOT NULL,
+  `photo` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `status` int(1) NOT NULL DEFAULT '1',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `vouchers`
+--
+
+INSERT INTO `vouchers` (`id`, `restaurant_id`, `title`, `description`, `price`, `photo`, `status`, `created_at`, `updated_at`) VALUES
+(1, 11, '4 course dinner all-in', 'This package includes 4 matching wines, water and coffee or tea. For the Gift vouchers our chef curated an extra festive menu with amuse bouches following a 4-course festive surprise menu.', 65.00, 'uploads/x6Eolt2JMOiklH41Esg6WmrEdmFrqea3YN0yrRvg.jpeg', 1, '2018-08-16 11:42:15', '2018-08-16 11:42:15');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `bookmarks`
+--
+ALTER TABLE `bookmarks`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `food_category`
@@ -452,8 +504,20 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
+-- Indexes for table `vouchers`
+--
+ALTER TABLE `vouchers`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `bookmarks`
+--
+ALTER TABLE `bookmarks`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `food_category`
@@ -526,6 +590,12 @@ ALTER TABLE `time_config`
 --
 ALTER TABLE `users`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `vouchers`
+--
+ALTER TABLE `vouchers`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables

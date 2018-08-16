@@ -26,13 +26,8 @@
 							<div class="inner">
 								<h3><a href="#">{{ $restaurant->name }}</a></h3>
 								<span>{{ $restaurant->address }}</span>
-								<div class="star-rating" data-rating="3.5">
+								<div class="star-rating" data-rating="{{ $restaurant->reviews->avg('rating') }}">
 									<div class="rating-counter">({{ count($restaurant->reviews) }} reviews)</div>
-									<span class="star"></span>
-									<span class="star"></span>
-									<span class="star"></span>
-									<span class="star half"></span>
-									<span class="star empty"></span>
 								</div>
 							</div>
 						</div>

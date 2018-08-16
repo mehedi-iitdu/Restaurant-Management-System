@@ -33,7 +33,7 @@
         <!-- Item -->
         <div class="col-lg-3 col-md-6">
             <div class="dashboard-stat color-1">
-                <div class="dashboard-stat-content"><h4>6</h4> <span>Active Listings</span></div>
+                <div class="dashboard-stat-content"><h4>{{ count(\App\Restaurant::where('user_id', Auth::user()->id)->where('status', 'Active')->get()) }}</h4> <span>Active Listings</span></div>
                 <div class="dashboard-stat-icon"><i class="im im-icon-Map2"></i></div>
             </div>
         </div>

@@ -86,9 +86,19 @@ Route::post('/profile/update','UserController@updateUser')->name('profile.update
 Route::post('/profile/change_password','UserController@changePassword')->name('profile.changePassword');
 
 //Review
-Route::get('/reviews','ReviewController@index')->name('review');
+Route::get('/reviews','ReviewController@index')->name('reviews');
 Route::post('/reviews', 'ReviewController@showReview')->name('review.show');
 Route::post('/reviews/store', 'ReviewController@store')->name('reviews.store');
+
+//Bookmarks
+Route::post('/bookmarks/store', 'BookmarkController@store')->name('bookmarks.store');
+
+//Vouchers
+Route::get('/vouchers','VoucherController@index')->name('vouchers');
+Route::get('/voucher/show/{code}', 'VoucherController@showVouchers')->name('vouchers.show');
+Route::post('/voucher/edit', 'VoucherController@editVoucher')->name('vouchers.edit');
+Route::get('/voucher/add/{code?}', 'VoucherController@showAddVoucherForm')->name('vouchers.add');
+Route::post('/voucher/insert', 'VoucherController@insertVoucher')->name('vouchers.store');
 
 //Widget
 Route::prefix('widget')->group(function () {
