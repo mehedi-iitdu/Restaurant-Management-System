@@ -296,7 +296,7 @@ function checkout(){
     var first_name = $("input[name=orderInfo_firstName]").val();
     var last_name = $("input[name=orderInfo_lastName]").val();
     var telephone = $("input[name=orderInfo_telephone]").val();
-    var note = $("input[name=orderInfo_note]").val();
+    var note = $("textarea[name=orderInfo_note]").val();
 
     checkout_email = $("input[name=orderInfo_email]").val();
 
@@ -330,9 +330,9 @@ function checkout(){
     }
     if(isValid){
         $('.widget-container').fadeOut(400, function(){
-            $(this).load('/widget/processing', function(){
+            $(this).load(BASE_URL+'/widget/processing', function(){
                 $('.widget-container').fadeIn(400);
-                sendBookRequest(title, company, first_name, last_name, telephone, note);
+                //sendBookRequest(title, company, first_name, last_name, telephone, note);
             });
         });
     }
@@ -451,7 +451,7 @@ function sendBookRequest(title, company, first_name, last_name, telephone, note)
             if (resultData == "success") {
                 
                 $('.widget-container').delay(1000).queue(function( nghfgxt ) {
-                    $(this).load('/widget/confirm', function(){
+                    $(this).load(BASE_URL+'/widget/confirm', function(){
                         $('.widget-container').fadeIn(400);
 
                         $('#checkout-date').html(SelectOutput);

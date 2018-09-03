@@ -370,7 +370,9 @@
 
 			<!-- Share / Like -->
 			<div class="listing-share margin-top-40 margin-bottom-40 no-border">
-				<button class="like-button" id="bookmark-button"><span class="like-icon <?php if(\App\Bookmark::where('user_id', Auth::user()->id)->where('restaurant_id', $restaurant->id)->first() != null) echo "liked" ?>"></span> Bookmark this listing</button> 
+				@if(Auth::check())
+					<button class="like-button" id="bookmark-button"><span class="like-icon <?php if(\App\Bookmark::where('user_id', Auth::user()->id)->where('restaurant_id', $restaurant->id)->first() != null) echo "liked" ?>"></span> Bookmark this listing</button> 
+				@endif
 				<span id="total-bookmark">{{ count(\App\Bookmark::where('restaurant_id', $restaurant->id)->get()) }} people bookmarked this place</span>
 
 					<!-- Share Buttons -->

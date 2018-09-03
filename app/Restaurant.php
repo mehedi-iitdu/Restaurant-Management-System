@@ -48,6 +48,10 @@ class Restaurant extends Model
         return $this->hasMany(ReservationRequest::class)->orderBy('date','asc')->orderBy('time','asc');
     }
 
+    public function reservations(){
+        return $this->hasMany(Reservation::class);
+    }
+
     public function vouchers(){
         return $this->hasMany(Voucher::class)->orderBy('created_at','desc');
     }

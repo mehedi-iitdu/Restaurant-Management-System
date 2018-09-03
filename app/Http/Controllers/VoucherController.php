@@ -24,7 +24,25 @@ class VoucherController extends Controller
     }
 
     public function editVoucher(Request $request){
-    	
+    	$voucher = Voucher::find($request->id);
+        return view('vouchers.edit', compact('voucher'));
+    }
+
+    public function updateVoucher(Request $request){
+        $voucher = Voucher::find($request->id);
+        $voucher->status = $request->status;
+        $voucher->title = $request->title;
+        $voucher->description = $request->description;
+        $voucher->price = $request->price;
+        if($request->file('photo') != null){
+            $path = $request->file('photo')->store('uploads');
+            $voucher->photo = $path;
+        }
+        if ($voucher->save()) {
+            flash('Voucher updated successfully')->success();
+        }
+
+        return redirect()->route('vouchers.show', $voucher->restaurant->code);
     }
 
     public function showAddVoucherForm($code){

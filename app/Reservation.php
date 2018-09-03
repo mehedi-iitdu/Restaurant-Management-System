@@ -9,7 +9,7 @@ class Reservation extends Model
 {
 	protected $table = 'reservation';
 
-    // public function customer(){
-    // 	return $this->belongsTo(Customer::class);
-    // }
+    public function reservationRequest(){
+        return $this->belongsTo(ReservationRequest::class);
+    }
 }

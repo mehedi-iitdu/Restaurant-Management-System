@@ -39,3 +39,70 @@
 .chosen-container-single{
     margin-bottom: 16px;
 }
+
+/* color picker */
+.side-booking-color label {
+    margin: 0 6px;
+    position: relative;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    display: inline-block;
+}
+
+.side-booking-color {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.side-booking-color input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: 2;
+}
+
+.side-booking-color .checkmark {
+    width: 22px;
+    height: 22px;
+    display: inline-block;
+    border-radius: 50%;
+    position: relative;
+}
+.side-booking-color .checkmark:before {
+    position: absolute;
+    height: calc(100% - 8px);
+    width: calc(100% - 8px);
+    top: 4px;
+    left: 4px;
+    bottom: 4px;
+    right: 4px;
+    background-size: cover;
+    background-image: url('../img/checked.svg');
+}
+.side-booking-color input:checked ~ .checkmark:before{
+    content: "";
+}
+.side-booking-color .checkmark.color1 {
+    background-color: #35c496;
+}
+.side-booking-color .checkmark.color2 {
+    background-color: #00bbda;
+}
+.side-booking-color .checkmark.color3 {
+    background-color: #aa85ef;
+}
+.side-booking-color .checkmark.color4 {
+    background-color: #be6b7f;
+}
+.side-booking-color .checkmark.color5 {
+    background-color: #ff3601;
+}
+.side-booking-color .checkmark.color6 {
+    background-color: #ffd300;
+}

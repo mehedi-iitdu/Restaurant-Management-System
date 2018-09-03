@@ -68,6 +68,32 @@
                                                     </select>
                                                 </div>
                                             </div>
+                                            <div class="side-booking-color">
+                                                <label>
+                                                    <input type="radio" checked="checked" name="color" value="35c496" required>
+                                                    <span class="checkmark color1"></span>
+                                                </label>
+                                                <label>
+                                                    <input type="radio" name="color" value="00bbda" required>
+                                                    <span class="checkmark color2"></span>
+                                                </label>
+                                                <label>
+                                                    <input type="radio" name="color" value="aa85ef" required>
+                                                    <span class="checkmark color3"></span>
+                                                </label>
+                                                <label>
+                                                    <input type="radio" name="color" value="be6b7f" required>
+                                                    <span class="checkmark color4"></span>
+                                                </label>
+                                                <label>
+                                                    <input type="radio" name="color" value="ff3601" required>
+                                                    <span class="checkmark color5"></span>
+                                                </label>
+                                                <label>
+                                                    <input type="radio" name="color" value="ffd300" required>
+                                                    <span class="checkmark color6"></span>
+                                                </label>
+                                            </div>
                                             <div class="col-md-12" align="center">
                                                 <button style="padding: 9px 20px; line-height: 26px; font-size: 15px;" type="submit" class="button border margin-top-5">Confirm <i class="fa fa-arrow-circle-right"></i> </button>
                                             </div>

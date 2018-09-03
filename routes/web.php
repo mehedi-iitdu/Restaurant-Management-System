@@ -61,6 +61,11 @@ Route::post('/reservation_requests/accept', 'ReservationRequestController@accept
 Route::post('/reservation_requests/delete', 'ReservationRequestController@delete')->name('reservation_requests.delete');
 Route::post('/reservation_requests/confirm', 'ReservationController@store')->name('reservations.store');
 
+//Reservations
+Route::get('/reservations', 'ReservationController@index')->name('reservations.index');
+Route::get('/reservations/show/{code}', 'ReservationController@show')->name('reservations.show');
+Route::post('/reservations/events/', 'ReservationController@events')->name('reservations.events');
+
 //Holiday_Admin
 Route::get('/holidays/show/{code}', 'HolidayController@showHolidays')->name('holidays.show');
 Route::post('/holidays/add', 'HolidayController@insertHoliday')->name('holidays.insert');
@@ -98,7 +103,8 @@ Route::get('/vouchers','VoucherController@index')->name('vouchers');
 Route::get('/voucher/show/{code}', 'VoucherController@showVouchers')->name('vouchers.show');
 Route::post('/voucher/edit', 'VoucherController@editVoucher')->name('vouchers.edit');
 Route::get('/voucher/add/{code?}', 'VoucherController@showAddVoucherForm')->name('vouchers.add');
-Route::post('/voucher/insert', 'VoucherController@insertVoucher')->name('vouchers.store');
+Route::post('/voucher/store', 'VoucherController@insertVoucher')->name('vouchers.store');
+Route::post('/voucher/update', 'VoucherController@updateVoucher')->name('vouchers.update');
 
 //Widget
 Route::prefix('widget')->group(function () {
