@@ -106,6 +106,10 @@ Route::get('/voucher/add/{code?}', 'VoucherController@showAddVoucherForm')->name
 Route::post('/voucher/store', 'VoucherController@insertVoucher')->name('vouchers.store');
 Route::post('/voucher/update', 'VoucherController@updateVoucher')->name('vouchers.update');
 
+//Feedback
+Route::get('/feedback/{code}', 'FeedbackController@index');
+Route::post('/feedback/submit', 'FeedbackController@store')->name('feedback.store');
+
 //Widget
 Route::prefix('widget')->group(function () {
     Route::get('/widget-form', function(){

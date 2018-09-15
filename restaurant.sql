@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.2
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Aug 16, 2018 at 06:52 PM
--- Server version: 8.0.12
--- PHP Version: 7.2.8
+-- Host: 127.0.0.1
+-- Generation Time: Sep 12, 2018 at 04:42 PM
+-- Server version: 10.1.26-MariaDB
+-- PHP Version: 7.1.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -42,6 +42,32 @@ CREATE TABLE `bookmarks` (
 
 INSERT INTO `bookmarks` (`id`, `user_id`, `restaurant_id`, `created_at`, `updated_at`) VALUES
 (30, 3, 11, '2018-08-16 05:06:25', '2018-08-16 05:06:25');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `feedbacks`
+--
+
+CREATE TABLE `feedbacks` (
+  `id` int(11) NOT NULL,
+  `restaurant_id` int(11) NOT NULL,
+  `service` int(2) NOT NULL,
+  `waiting_time` int(2) NOT NULL,
+  `meal` int(2) NOT NULL,
+  `email` varchar(30) DEFAULT NULL,
+  `sub_1` int(1) NOT NULL DEFAULT '0',
+  `sub_2` int(1) NOT NULL DEFAULT '0',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `feedbacks`
+--
+
+INSERT INTO `feedbacks` (`id`, `restaurant_id`, `service`, `waiting_time`, `meal`, `email`, `sub_1`, `sub_2`, `created_at`, `updated_at`) VALUES
+(1, 11, 10, 5, 6, 'mehedi.iitdu@gmail.com', 1, 1, '2018-09-12 08:40:34', '2018-09-12 08:40:34');
 
 -- --------------------------------------------------------
 
@@ -120,8 +146,8 @@ INSERT INTO `holiday` (`id`, `restaurant_id`, `purpose`, `date`, `opening_time`,
 --
 
 CREATE TABLE `password_resets` (
-  `email` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -171,8 +197,8 @@ CREATE TABLE `reservation` (
   `date` int(20) NOT NULL,
   `start_time` varchar(20) NOT NULL,
   `end_time` varchar(20) NOT NULL,
-  `created_at` timestamp NOT NULL,
-  `updated_at` timestamp NOT NULL
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -356,13 +382,13 @@ INSERT INTO `time_config` (`id`, `restaurant_id`, `day`, `opening_time`, `closin
 
 CREATE TABLE `users` (
   `id` int(10) UNSIGNED NOT NULL,
-  `name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `phone` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `password` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `user_type` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Customer',
-  `photo` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `remember_token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_type` varchar(11) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Customer',
+  `photo` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -387,10 +413,10 @@ INSERT INTO `users` (`id`, `name`, `email`, `phone`, `password`, `user_type`, `p
 CREATE TABLE `vouchers` (
   `id` int(11) NOT NULL,
   `restaurant_id` int(11) NOT NULL,
-  `title` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `title` varchar(50) NOT NULL,
   `description` varchar(500) NOT NULL,
   `price` double(8,2) NOT NULL,
-  `photo` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `photo` varchar(64) DEFAULT NULL,
   `status` int(1) NOT NULL DEFAULT '1',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -411,6 +437,12 @@ INSERT INTO `vouchers` (`id`, `restaurant_id`, `title`, `description`, `price`, 
 -- Indexes for table `bookmarks`
 --
 ALTER TABLE `bookmarks`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `feedbacks`
+--
+ALTER TABLE `feedbacks`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -518,6 +550,12 @@ ALTER TABLE `vouchers`
 --
 ALTER TABLE `bookmarks`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+
+--
+-- AUTO_INCREMENT for table `feedbacks`
+--
+ALTER TABLE `feedbacks`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `food_category`

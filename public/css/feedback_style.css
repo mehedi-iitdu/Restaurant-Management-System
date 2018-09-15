@@ -1,0 +1,444 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body {
+  height: 100%;
+  margin: 0;
+  background: #fff;
+  font-family: 'Open Sans', sans-serif;
+}
+input:focus,
+button:focus,
+textarea:focus{
+    outline: none;
+}
+button{
+    cursor: pointer;
+}
+textarea{
+    width: 100%;
+}
+.oswald{
+    font-family: 'Oswald', sans-serif;
+}
+.m-top-15{
+    margin-top: 15px;
+}
+.m-top-20{
+    margin-top: 20px;
+}
+.m-bottom-20{
+    margin-bottom: 20px;
+}
+
+.main-wrap {
+    height: 100vh;
+    min-height: 100vh;
+    max-height: 100vh;
+}
+
+.feedback-form {
+    height: calc(100vh - 231px);
+    margin: 0 20px;
+}
+
+.feedback-form form {
+    height: 100%;
+    position: relative;
+    padding-bottom: 100px;
+}
+
+.feedback-form form .next-btn {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    left: 0;
+    padding: 23px;
+}
+
+.next-btn button {
+    background: #fff;
+    border: 0;
+    padding: 10px 28px;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.15);
+    border-radius: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #25243e;
+    font-size: 18px;
+}
+
+.steps-wrap {
+    margin-top: -25px;
+    height: 100%;
+    position: relative;
+    width: calc(100vw - 40px);
+    overflow-x: hidden;
+}
+.single-step{
+    transition: transform 0.3s;
+    -webkit-transition: transform 0.3s;
+    transform: translateX(100%);
+    -webkit-transform: translateX(100%);
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.single-step.active{
+    transform: translateX(0%);
+    -webkit-transform: translateX(0%);
+}
+.single-step.done{
+    transform: translateX(-100%);
+    -webkit-transform: translateX(-100%);
+}
+
+.top-bar {
+    position: relative;
+    background: #fff;
+    border-radius: 0 0 10px 10px;
+    z-index: 2
+}
+
+.top-bar .back-icon img {
+    width: 15px;
+    margin-left: -3px;
+}
+
+.top-bar .logo-wrap {
+    position: relative;
+    padding: 8px 50px;
+}
+
+.top-bar .back-icon {
+    position: absolute;
+    top: 11px;
+    height: 44px;
+    width: 44px;
+    border-radius: 50%;
+    left: 0;
+    background: #fff;
+    border: 0;
+    line-height: 42px;
+    box-shadow: 1px 4px 16px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+.top-bar .logo-wrap>img {
+    height: 50px;
+    width: auto;
+}
+.restaurant-banner {
+    margin-top: -10px;
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+}
+
+.box {
+    background: #fff;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+    border-radius: 10px;
+}
+
+.intro-text {
+    padding: 22px;
+    text-align: center;
+    font-size: 14px;
+    opacity: 0.8;
+}
+.select-language-btn button {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: none;
+    border: none;
+    position: relative;
+    padding-left: 40px;
+    text-align: left;
+    height: 60px;
+    text-transform: uppercase;
+    color: #25243e;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.select-language-btn button img {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+img.flag-icon {
+    padding: 10px;
+    background: #fff;
+    width: 60px;
+    height: 60px;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+    border-radius: 10px;
+}
+
+.select-language-btn {
+    margin-bottom: 20px;
+}
+.select-language-btn button:before {
+    position: absolute;
+    content: "";
+    background: url(../img/left.svg);
+    height: 16px;
+    width: 16px;
+    left: 15px;
+    top: 24px;
+    transition: all 0.3s;
+    -webkit-transition: all 0.3s;
+    transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+}
+.select-language-btn button[aria-expanded="true"]:before {
+    transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+}
+.language-radio {
+    text-align: center;
+}
+.language-radio label {
+    display: inline-block;
+    position: relative;
+}
+
+.language-radio label input {
+    position: absolute;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.language-radio label .checkmark {
+    display: block;
+}
+.language-radio label input:checked ~ .checkmark img {
+    background-color: #2196F3;
+}
+
+.question p span {
+    background-color: #f6fb69;
+}
+
+.question-slider {
+    padding: 12px 20px 15px;
+}
+
+.question p {
+    display: inline-block;
+    margin-bottom: 0;
+    background: #fff;
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #25243e;
+}
+
+.question-slider .question {
+    margin-bottom: 12px;
+}
+
+.question-slider .rangeslider {
+    height: 10px;
+    border: 3px solid #fff;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.15);
+}
+
+.question-slider .rangeslider__fill {
+    background: transparent;
+    box-shadow: none;
+}
+
+.question-slider .rangeslider__handle {
+    background: #fff;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    height: 22px;
+    width: 22px;
+    border: 0;
+}
+
+.question-slider .rangeslider__handle:after {
+    content: none;
+}
+.slider.normal .rangeslider{
+    background:#daa154;
+}
+.slider.red .rangeslider{
+    background:#e18586;
+}
+.slider.green .rangeslider{
+    background:#64d665;
+}
+.subscribe-box p {
+    text-align: center;
+    opacity: 0.8;
+    font-size: 14px;
+}
+
+.subscribe-box {
+    padding: 30px;
+}
+
+.subscribe-box .email-form input {
+    text-align: center;
+    width: 100%;
+    background: #f7efef;
+    border: 0;
+    padding: 13px;
+    border-radius: 30px;
+}
+
+.subscribe-box .email-form {
+    margin-bottom: 25px;
+}
+
+
+.subscribe-box .checkbox label {
+    position: relative;
+    padding-left: 55px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 14px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    margin-bottom: 20px;
+    min-height: 40px;
+    display: table;
+}
+
+.subscribe-box .checkbox label .text {
+    font-size: 14px;
+    opacity: .8;
+    display: table-cell;
+    vertical-align: middle;
+}
+.subscribe-box .checkbox label input {
+    position: absolute;
+    opacity: 0;
+}
+
+.subscribe-box .checkbox label .checkmark {
+    position: absolute;
+    top: calc(50% - 20px);
+    left: 0;
+    height: 40px;
+    width: 40px;
+    background-color: #f7efef;
+    border-radius: 50%;
+}
+
+.subscribe-box .checkbox label input:checked ~ .checkmark {
+    background-color: #2196F3;
+}
+.subscribe-box .checkbox .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+.subscribe-box .checkbox label input:checked ~ .checkmark:after {
+    display: block;
+}
+.subscribe-box .checkbox .checkmark:after {
+    top: 12px;
+    left: 12px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #f7efef;
+}
+.subscribe-box .privacy-link {
+    margin-top: 45px;
+}
+
+.subscribe-box .privacy-link a {
+    display: inline-block;
+    text-decoration: underline;
+    font-style: italic;
+    font-size: 11px;
+    color: #777;
+    font-weight: 600;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* dark version */
+.dark-version,
+.dark-version .select-language-btn button,
+.dark-version .next-btn button{
+    color: #fff;
+}
+.main-wrap.dark-version,
+.dark-version .top-bar,
+.dark-version img.flag-icon{
+    background-color: #292929;
+}
+.dark-version .box,
+.dark-version .next-btn button{
+    background-color: #333333;
+}
+.dark-version .box,
+.dark-version img.flag-icon,
+.dark-version .next-btn button{
+    box-shadow: 0 3px 15px rgba(0,0,0,0.2);
+}
+.dark-version .select-language-btn button:before {
+    background: url(../img/left-white.svg);
+}
