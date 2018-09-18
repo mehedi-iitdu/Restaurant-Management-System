@@ -22,9 +22,10 @@
              <li><a class="nav-link" href="<?php echo e(route('tables.index')); ?>"><i class="sl sl-icon-heart"></i> Tables</a></li>
              <li><a class="nav-link" href="<?php echo e(route('timeConfig.index')); ?>"><i class="sl sl-icon-heart"></i> Time Configuration</a></li>
              <li><a class="nav-link" href="<?php echo e(route('fooditem.index')); ?>"><i class="sl sl-icon-heart"></i> Food Menu</a></li>
+             <li><a class="nav-link" href="<?php echo e(route('vouchers')); ?>"><i class="sl sl-icon-star"></i> Gift Vouchers</a></li>
              <li><a class="nav-link" href="<?php echo e(route('reservation_requests.index')); ?>"><i class="sl sl-icon-heart"></i> Reservation Requests</a></li>
-             <li><a class="nav-link" href="#"><i class="sl sl-icon-star"></i> Vouchers</a></li>
-             <li><a class="nav-link" href="<?php echo e(route('review')); ?>"><i class="sl sl-icon-star"></i> Reviews</a></li>
+             <li><a class="nav-link" href="<?php echo e(route('reservations.index')); ?>"><i class="sl sl-icon-heart"></i> Reservations</a></li>
+             <li><a class="nav-link" href="<?php echo e(route('reviews')); ?>"><i class="sl sl-icon-star"></i> Reviews</a></li>
          </ul>
 
         <ul data-submenu-title="Account">

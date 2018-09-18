@@ -332,7 +332,7 @@ function checkout(){
         $('.widget-container').fadeOut(400, function(){
             $(this).load(BASE_URL+'/widget/processing', function(){
                 $('.widget-container').fadeIn(400);
-                //sendBookRequest(title, company, first_name, last_name, telephone, note);
+                sendBookRequest(title, company, first_name, last_name, telephone, note);
             });
         });
     }
@@ -449,9 +449,9 @@ function sendBookRequest(title, company, first_name, last_name, telephone, note)
         dataType: "text",
         success: function(resultData) {
             if (resultData == "success") {
-                
+                // alert(resultData);
                 $('.widget-container').delay(1000).queue(function( nghfgxt ) {
-                    $(this).load(BASE_URL+'/widget/confirm', function(){
+                    $(this).load(BASE_URL+"/widget/confirm", function(){
                         $('.widget-container').fadeIn(400);
 
                         $('#checkout-date').html(SelectOutput);

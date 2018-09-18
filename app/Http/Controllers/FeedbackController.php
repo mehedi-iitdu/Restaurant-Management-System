@@ -18,18 +18,14 @@ class FeedbackController extends Controller
     	$feedback->service = $request->service;
     	$feedback->waiting_time = $request->waiting_time;
     	$feedback->meal = $request->meal;
-    	if($request->has('email')){
-    		$feedback->email = $request->email;	
-    	}
-    	if($request->has('sub_1')){
-    		$feedback->sub_1 = $request->sub_1;	
-    	}
-    	if($request->has('sub_2')){
-    		$feedback->sub_2 = $request->sub_2;	
-    	}
+        $feedback->comment = $request->comment;
+        $feedback->suggestion = $request->suggestion;
+    	$feedback->email = $request->email;
+    	$feedback->sub_1 = $request->sub_1;
+    	$feedback->sub_2 = $request->sub_2;
     	$feedback->restaurant_id = Restaurant::where('code', $request->code)->first()->id;
     	$feedback->save();
 
-    	return back();
+    	return "submitted";
     }
 }

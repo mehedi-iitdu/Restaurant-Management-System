@@ -39,14 +39,13 @@ textarea{
 }
 
 .feedback-form {
-    height: calc(100vh - 231px);
-    margin: 0 20px;
+    height: calc(100vh - 181px);
 }
 
 .feedback-form form {
     height: 100%;
     position: relative;
-    padding-bottom: 100px;
+    padding-bottom: 77px;
 }
 
 .feedback-form form .next-btn {
@@ -55,7 +54,7 @@ textarea{
     width: 100%;
     text-align: center;
     left: 0;
-    padding: 23px;
+    padding: 15px;
 }
 
 .next-btn button {
@@ -74,7 +73,7 @@ textarea{
     margin-top: -25px;
     height: 100%;
     position: relative;
-    width: calc(100vw - 40px);
+    width: 100vw;
     overflow-x: hidden;
 }
 .single-step{
@@ -136,7 +135,7 @@ textarea{
 }
 .restaurant-banner {
     margin-top: -10px;
-    height: 200px;
+    height: 150px;
     background-size: cover;
     background-position: center;
 }
@@ -244,7 +243,7 @@ img.flag-icon {
 }
 
 .question-slider .question {
-    margin-bottom: 12px;
+    margin-bottom: 15px;
 }
 
 .question-slider .rangeslider {
@@ -261,9 +260,24 @@ img.flag-icon {
 .question-slider .rangeslider__handle {
     background: #fff;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    height: 22px;
-    width: 22px;
+    height: 28px;
+    width: 28px;
     border: 0;
+    top: -12px;
+    text-align: center;
+    line-height: 28px;
+    font-family: 'Courgette', cursive;
+    font-weight: bold;
+}
+
+.slider.normal .rangeslider__handle{
+    color:#daa154;
+}
+.slider.red .rangeslider__handle{
+    color:#e18586;
+}
+.slider.green .rangeslider__handle{
+    color:#64d665;
 }
 
 .question-slider .rangeslider__handle:after {
@@ -285,7 +299,7 @@ img.flag-icon {
 }
 
 .subscribe-box {
-    padding: 30px;
+    padding:20px 30px;
 }
 
 .subscribe-box .email-form input {
@@ -374,7 +388,36 @@ img.flag-icon {
 
 
 
+.comment {
+    padding: 10px 15px;
+}
 
+.comment .oswald {
+    background: #fff;
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #25243e;
+    margin-bottom: 8px;
+}
+
+.comment textarea {
+    width: 100%;
+    border-radius: 5px;
+    border-width: 2px;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+    min-height: 60px;
+    text-align: left;
+padding: 5px;
+}
+
+.comment.positive textarea {
+    border-color: #00ff00;
+}
+
+.comment.negative textarea {
+    border-color: #e18586;
+}
 
 
 

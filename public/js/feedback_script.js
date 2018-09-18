@@ -41,19 +41,28 @@ function nextPrev(n) {
     showTab(currentTab);
 }
 
+function updateHandle(el, val) {
+    el.textContent = val;
+}
 $('.range-slide').rangeslider({
     polyfill: false,
-    // onInit: function() {
-    //     if (this.value <= 3) {
-    //         this.parentNode.classList.add("red");
-    //         this.parentNode.classList.remove("normal","green");
-    //     }else if (this.value >= 4 && this.value <= 6) {
-    //         this.parentNode.classList.add("normal");
-    //     }else if(this.value >= 7){
-    //         this.parentNode.classList.add("green");
-    //     }
-    // }
+    onInit: function() {
+        var $handle = $('.rangeslider__handle', this.$range);
+        updateHandle($handle[0], this.value);
+        
+        // if (this.value <= 3) {
+        //     this.parentNode.classList.add("red");
+        //     this.parentNode.classList.remove("normal","green");
+        // }else if (this.value >= 4 && this.value <= 6) {
+        //     this.parentNode.classList.add("normal");
+        // }else if(this.value >= 7){
+        //     this.parentNode.classList.add("green");
+        // }
+    }
 }).on('input', function(e) {
+    var $handle = $('.rangeslider__handle', e.target.nextSibling);
+    updateHandle($handle[0], this.value);
+
     if (this.value <= 3) {
         this.parentNode.classList.add("red");
         this.parentNode.classList.remove("normal","green");
@@ -69,23 +78,11 @@ $('.range-slide').rangeslider({
 
 $(document).ready(function() {
 
-
-
-
-
-
-
-
-
-
     //change flag when language change is changed
     $('#select_language input:radio').change(function() {
         var flagName = $("#select_language input[type='radio']:checked").val();
 
         $(".select-language-btn img").attr('src', 'img/flags/' + flagName + '.svg');
     });
-
-
-
 
 });
