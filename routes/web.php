@@ -65,6 +65,7 @@ Route::post('/reservation_requests/confirm', 'ReservationController@store')->nam
 Route::get('/reservations', 'ReservationController@index')->name('reservations.index');
 Route::get('/reservations/show/{code}', 'ReservationController@show')->name('reservations.show');
 Route::post('/reservations/events/', 'ReservationController@events')->name('reservations.events');
+Route::post('/reservations/events/edit', 'ReservationController@edit')->name('reservations.edit');
 
 //Holiday_Admin
 Route::get('/holidays/show/{code}', 'HolidayController@showHolidays')->name('holidays.show');

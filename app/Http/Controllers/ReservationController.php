@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Reservation;
 use App\Restaurant;
 use App\ReservationRequest;
+use App\TimeConfig;
 
 class ReservationController extends Controller
 {
@@ -73,5 +74,13 @@ class ReservationController extends Controller
         }
 
         return $events;
+    }
+
+    public function edit(Request $request)
+    {
+        $reservation = Reservation::find($request->id);
+        $day = date('l', $reservation->date);
+        $timeConfig = TimeConfig::where('restaurant_id', $reservation->restaurant->id)->where('day', $day)->first();
+        return view('reservations.edit', compact('reservation', 'timeConfig'));
     }
 }

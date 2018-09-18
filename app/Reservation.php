@@ -12,4 +12,8 @@ class Reservation extends Model
     public function reservationRequest(){
         return $this->belongsTo(ReservationRequest::class);
     }
+
+    public function restaurant(){
+        return $this->belongsTo(Restaurant::class);
+    }
 }

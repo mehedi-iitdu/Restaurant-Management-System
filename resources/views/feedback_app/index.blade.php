@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link href="{{asset('css/bootstrap.min.css')}}" rel='stylesheet' />
+    <link href="{{asset('css/feedback_bootstrap.min.css')}}" rel='stylesheet' />
     <link href="{{asset('css/rangeslider.css')}}" rel='stylesheet' />
     <link href="{{asset('css/feedback_style.css')}}" rel='stylesheet' />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans|Oswald:400,700" rel="stylesheet">
 
     <script src="{{asset('js/jquery.min.js')}}"></script>
-    <script src="{{asset('js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('js/feedback_bootstrap.min.js')}}"></script>
     <script src="{{asset('js/rangeslider.min.js')}}"></script>
     <!-- <style media="screen">
         body{

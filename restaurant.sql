@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 12, 2018 at 04:42 PM
--- Server version: 10.1.26-MariaDB
--- PHP Version: 7.1.9
+-- Generation Time: Sep 18, 2018 at 07:10 AM
+-- Server version: 10.1.35-MariaDB
+-- PHP Version: 7.2.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -28,6 +28,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `bookmarks`
 --
 
+DROP TABLE IF EXISTS `bookmarks`;
 CREATE TABLE `bookmarks` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
@@ -49,12 +50,15 @@ INSERT INTO `bookmarks` (`id`, `user_id`, `restaurant_id`, `created_at`, `update
 -- Table structure for table `feedbacks`
 --
 
+DROP TABLE IF EXISTS `feedbacks`;
 CREATE TABLE `feedbacks` (
   `id` int(11) NOT NULL,
   `restaurant_id` int(11) NOT NULL,
   `service` int(2) NOT NULL,
   `waiting_time` int(2) NOT NULL,
   `meal` int(2) NOT NULL,
+  `comment` varchar(500) DEFAULT NULL,
+  `suggestion` varchar(500) DEFAULT NULL,
   `email` varchar(30) DEFAULT NULL,
   `sub_1` int(1) NOT NULL DEFAULT '0',
   `sub_2` int(1) NOT NULL DEFAULT '0',
@@ -66,8 +70,12 @@ CREATE TABLE `feedbacks` (
 -- Dumping data for table `feedbacks`
 --
 
-INSERT INTO `feedbacks` (`id`, `restaurant_id`, `service`, `waiting_time`, `meal`, `email`, `sub_1`, `sub_2`, `created_at`, `updated_at`) VALUES
-(1, 11, 10, 5, 6, 'mehedi.iitdu@gmail.com', 1, 1, '2018-09-12 08:40:34', '2018-09-12 08:40:34');
+INSERT INTO `feedbacks` (`id`, `restaurant_id`, `service`, `waiting_time`, `meal`, `comment`, `suggestion`, `email`, `sub_1`, `sub_2`, `created_at`, `updated_at`) VALUES
+(1, 11, 10, 5, 6, '', '', 'mehedi.iitdu@gmail.com', 1, 1, '2018-09-12 08:40:34', '2018-09-12 08:40:34'),
+(3, 11, 5, 5, 8, 'Nice food', 'Reduce waiting time', 'mehedi@gmail.com', 1, 1, '2018-09-17 03:38:58', '2018-09-17 03:38:58'),
+(4, 11, 5, 5, 5, NULL, NULL, NULL, 0, 0, '2018-09-17 04:35:56', '2018-09-17 04:35:56'),
+(5, 11, 5, 5, 5, NULL, NULL, NULL, 0, 0, '2018-09-17 04:39:13', '2018-09-17 04:39:13'),
+(6, 11, 5, 5, 5, NULL, NULL, NULL, 0, 0, '2018-09-17 04:39:54', '2018-09-17 04:39:54');
 
 -- --------------------------------------------------------
 
@@ -75,6 +83,7 @@ INSERT INTO `feedbacks` (`id`, `restaurant_id`, `service`, `waiting_time`, `meal
 -- Table structure for table `food_category`
 --
 
+DROP TABLE IF EXISTS `food_category`;
 CREATE TABLE `food_category` (
   `id` int(11) NOT NULL,
   `name` varchar(20) NOT NULL,
@@ -96,6 +105,7 @@ INSERT INTO `food_category` (`id`, `name`, `restaurant_id`, `created_at`, `updat
 -- Table structure for table `food_item`
 --
 
+DROP TABLE IF EXISTS `food_item`;
 CREATE TABLE `food_item` (
   `id` int(11) NOT NULL,
   `name` varchar(20) NOT NULL,
@@ -121,6 +131,7 @@ INSERT INTO `food_item` (`id`, `name`, `description`, `price`, `restaurant_id`, 
 -- Table structure for table `holiday`
 --
 
+DROP TABLE IF EXISTS `holiday`;
 CREATE TABLE `holiday` (
   `id` int(11) NOT NULL,
   `restaurant_id` int(11) NOT NULL,
@@ -145,6 +156,7 @@ INSERT INTO `holiday` (`id`, `restaurant_id`, `purpose`, `date`, `opening_time`,
 -- Table structure for table `password_resets`
 --
 
+DROP TABLE IF EXISTS `password_resets`;
 CREATE TABLE `password_resets` (
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -164,6 +176,7 @@ INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
 -- Table structure for table `photos`
 --
 
+DROP TABLE IF EXISTS `photos`;
 CREATE TABLE `photos` (
   `id` int(11) NOT NULL,
   `photo` varchar(100) NOT NULL,
@@ -190,13 +203,16 @@ INSERT INTO `photos` (`id`, `photo`, `restaurant_id`, `created_at`, `updated_at`
 -- Table structure for table `reservation`
 --
 
+DROP TABLE IF EXISTS `reservation`;
 CREATE TABLE `reservation` (
   `id` int(11) NOT NULL,
+  `restaurant_id` int(11) NOT NULL,
   `reservation_request_id` int(11) NOT NULL,
   `restaurant_table_id` int(11) NOT NULL,
   `date` int(20) NOT NULL,
   `start_time` varchar(20) NOT NULL,
   `end_time` varchar(20) NOT NULL,
+  `color` varchar(10) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -205,8 +221,9 @@ CREATE TABLE `reservation` (
 -- Dumping data for table `reservation`
 --
 
-INSERT INTO `reservation` (`id`, `reservation_request_id`, `restaurant_table_id`, `date`, `start_time`, `end_time`, `created_at`, `updated_at`) VALUES
-(11, 1, 13, 1532304000, '14:00:00', '15:30:00', '2018-08-14 03:32:23', '2018-08-14 03:32:23');
+INSERT INTO `reservation` (`id`, `restaurant_id`, `reservation_request_id`, `restaurant_table_id`, `date`, `start_time`, `end_time`, `color`, `created_at`, `updated_at`) VALUES
+(11, 0, 1, 13, 1532304000, '14:00:00', '15:30:00', '', '2018-08-14 03:32:23', '2018-08-14 03:32:23'),
+(12, 11, 27, 7, 1537142400, '14:00:00', '16:00:00', '00bbda', '2018-09-17 03:19:37', '2018-09-17 03:19:37');
 
 -- --------------------------------------------------------
 
@@ -214,6 +231,7 @@ INSERT INTO `reservation` (`id`, `reservation_request_id`, `restaurant_table_id`
 -- Table structure for table `reservation_requests`
 --
 
+DROP TABLE IF EXISTS `reservation_requests`;
 CREATE TABLE `reservation_requests` (
   `id` int(11) NOT NULL,
   `restaurant_id` int(11) NOT NULL,
@@ -237,7 +255,8 @@ CREATE TABLE `reservation_requests` (
 --
 
 INSERT INTO `reservation_requests` (`id`, `restaurant_id`, `status`, `number_of_people`, `date`, `time`, `title`, `company`, `first_name`, `last_name`, `note`, `email`, `telephone`, `created_at`, `updated_at`) VALUES
-(1, 11, 1, 8, 1532304000, '14:00:00', 'MALE', 'CreativeItem', 'Mehedi', 'Hasan', NULL, 'mehedi@gmail.com', '01521433075', '2018-08-14 09:32:23', '2018-08-14 03:32:23');
+(1, 11, 1, 8, 1532304000, '14:00:00', 'MALE', 'CreativeItem', 'Mehedi', 'Hasan', NULL, 'mehedi@gmail.com', '01521433075', '2018-08-14 09:32:23', '2018-08-14 03:32:23'),
+(27, 11, 1, 8, 1537142400, '14:00:00', 'MALE', NULL, 'Mehedi', 'Hasan', 'Note', 'mehedi@gmail.com', '01642954885', '2018-09-17 09:19:38', '2018-09-17 03:19:38');
 
 -- --------------------------------------------------------
 
@@ -245,6 +264,7 @@ INSERT INTO `reservation_requests` (`id`, `restaurant_id`, `status`, `number_of_
 -- Table structure for table `restaurant`
 --
 
+DROP TABLE IF EXISTS `restaurant`;
 CREATE TABLE `restaurant` (
   `id` int(11) NOT NULL,
   `code` varchar(20) NOT NULL,
@@ -283,6 +303,7 @@ INSERT INTO `restaurant` (`id`, `code`, `restaurant_type_id`, `user_id`, `status
 -- Table structure for table `restaurant_table`
 --
 
+DROP TABLE IF EXISTS `restaurant_table`;
 CREATE TABLE `restaurant_table` (
   `id` int(11) NOT NULL,
   `name` varchar(30) NOT NULL,
@@ -306,6 +327,7 @@ INSERT INTO `restaurant_table` (`id`, `name`, `capacity`, `restaurant_id`, `crea
 -- Table structure for table `restaurant_type`
 --
 
+DROP TABLE IF EXISTS `restaurant_type`;
 CREATE TABLE `restaurant_type` (
   `id` int(11) NOT NULL,
   `name` varchar(10) NOT NULL
@@ -325,6 +347,7 @@ INSERT INTO `restaurant_type` (`id`, `name`) VALUES
 -- Table structure for table `review`
 --
 
+DROP TABLE IF EXISTS `review`;
 CREATE TABLE `review` (
   `id` int(11) NOT NULL,
   `restaurant_id` int(11) NOT NULL,
@@ -351,6 +374,7 @@ INSERT INTO `review` (`id`, `restaurant_id`, `user_id`, `date`, `review_content`
 -- Table structure for table `time_config`
 --
 
+DROP TABLE IF EXISTS `time_config`;
 CREATE TABLE `time_config` (
   `id` int(11) NOT NULL,
   `restaurant_id` int(11) NOT NULL,
@@ -380,6 +404,7 @@ INSERT INTO `time_config` (`id`, `restaurant_id`, `day`, `opening_time`, `closin
 -- Table structure for table `users`
 --
 
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -410,6 +435,7 @@ INSERT INTO `users` (`id`, `name`, `email`, `phone`, `password`, `user_type`, `p
 -- Table structure for table `vouchers`
 --
 
+DROP TABLE IF EXISTS `vouchers`;
 CREATE TABLE `vouchers` (
   `id` int(11) NOT NULL,
   `restaurant_id` int(11) NOT NULL,
@@ -555,7 +581,7 @@ ALTER TABLE `bookmarks`
 -- AUTO_INCREMENT for table `feedbacks`
 --
 ALTER TABLE `feedbacks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `food_category`
@@ -585,13 +611,13 @@ ALTER TABLE `photos`
 -- AUTO_INCREMENT for table `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `reservation_requests`
 --
 ALTER TABLE `reservation_requests`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `restaurant`
@@ -621,7 +647,7 @@ ALTER TABLE `review`
 -- AUTO_INCREMENT for table `time_config`
 --
 ALTER TABLE `time_config`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -633,7 +659,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `vouchers`
 --
 ALTER TABLE `vouchers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
