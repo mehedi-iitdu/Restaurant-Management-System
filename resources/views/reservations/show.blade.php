@@ -71,10 +71,24 @@
                     addButton: {
                         text: 'Add a Booking',
                         click: function() {
-                            //$('.table-sidebar-wrap').removeClass('opacity-0').addClass('opacity-1');
-                            //$('.side-booking-option').removeClass('close').addClass('open');
+                            $('.table-sidebar-wrap').removeClass('opacity-0').addClass('opacity-1');
+                            $('.side-booking-option').removeClass('close').addClass('open');
                             //add invisible class in preloader
-                            //setTimeout(function(){ $('.side-booking-preloader').addClass('invisible'); }, 1000);
+                            $.ajax({
+                                type: "POST",
+                                headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                },
+                                url: "{{ route('reservations.create') }}",
+                                data: {
+                                    _token : $('meta[name="csrf-token"]').attr('content'), 
+                                    code : '{{ $code }}'
+                                },
+                                success: function(result) {
+                                    $('#side-content').html(result);
+                                    $('#preloader').addClass('invisible');
+                                }
+                            });
                         }
                     }
                 },

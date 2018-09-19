@@ -53,6 +53,7 @@ Route::get('/timeConfigs/show/{code}', 'TimeConfigController@showTimeConfig')->n
 Route::get('/timeConfigs/add/{code?}', 'TimeConfigController@showAddTimeConfigForm')->name('timeConfig.add');
 Route::post('/timeConfigs/insert', 'TimeConfigController@insertTimeConfig')->name('timeConfig.insert');
 Route::post('/timeConfigs/update', 'TimeConfigController@updateTimeConfig')->name('timeConfig.update');
+Route::post('/timeConfigs/available-times', 'TimeConfigController@get_available_times')->name('timeConfig.available-times');
 
 //ReservationRequests_Admin
 Route::get('/reservation_requests', 'ReservationRequestController@index')->name('reservation_requests.index');
@@ -66,6 +67,10 @@ Route::get('/reservations', 'ReservationController@index')->name('reservations.i
 Route::get('/reservations/show/{code}', 'ReservationController@show')->name('reservations.show');
 Route::post('/reservations/events/', 'ReservationController@events')->name('reservations.events');
 Route::post('/reservations/events/edit', 'ReservationController@edit')->name('reservations.edit');
+Route::post('/reservations/events/update', 'ReservationController@update')->name('reservations.update');
+Route::post('/reservations/events/create', 'ReservationController@create')->name('reservations.create');
+Route::post('/reservations/events/store', 'ReservationController@store_event')->name('reservations.store_event');
+Route::post('/reservations/events/delete', 'ReservationController@delete')->name('reservations.delete');
 
 //Holiday_Admin
 Route::get('/holidays/show/{code}', 'HolidayController@showHolidays')->name('holidays.show');

@@ -7,6 +7,7 @@ use App\Restaurant;
 use App\Admin;
 use App\TimeConfig;
 use Auth;
+use App\Reservation;
 
 class TimeConfigController extends Controller
 {
@@ -66,5 +67,13 @@ class TimeConfigController extends Controller
         flash('Time Configuration updated')->success();
 
         return redirect()->route('timeConfig.index');
+    }
+
+    public function get_available_times(Request $request)
+    {
+        //$reservation = Reservation::find($request->id);
+        $day = date('l', strtotime($request->date));
+        $timeConfig = TimeConfig::where('restaurant_id', Restaurant::where('code', $request->code)->first()->id)->where('day', $day)->first();
+        return view('partials_.available_times', compact('timeConfig'));
     }
 }
