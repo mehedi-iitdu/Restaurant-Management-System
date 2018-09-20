@@ -349,7 +349,7 @@
         });
     });
 
-    $('#update_reservation').on('click', function(){
+    $('#update_reservation').on('click', function(e){
         
         var date = $("input[name=date]").val();
         var number_of_people = $("select[name=number_of_people]").val();
@@ -374,7 +374,8 @@
             dataType: "text",
             success: function(resultData) {
                 console.log(resultData);
-                location.reload();
+                $("#calendar").fullCalendar("refetchEvents");
+                tableSidebarClose();
             }
         });
 
@@ -392,7 +393,8 @@
             dataType: "text",
             success: function(resultData) {
                 console.log(resultData);
-                location.reload();
+                $("#calendar").fullCalendar("refetchEvents");
+                tableSidebarClose();
             }
         });
     });

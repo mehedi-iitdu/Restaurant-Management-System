@@ -66,6 +66,7 @@
 
     <script type="text/javascript">
         $(function() { // document ready
+            var events = [];
             var calendar = $('#calendar').fullCalendar({
                 customButtons: {
                     addButton: {
@@ -117,8 +118,6 @@
                 resources: [<?php foreach($resources as $resource) echo "{ id: '".$resource['id']."', type: '".$resource['type']."', title: '".$resource['title']."' },"; ?>
                 ],
                 events: function(start, end, timezone, callback) {
-                    //var b = $('#calendar').fullCalendar('getDate');
-                    //var date = b.format('L');
                     $.ajax({
                         type: "POST",
                         headers: {
@@ -127,10 +126,12 @@
                         url: "{{ route('reservations.events') }}",
                         data: {
                             _token : $('meta[name="csrf-token"]').attr('content'), 
-                            code : '{{ $code }}'
+                            code : '{{ $code }}',
+                            date : $('#calendar').fullCalendar('getDate').format('L')
                         },
                         success: function(doc) {
-                            var events = [];
+                            console.log(doc.length);
+                            events = [];
                             $(doc).each(function() {
                                 events.push({
                                     id: $(this).attr('id'),
@@ -148,8 +149,7 @@
                     });
                 },
                 viewRender: function (view, element) {
-                    var b = $('#calendar').fullCalendar('getDate');
-                    var date = b.format('L');
+                    //$("#calendar").fullCalendar("refetchEvents");
                 },
                 resourceRender: function(resourceObj, labelTds, bodyTds) {
                     //labelTds.find('.fc-cell-content').append('<span class="fc-resource-">'+resourceObj.id+'</span>');

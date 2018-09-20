@@ -64,8 +64,8 @@ class ReservationController extends Controller
     }
 
     public function events(Request $request)
-    {
-        $reservations = Restaurant::where('code', $request->code)->first()->reservations;
+    {   
+        $reservations = Restaurant::where('code', $request->code)->first()->reservations->where('date', strtotime($request->date));
         $events = array();
         foreach ($reservations as $key => $reservation) {
             $item['id'] = $reservation->id;

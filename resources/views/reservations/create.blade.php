@@ -382,8 +382,8 @@
             },
             dataType: "text",
             success: function(resultData) {
-                console.log(resultData);
-                location.reload();
+                $("#calendar").fullCalendar("refetchEvents");
+                tableSidebarClose();
             }
         });
         
