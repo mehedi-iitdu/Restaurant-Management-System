@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="<?php echo e(asset('css/custom.css')); ?>">
     <link rel="stylesheet" href="<?php echo e(asset('css/plugins/datedropper.css')); ?>">
 
+    <?php echo $__env->yieldContent('css'); ?>
+
     <!-- Scripts -->
     <!-- <script src="<?php echo e(asset('js/app.js')); ?>" defer></script> -->
     <!-- Latest compiled and minified JavaScript -->
@@ -118,6 +120,7 @@
 <script type="text/javascript" src="<?php echo e(asset('js/custom.js')); ?>"></script>
 <script type="text/javascript" src="<?php echo e(asset('js/switcher.js')); ?>"></script>
 <script type="text/javascript" src="<?php echo e(asset('js/dropzone.js')); ?>"></script>
+<script type="text/javascript" src="<?php echo e(asset('js/circle-progress.min.js')); ?>"></script>
 
 <script type="text/javascript">
 

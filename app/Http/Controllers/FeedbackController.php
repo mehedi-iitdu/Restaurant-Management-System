@@ -18,6 +18,7 @@ class FeedbackController extends Controller
     	$feedback->service = $request->service;
     	$feedback->waiting_time = $request->waiting_time;
     	$feedback->meal = $request->meal;
+        $feedback->value = $request->value;
         $feedback->comment = $request->comment;
         $feedback->suggestion = $request->suggestion;
     	$feedback->email = $request->email;

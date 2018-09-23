@@ -127,6 +127,16 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="box m-bottom-20">
+                                            <div class="question-slider">
+                                                <div class="question">
+                                                    <p class="oswald">How Was the <span>value for money</span>?</p>
+                                                </div>
+                                                <div class="slider normal">
+                                                    <input type="range" min="0" max="10" class="range-slide" value="5" name="value">
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -266,6 +276,7 @@
         var service = $("input[name=service]").val();
         var waiting_time = $("input[name=waiting_time]").val();
         var meal = $("input[name=meal]").val();
+        var value = $("input[name=value]").val();
         var comment = $("input[name=comment]").val();
         var suggestion = $("input[name=suggestion]").val();
         var email = $("input[name=email]").val();
@@ -293,6 +304,7 @@
              service : service,
              waiting_time : waiting_time,
              meal : meal,
+             value : value,
              comment : comment,
              suggestion : suggestion,
              email : email,

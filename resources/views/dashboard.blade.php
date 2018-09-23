@@ -28,7 +28,7 @@
     </div> -->
 
     <!-- Content -->
-    <div class="row">
+    {{-- <div class="row">
 
         <!-- Item -->
         <div class="col-lg-3 col-md-6">
@@ -62,109 +62,215 @@
                 <div class="dashboard-stat-icon"><i class="im im-icon-Heart"></i></div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
 
     <div class="row">
         
-        <!-- Recent Activity -->
-        <div class="col-lg-6 col-md-12">
-            <div class="dashboard-list-box with-icons margin-top-20">
-                <h4>Recent Activities</h4>
-                <ul>
-                    <li>
-                        <i class="list-box-icon sl sl-icon-layers"></i> Your listing <strong><a href="#">Hotel Govendor</a></strong> has been approved!
-                        <a href="#" class="close-list-item"><i class="fa fa-close"></i></a>
-                    </li>
-
-                    <li>
-                        <i class="list-box-icon sl sl-icon-star"></i> Kathy Brown left a review <div class="numerical-rating" data-rating="5.0"></div> on <strong><a href="#">Burger House</a></strong>
-                        <a href="#" class="close-list-item"><i class="fa fa-close"></i></a>
-                    </li>
-
-                    <li>
-                        <i class="list-box-icon sl sl-icon-heart"></i> Someone bookmarked your <strong><a href="#">Burger House</a></strong> listing!
-                        <a href="#" class="close-list-item"><i class="fa fa-close"></i></a>
-                    </li>
-
-                    <li>
-                        <i class="list-box-icon sl sl-icon-star"></i> Kathy Brown left a review <div class="numerical-rating" data-rating="3.0"></div> on <strong><a href="#">Airport</a></strong>
-                        <a href="#" class="close-list-item"><i class="fa fa-close"></i></a>
-                    </li>
-
-                    <li>
-                        <i class="list-box-icon sl sl-icon-heart"></i> Someone bookmarked your <strong><a href="#">Burger House</a></strong> listing!
-                        <a href="#" class="close-list-item"><i class="fa fa-close"></i></a>
-                    </li>
-
-                    <li>
-                        <i class="list-box-icon sl sl-icon-star"></i> John Doe left a review <div class="numerical-rating" data-rating="4.0"></div> on <strong><a href="#">Burger House</a></strong>
-                        <a href="#" class="close-list-item"><i class="fa fa-close"></i></a>
-                    </li>
-
-                    <li>
-                        <i class="list-box-icon sl sl-icon-star"></i> Jack Perry left a review <div class="numerical-rating" data-rating="2.5"></div> on <strong><a href="#">Tom's Restaurant</a></strong>
-                        <a href="#" class="close-list-item"><i class="fa fa-close"></i></a>
-                    </li>
-                </ul>
-            </div>
-        </div>
         
-        <!-- Invoices -->
-        <div class="col-lg-6 col-md-12">
-            <div class="dashboard-list-box invoices with-icons margin-top-20">
-                <h4>Invoices</h4>
-                <ul>
-                    
-                    <li><i class="list-box-icon sl sl-icon-doc"></i>
-                        <strong>Professional Plan</strong>
-                        <ul>
-                            <li class="unpaid">Unpaid</li>
-                            <li>Order: #00124</li>
-                            <li>Date: 20/07/2017</li>
-                        </ul>
-                        <div class="buttons-to-right">
-                            <a href="dashboard-invoice.html" class="button gray">View Invoice</a>
-                        </div>
-                    </li>
-                    
-                    <li><i class="list-box-icon sl sl-icon-doc"></i>
-                        <strong>Extended Plan</strong>
-                        <ul>
-                            <li class="paid">Paid</li>
-                            <li>Order: #00108</li>
-                            <li>Date: 14/07/2017</li>
-                        </ul>
-                        <div class="buttons-to-right">
-                            <a href="dashboard-invoice.html" class="button gray">View Invoice</a>
-                        </div>
-                    </li>
+        <div class="col-lg-12 col-md-12">
 
-                    <li><i class="list-box-icon sl sl-icon-doc"></i>
-                        <strong>Extended Plan</strong>
-                        <ul>
-                            <li class="paid">Paid</li>
-                            <li>Order: #00097</li>
-                            <li>Date: 10/07/2017</li>
-                        </ul>
-                        <div class="buttons-to-right">
-                            <a href="dashboard-invoice.html" class="button gray">View Invoice</a>
+            <div class="total-rating-box c-b-shadow">
+                <div class="row" style="display:flex">
+                    <div class="col-md-3">
+                        <div class="your-rating text-center">
+                            <div class="heading">Your Rating</div>
+                            <div class="round-circle-large" data-value="0.9">
+                                <strong></strong>
+                            </div>
                         </div>
-                    </li>
-                    
-                    <li><i class="list-box-icon sl sl-icon-doc"></i>
-                        <strong>Basic Plan</strong>
-                        <ul>
-                            <li class="paid">Paid</li>
-                            <li>Order: #00091</li>
-                            <li>Date: 30/06/2017</li>
-                        </ul>
-                        <div class="buttons-to-right">
-                            <a href="dashboard-invoice.html" class="button gray">View Invoice</a>
-                        </div>
-                    </li>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="row">
+                            <div class="col-md-7">
+                                <div class="ratings-box">
+                                    <div class="heading">Ratings</div>
+                                    <div class="knob-box">
+                                        <div class="title">Service</div>
+                                        <div class="round-circle" data-value="0.75">
+                                            <strong></strong>
+                                        </div>
+                                    </div>
+                                    <div class="knob-box">
+                                        <div class="title">Waiting time</div>
+                                        <div class="round-circle" data-value="0.75">
+                                            <strong></strong>
+                                        </div>
+                                    </div>
+                                    <div class="knob-box">
+                                        <div class="title">Meal</div>
+                                        <div class="round-circle" data-value="0.75">
+                                            <strong></strong>
+                                        </div>
+                                    </div>
+                                    <div class="knob-box">
+                                        <div class="title">Money</div>
+                                        <div class="round-circle" data-value="0.75">
+                                            <strong></strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5 border-l">
+                                <div class="overview-box">
+                                    <div class="heading">Overview</div>
+                                    <div class="sub-heading">Watch month list</div>
 
-                </ul>
+                                    <div class="knob-box">
+                                        <div class="title">Sept</div>
+                                        <div class="round-circle" data-value="0.75">
+                                            <strong></strong>
+                                        </div>
+                                    </div>
+                                    <div class="knob-box">
+                                        <div class="title">Oct</div>
+                                        <div class="round-circle" data-value="0.75">
+                                            <strong></strong>
+                                        </div>
+                                    </div>
+                                    <div class="knob-box">
+                                        <div class="title">Nov</div>
+                                        <div class="round-circle" data-value="0.75">
+                                            <strong></strong>
+                                        </div>
+                                    </div>
+
+                                    <div class="overview-corner">142 days</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="border-t"></div>
+                        <div class="feedback-box">
+                            <div class="heading">Feedback</div>
+                            <div class="knob-box">
+                                <div class="title">Positive</div>
+                                <div class="round-circle-100" data-value="0.75">
+                                    <strong></strong>
+                                </div>
+                            </div>
+                            <div class="knob-box">
+                                <div class="title">Negative</div>
+                                <div class="round-circle-100" data-value="0.75">
+                                    <strong></strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="day-bar">
+                <div class="day-box">
+                    <button type="button" name="button" class="c-b-shadow active">Today</button>
+                </div>
+                <div class="day-box">
+                    <button type="button" name="button" class="c-b-shadow">Monday</button>
+                </div>
+                <div class="day-box">
+                    <button type="button" name="button" class="c-b-shadow">Sunday</button>
+                </div>
+                <div class="day-box">
+                    <button type="button" name="button" class="c-b-shadow">Saturday</button>
+                </div>
+                <div class="day-box">
+                    <button type="button" name="button" class="c-b-shadow">More days</button>
+                </div>
+            </div>
+
+            <div class="feedback-list-wrap">
+                <div class="feedback-list c-b-shadow">
+                    <div class="single-feedback">
+                        <div class="clearfix title c-b-shadow">
+                            <div class="pull-left">
+                                Feedback from <strong>guest 2151</strong> on <strong>Tuesday</strong> at <strong>18:15</strong>
+                            </div>
+                            <div class="pull-right">
+                                <button type="button" name="button" class="c-b-shadow">Delete</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="emoji-box">
+                                    <div class="text-center">
+                                        <div class="name">Service</div>
+                                        <img src="images/emoji/1.png" alt="" class="img-responsive">
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="name">Waiting time</div>
+                                        <img src="images/emoji/2.png" alt="" class="img-responsive">
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="name">Meal</div>
+                                        <img src="images/emoji/3.png" alt="" class="img-responsive">
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="name">Money</div>
+                                        <img src="images/emoji/4.png" alt="" class="img-responsive">
+                                    </div>
+                                </div>
+                                <div class="reply-button">
+                                    <button type="button" name="button" class="c-b-shadow">Reply on feedback</button>
+                                    <button type="button" name="button" class="c-b-shadow">Send personal voucher</button>
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="positive-negative-comment">
+                                    <textarea name="name" rows="2" class="positive">I really enjoy it.</textarea>
+                                    <textarea name="name" rows="2" class="negative">No improvements  :)</textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="single-feedback">
+                        <div class="clearfix title c-b-shadow">
+                            <div class="pull-left">
+                                Feedback from <strong>guest 2151</strong> on <strong>Tuesday</strong> at <strong>18:15</strong>
+                            </div>
+                            <div class="pull-right">
+                                <button type="button" name="button" class="c-b-shadow">Delete</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="emoji-box">
+                                    <div class="text-center">
+                                        <div class="name">Service</div>
+                                        <img src="images/emoji/1.png" alt="" class="img-responsive">
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="name">Waiting time</div>
+                                        <img src="images/emoji/2.png" alt="" class="img-responsive">
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="name">Meal</div>
+                                        <img src="images/emoji/3.png" alt="" class="img-responsive">
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="name">Money</div>
+                                        <img src="images/emoji/4.png" alt="" class="img-responsive">
+                                    </div>
+                                </div>
+                                <div class="reply-button">
+                                    <button type="button" name="button" class="c-b-shadow">Reply on feedback</button>
+                                    <button type="button" name="button" class="c-b-shadow">Send personal voucher</button>
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="positive-negative-comment">
+                                    <textarea name="name" rows="2" class="positive">I really enjoy it.</textarea>
+                                    <textarea name="name" rows="2" class="negative">No improvements  :)</textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="load-more-button text-center">
+                    <button type="button" name="button" class="c-b-shadow">Load more</button>
+                </div>
             </div>
         </div>
 
@@ -174,5 +280,40 @@
             <div class="copyrights">© 2017 Listeo. All Rights Reserved.</div>
         </div>
     </div>
+
+@endsection
+
+
+@section('script')
+
+        <script>
+            $('.round-circle').circleProgress({
+                startAngle: -1.55,
+                size: 70,
+                fill: {
+                    color: '#491FFD'
+                }
+            }).on('circle-animation-progress', function(event, progress, stepValue) {
+                $(this).find('strong').text(String( (stepValue * 10).toFixed(1) ));
+            });;
+            $('.round-circle-large').circleProgress({
+                startAngle: -1.55,
+                size: 100,
+                fill: {
+                    color: '#fff'
+                }
+            }).on('circle-animation-progress', function(event, progress, stepValue) {
+                $(this).find('strong').text(String( (stepValue * 10).toFixed(1) ));
+            });;
+            $('.round-circle-100').circleProgress({
+                startAngle: -1.55,
+                size: 70,
+                fill: {
+                    color: '#491FFD'
+                }
+            }).on('circle-animation-progress', function(event, progress, stepValue) {
+                $(this).find('strong').text(String( (stepValue * 100).toFixed(0) ));
+            });;
+        </script>
 
 @endsection

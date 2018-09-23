@@ -120,6 +120,7 @@
 <script type="text/javascript" src="{{ asset('js/custom.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/switcher.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/dropzone.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/circle-progress.min.js') }}"></script>
 
 <script type="text/javascript">
 

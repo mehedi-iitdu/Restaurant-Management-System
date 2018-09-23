@@ -2,12 +2,12 @@
     <ul class="pagination" role="navigation">
         
         <?php if($paginator->onFirstPage()): ?>
-            <li class="page-item disabled" aria-disabled="true" aria-label="<?php echo app('translator')->getFromJson('pagination.previous'); ?>">
+            <li class="page-item disabled" aria-disabled="true" aria-label="<?php echo e(app('translator')->getFromJson('pagination.previous')); ?>">
                 <span class="page-link" aria-hidden="true">&lsaquo;</span>
             </li>
         <?php else: ?>
             <li class="page-item">
-                <a class="page-link" href="<?php echo e($paginator->previousPageUrl()); ?>" rel="prev" aria-label="<?php echo app('translator')->getFromJson('pagination.previous'); ?>">&lsaquo;</a>
+                <a class="page-link" href="<?php echo e($paginator->previousPageUrl()); ?>" rel="prev" aria-label="<?php echo e(app('translator')->getFromJson('pagination.previous')); ?>">&lsaquo;</a>
             </li>
         <?php endif; ?>
 
@@ -33,10 +33,10 @@
         
         <?php if($paginator->hasMorePages()): ?>
             <li class="page-item">
-                <a class="page-link" href="<?php echo e($paginator->nextPageUrl()); ?>" rel="next" aria-label="<?php echo app('translator')->getFromJson('pagination.next'); ?>">&rsaquo;</a>
+                <a class="page-link" href="<?php echo e($paginator->nextPageUrl()); ?>" rel="next" aria-label="<?php echo e(app('translator')->getFromJson('pagination.next')); ?>">&rsaquo;</a>
             </li>
         <?php else: ?>
-            <li class="page-item disabled" aria-disabled="true" aria-label="<?php echo app('translator')->getFromJson('pagination.next'); ?>">
+            <li class="page-item disabled" aria-disabled="true" aria-label="<?php echo e(app('translator')->getFromJson('pagination.next')); ?>">
                 <span class="page-link" aria-hidden="true">&rsaquo;</span>
             </li>
         <?php endif; ?>
