@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 24, 2018 at 09:41 AM
+-- Generation Time: Sep 24, 2018 at 01:21 PM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -46,6 +46,27 @@ INSERT INTO `bookmarks` (`id`, `user_id`, `restaurant_id`, `created_at`, `update
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `configs`
+--
+
+CREATE TABLE `configs` (
+  `id` int(11) NOT NULL,
+  `payment_amount` varchar(10) NOT NULL,
+  `currency` varchar(10) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `configs`
+--
+
+INSERT INTO `configs` (`id`, `payment_amount`, `currency`, `created_at`, `updated_at`) VALUES
+(1, '10.00', 'EUR', '2018-09-24 11:18:56', '2018-09-24 04:56:36');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `feedbacks`
 --
 
@@ -73,11 +94,11 @@ CREATE TABLE `feedbacks` (
 INSERT INTO `feedbacks` (`id`, `restaurant_id`, `service`, `waiting_time`, `meal`, `value`, `comment`, `suggestion`, `email`, `sub_1`, `sub_2`, `date`, `created_at`, `updated_at`) VALUES
 (3, 11, 7, 5, 8, 5, 'Nice food', 'Reduce waiting time', 'mehedi@gmail.com', 1, 1, 1537767360, '2018-09-24 07:27:39', '2018-09-17 03:38:58'),
 (4, 11, 5, 5, 5, 9, NULL, NULL, NULL, 0, 0, 1537767360, '2018-09-24 07:19:41', '2018-09-17 04:35:56'),
-(5, 11, 8, 10, 5, 8, NULL, NULL, NULL, 0, 0, 1537767360, '2018-09-24 07:27:45', '2018-09-17 04:39:13'),
-(6, 11, 2, 5, 5, 8, NULL, NULL, NULL, 0, 0, 1537767360, '2018-09-24 07:27:49', '2018-09-17 04:39:54'),
-(7, 11, 5, 5, 5, 10, NULL, NULL, NULL, 0, 0, 1537767360, '2018-09-24 07:19:34', '2018-09-18 01:59:43'),
-(8, 11, 5, 10, 5, 5, NULL, NULL, NULL, 0, 0, 1537767360, '2018-09-24 07:19:32', '2018-09-23 05:26:14'),
-(9, 11, 5, 5, 5, 5, NULL, NULL, NULL, 0, 0, 1537767360, '2018-09-23 23:36:27', '2018-09-23 23:36:27');
+(5, 11, 8, 10, 5, 8, 'Nice food', NULL, NULL, 0, 0, 1537767360, '2018-09-24 07:41:41', '2018-09-17 04:39:13'),
+(6, 11, 2, 5, 5, 8, 'Nice food', NULL, NULL, 0, 0, 1537767360, '2018-09-24 07:41:38', '2018-09-17 04:39:54'),
+(7, 11, 5, 5, 5, 10, 'Nice food', NULL, NULL, 0, 0, 1537767360, '2018-09-24 07:42:07', '2018-09-18 01:59:43'),
+(8, 11, 5, 10, 5, 5, 'Nice food', NULL, NULL, 0, 0, 1537767360, '2018-09-24 07:41:57', '2018-09-23 05:26:14'),
+(9, 11, 5, 5, 5, 5, 'Nice food', NULL, NULL, 0, 0, 1537767360, '2018-09-24 07:41:42', '2018-09-23 23:36:27');
 
 -- --------------------------------------------------------
 
@@ -167,6 +188,28 @@ CREATE TABLE `password_resets` (
 
 INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
 ('mehedi.iitdu@gmail.com', '$2y$10$7yWP5FWFKsyrh9pt07xCtekKFQNKsnyRC7Uso3YIY7vmMz0Oo3pwa', '2018-05-17 00:44:32');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payments`
+--
+
+CREATE TABLE `payments` (
+  `id` int(11) NOT NULL,
+  `payment_id` text NOT NULL,
+  `order_id` text NOT NULL,
+  `restaurant_id` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `payments`
+--
+
+INSERT INTO `payments` (`id`, `payment_id`, `order_id`, `restaurant_id`, `created_at`, `updated_at`) VALUES
+(6, 'tr_qy8rk9Pvqa', '3jq4LQJmw7L7Mc0k', 13, '2018-09-24 05:19:09', '2018-09-24 05:19:09');
 
 -- --------------------------------------------------------
 
@@ -301,7 +344,7 @@ CREATE TABLE `restaurant` (
 
 INSERT INTO `restaurant` (`id`, `code`, `restaurant_type_id`, `user_id`, `status`, `name`, `city`, `address`, `latitude`, `longitude`, `description`, `amenities`, `facebook`, `website`, `phone`, `email`, `twitter`, `google_plus`, `keywords`, `created_at`, `updated_at`) VALUES
 (11, '3ebb77adccc0dd48461e', 1, 3, 'Active', 'Burger King', 'New York', 'Shahbagh, Dhaka, Bangladesh', '23.7397263', '90.39426100000003', NULL, '[\"Elevator in building\",\"Friendly workspace\",\"Instant Book\",\"Wireless Internet\",\"Free parking on street\",\"Smoking allowed\"]', NULL, NULL, '1642954885', 'mehedi.iitdu@gmail.com', NULL, NULL, NULL, '2018-07-24 12:35:46', '2018-07-11 05:55:32'),
-(13, 'e41e32c46aebc9169355', 1, 3, 'Pending', 'Khabo koi', NULL, 'Housebuilding Counter, Dhaka, Bangladesh', '23.8721864', '90.4007891', NULL, '[\"Elevator in building\",\"Wireless Internet\",\"Free parking on street\",\"Smoking allowed\"]', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2018-06-10 10:26:21', '2018-06-10 04:26:21');
+(13, 'e41e32c46aebc9169355', 1, 3, 'Active', 'Khabo koi', NULL, 'Housebuilding Counter, Dhaka, Bangladesh', '23.8721864', '90.4007891', NULL, '[\"Elevator in building\",\"Wireless Internet\",\"Free parking on street\",\"Smoking allowed\"]', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2018-09-24 11:20:11', '2018-09-24 05:20:11');
 
 -- --------------------------------------------------------
 
@@ -424,9 +467,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `phone`, `password`, `user_type`, `photo`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Mehedi', 'mehedi.iitdu@gmail.com', '', '$2y$10$a5GHoTTIax59HnNF12wmNuE17ftC0pzn6aL14rO0HjcTZuKv2x4Dy', 'SystemAdmin', NULL, 'osNKdT9uTdfrrG6z3a28h7nEDdLMAvFIL70iXCkKKi6Sxv66SeaxPTEgfpNg', '2018-05-17 00:35:10', '2018-05-17 00:35:10'),
+(1, 'Mehedi', 'mehedi.iitdu@gmail.com', '', '$2y$10$a5GHoTTIax59HnNF12wmNuE17ftC0pzn6aL14rO0HjcTZuKv2x4Dy', 'SystemAdmin', NULL, 'U5vv4xQVHwIFPKPrPakvr8nrpIV1VgxhTcDhiovLAeG2aB2R6eiXZN9fFdX7', '2018-05-17 00:35:10', '2018-05-17 00:35:10'),
 (2, 'Rafi', 'rafi@gmail.com', '', '$2y$10$dkxF.nWD55xtvx5taVg.8u.yHWHT/TJJ/nkk/H.BpRtI4LCnomzrG', 'Admin', NULL, 'ClOod24M0kzobroKwE7dYc1qGLvLrC5klJTRT9WQflcjtuqlRiYcKBWoelV2', '2018-05-17 03:08:51', '2018-05-20 02:26:45'),
-(3, 'Santu Roy', 'santu@gmail.com', '015214332075', '$2y$10$/I82HoC8bsI3L4zvozjhcOoCgak02JRvl6gVFzi6hwvRDvydj5Q9K', 'Admin', 'uploads/zPOv1ZeAv6DRLnNDCAwh1trWpYI7uf742OBMDt1d.jpeg', 'V18ppSenlZ1iTewnOqUJzePesIUNYKYG5TPHD1O97e1CBABHFE7gjjfl2zs7', '2018-05-17 03:23:25', '2018-08-14 05:51:43'),
+(3, 'Santu Roy', 'santu@gmail.com', '015214332075', '$2y$10$/I82HoC8bsI3L4zvozjhcOoCgak02JRvl6gVFzi6hwvRDvydj5Q9K', 'Admin', 'uploads/zPOv1ZeAv6DRLnNDCAwh1trWpYI7uf742OBMDt1d.jpeg', 'qQT54EtGulM2IoaC1mQg9YDbzTtr0OBkwFVFa5lG2XymBMuMDSSLffxdPMht', '2018-05-17 03:23:25', '2018-08-14 05:51:43'),
 (4, 'tanvir', 'tanvir@gmail.com', '', '$2y$10$nGs80nnacH0FNv4vep7rzOtk.9Q9Wt2Fatk9EhshopSOwSm9yRjlO', 'Customer', NULL, '9UnK3pz8m5mK8KGw2uLtnhUcJguCYRjUwv5k0EA6m4a7tIydTamwEw8u9hk1', '2018-05-20 04:43:39', '2018-05-20 04:44:43'),
 (5, 'Tanvir', 'tanvir.123@gmail.com', NULL, '$2y$10$YWSjqWhpRpL/SeDSnEy4eOEpaVlXBi13Avz5ePsipphDKuyURw/V6', 'Customer', NULL, 'jf68mfGw2lWyLfO1Pt5A1pkhxpobVLLSXr4wdJi0RYm7gG2pVOvwe6fLKskY', '2018-05-24 04:25:40', '2018-05-24 04:25:40');
 
@@ -466,6 +509,12 @@ ALTER TABLE `bookmarks`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `configs`
+--
+ALTER TABLE `configs`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `feedbacks`
 --
 ALTER TABLE `feedbacks`
@@ -498,6 +547,12 @@ ALTER TABLE `holiday`
 --
 ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
+
+--
+-- Indexes for table `payments`
+--
+ALTER TABLE `payments`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `photos`
@@ -578,6 +633,12 @@ ALTER TABLE `bookmarks`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
+-- AUTO_INCREMENT for table `configs`
+--
+ALTER TABLE `configs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `feedbacks`
 --
 ALTER TABLE `feedbacks`
@@ -600,6 +661,12 @@ ALTER TABLE `food_item`
 --
 ALTER TABLE `holiday`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `payments`
+--
+ALTER TABLE `payments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `photos`

@@ -6,12 +6,12 @@
 <div class="dashboard-nav">
     <div class="dashboard-nav-inner">
 
-        <ul data-submenu-title="Main">
+        {{-- <ul data-submenu-title="Main">
             <li><a class="nav-link" href="{{ route('dashboard') }}"><i class="sl sl-icon-settings"></i> Dashboard</a></li>
             <li><a class="nav-link" href=""><i class="fa fa-calendar-check-o"></i>Bookmars</a></li>
             <li><a class="nav-link" href=""><i class="fa fa-calendar-check-o"></i>Bookings</a></li>
             <li><a class="nav-link" href=""><i class="fa fa-calendar-check-o"></i>Reviews</a></li>
-        </ul>
+        </ul> --}}
         
         <!-- <ul data-submenu-title="Listings">
              <li><a><i class="sl sl-icon-layers"></i> My Listings</a>

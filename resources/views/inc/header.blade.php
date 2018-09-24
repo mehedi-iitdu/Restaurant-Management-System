@@ -52,9 +52,13 @@
                                 </span>
                                 {{ Auth::user()->name }}</div>
                             <ul>
-                                <li><a href="{{ route('dashboard') }}"><i class="sl sl-icon-settings"></i> Dashboard</a></li>
-                                <li><a href="dashboard-messages.html"><i class="sl sl-icon-envelope-open"></i> Settings</a></li>
-                                <li><a href="dashboard-bookings.html"><i class="fa fa-calendar-check-o"></i> Bookings</a></li>
+                                @if(Auth::user()->user_type == 'Admin')
+                                    <li><a href="{{ route('dashboard') }}"><i class="sl sl-icon-settings"></i> Dashboard</a></li>
+                                @endif
+                                
+                                @if(Auth::user()->user_type == 'SystemAdmin')
+                                    <li><a href="{{ route('settings')}}"><i class="sl sl-icon-settings"></i> Settings</a></li>
+                                @endif
                                 <li><a href="{{route('logout')}}"><i class="sl sl-icon-power"></i> Logout</a></li>
                             </ul>
                         @endauth

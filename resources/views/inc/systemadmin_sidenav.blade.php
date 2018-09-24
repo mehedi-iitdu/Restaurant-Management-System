@@ -6,24 +6,23 @@
 <div class="dashboard-nav">
     <div class="dashboard-nav-inner">
 
-        <ul data-submenu-title="Main">
+        {{-- <ul data-submenu-title="Main">
             <li><a class="nav-link" href="{{ route('dashboard') }}"><i class="sl sl-icon-settings"></i> Dashboard</a></li>
-        </ul>
+        </ul> --}}
         
         <ul data-submenu-title="Listings">
-             <li><a><i class="sl sl-icon-layers"></i> My Listings</a>
+             {{-- <li><a><i class="sl sl-icon-layers"></i> Listings</a>
                  <ul>
                      <li><a href="dashboard-my-listings.html">Active <span class="nav-tag green">6</span></a></li>
                      <li><a href="dashboard-my-listings.html">Pending <span class="nav-tag yellow">1</span></a></li>
                      <li><a href="dashboard-my-listings.html">Expired <span class="nav-tag red">2</span></a></li>
                  </ul>   
-             </li>
-             <li><a href="dashboard-reviews.html"><i class="sl sl-icon-star"></i> Reviews</a></li>
-             <li><a href="dashboard-bookmarks.html"><i class="sl sl-icon-heart"></i> Bookmarks</a></li>
+             </li> --}}
+             <li><a href="{{ route('settings')}}"><i class="sl sl-icon-settings"></i> Settings</a></li>
          </ul>
 
         <ul data-submenu-title="Account">
-            <li><a href="dashboard-my-profile.html"><i class="sl sl-icon-user"></i> My Profile</a></li>
+            <li><a href="{{ route('profile') }}"><i class="sl sl-icon-user"></i> My Profile</a></li>
             <li><a href="{{route('logout')}}"><i class="sl sl-icon-power"></i> Logout</a></li>
         </ul>
         

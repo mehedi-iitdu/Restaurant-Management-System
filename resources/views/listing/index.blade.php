@@ -33,6 +33,9 @@
 						</div>
 					</div>
 					<div class="buttons-to-right">
+						@if($restaurant->status != 'Active')
+							<a href="{{ route('payment', $restaurant->code) }}" class="button gray"><i class="sl sl-icon-check"></i> Verify</a>
+						@endif
 						<a href="{{ route('restaurant.edit', $restaurant->code) }}" class="button gray"><i class="sl sl-icon-note"></i> Edit</a>
 						<a href="#" class="button gray"><i class="sl sl-icon-close"></i> Delete</a>
 					</div>

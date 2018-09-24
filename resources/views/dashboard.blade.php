@@ -180,81 +180,83 @@
                 <div class="feedback-list c-b-shadow">
                     <div class="show-more">
                         @foreach(\App\Feedback::all() as $feedback)
-                            <div class="single-feedback">
-                                <div class="clearfix title c-b-shadow">
-                                    <div class="pull-left">
-                                        Feedback from <strong>{{max($feedback->email, 'guest')}}</strong> on <strong>{{date('d-m-Y', $feedback->date)}}</strong> at <strong>{{date('H:i', $feedback->date)}}</strong>
-                                    </div>
-                                    <div class="pull-right">
-                                        <button type="button" name="button" class="c-b-shadow" onclick="delete_feedback({{$feedback->id}})">Delete</button>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-5">
-                                        <div class="emoji-box">
-                                            <div class="text-center">
-                                                <div class="name">Service</div>
-                                                @if($feedback->service<3)
-                                                    <img src="{{ asset('images/emoji/1.png')}}" alt="" class="img-responsive">    
-                                                @elseif($feedback->service<=5)
-                                                    <img src="{{ asset('images/emoji/2.png')}}" alt="" class="img-responsive">
-                                                @elseif($feedback->service<=7)
-                                                    <img src="{{ asset('images/emoji/3.png')}}" alt="" class="img-responsive">
-                                                @else
-                                                    <img src="{{ asset('images/emoji/4.png')}}" alt="" class="img-responsive">
-                                                @endif
-                                            </div>
-                                            <div class="text-center">
-                                                <div class="name">Waiting time</div>
-                                                @if($feedback->waiting_time<3)
-                                                    <img src="{{ asset('images/emoji/1.png')}}" alt="" class="img-responsive">    
-                                                @elseif($feedback->waiting_time<=5)
-                                                    <img src="{{ asset('images/emoji/2.png')}}" alt="" class="img-responsive">
-                                                @elseif($feedback->waiting_time<=7)
-                                                    <img src="{{ asset('images/emoji/3.png')}}" alt="" class="img-responsive">
-                                                @else
-                                                    <img src="{{ asset('images/emoji/4.png')}}" alt="" class="img-responsive">
-                                                @endif
-                                            </div>
-                                            <div class="text-center">
-                                                <div class="name">Meal</div>
-                                                @if($feedback->meal<=2)
-                                                    <img src="{{ asset('images/emoji/1.png')}}" alt="" class="img-responsive">    
-                                                @elseif($feedback->meal<=5)
-                                                    <img src="{{ asset('images/emoji/2.png')}}" alt="" class="img-responsive">
-                                                @elseif($feedback->meal<=7)
-                                                    <img src="{{ asset('images/emoji/3.png')}}" alt="" class="img-responsive">
-                                                @else
-                                                    <img src="{{ asset('images/emoji/4.png')}}" alt="" class="img-responsive">
-                                                @endif
-                                            </div>
-                                            <div class="text-center">
-                                                <div class="name">Value for Money</div>
-                                                @if($feedback->value<3)
-                                                    <img src="{{ asset('images/emoji/1.png')}}" alt="" class="img-responsive">    
-                                                @elseif($feedback->value<=5)
-                                                    <img src="{{ asset('images/emoji/2.png')}}" alt="" class="img-responsive">
-                                                @elseif($feedback->value<=7)
-                                                    <img src="{{ asset('images/emoji/3.png')}}" alt="" class="img-responsive">
-                                                @else
-                                                    <img src="{{ asset('images/emoji/4.png')}}" alt="" class="img-responsive">
-                                                @endif
-                                            </div>
+                            @if(in_array($feedback->restaurant_id, $restaurant_ids))
+                                <div class="single-feedback">
+                                    <div class="clearfix title c-b-shadow">
+                                        <div class="pull-left">
+                                            Feedback from <strong>{{max($feedback->email, 'guest')}}</strong> on <strong>{{date('d-m-Y', $feedback->date)}}</strong> at <strong>{{date('H:i', $feedback->date)}}</strong>
                                         </div>
-                                        {{-- <div class="reply-button">
-                                            <button type="button" name="button" class="c-b-shadow">Reply on feedback</button>
-                                            <button type="button" name="button" class="c-b-shadow">Send personal voucher</button>
-                                        </div> --}}
-                                    </div>
-                                    <div class="col-md-7">
-                                        <div class="positive-negative-comment">
-                                            <textarea name="name" rows="2" class="positive">{{$feedback->comment}}</textarea>
-                                            <textarea name="name" rows="2" class="negative">{{$feedback->suggestion}}</textarea>
+                                        <div class="pull-right">
+                                            <button type="button" name="button" class="c-b-shadow" onclick="delete_feedback({{$feedback->id}})">Delete</button>
                                         </div>
                                     </div>
-                                </div>
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <div class="emoji-box">
+                                                <div class="text-center">
+                                                    <div class="name">Service</div>
+                                                    @if($feedback->service<3)
+                                                        <img src="{{ asset('images/emoji/1.png')}}" alt="" class="img-responsive">    
+                                                    @elseif($feedback->service<=5)
+                                                        <img src="{{ asset('images/emoji/2.png')}}" alt="" class="img-responsive">
+                                                    @elseif($feedback->service<=7)
+                                                        <img src="{{ asset('images/emoji/3.png')}}" alt="" class="img-responsive">
+                                                    @else
+                                                        <img src="{{ asset('images/emoji/4.png')}}" alt="" class="img-responsive">
+                                                    @endif
+                                                </div>
+                                                <div class="text-center">
+                                                    <div class="name">Waiting time</div>
+                                                    @if($feedback->waiting_time<3)
+                                                        <img src="{{ asset('images/emoji/1.png')}}" alt="" class="img-responsive">    
+                                                    @elseif($feedback->waiting_time<=5)
+                                                        <img src="{{ asset('images/emoji/2.png')}}" alt="" class="img-responsive">
+                                                    @elseif($feedback->waiting_time<=7)
+                                                        <img src="{{ asset('images/emoji/3.png')}}" alt="" class="img-responsive">
+                                                    @else
+                                                        <img src="{{ asset('images/emoji/4.png')}}" alt="" class="img-responsive">
+                                                    @endif
+                                                </div>
+                                                <div class="text-center">
+                                                    <div class="name">Meal</div>
+                                                    @if($feedback->meal<=2)
+                                                        <img src="{{ asset('images/emoji/1.png')}}" alt="" class="img-responsive">    
+                                                    @elseif($feedback->meal<=5)
+                                                        <img src="{{ asset('images/emoji/2.png')}}" alt="" class="img-responsive">
+                                                    @elseif($feedback->meal<=7)
+                                                        <img src="{{ asset('images/emoji/3.png')}}" alt="" class="img-responsive">
+                                                    @else
+                                                        <img src="{{ asset('images/emoji/4.png')}}" alt="" class="img-responsive">
+                                                    @endif
+                                                </div>
+                                                <div class="text-center">
+                                                    <div class="name">Value for Money</div>
+                                                    @if($feedback->value<3)
+                                                        <img src="{{ asset('images/emoji/1.png')}}" alt="" class="img-responsive">    
+                                                    @elseif($feedback->value<=5)
+                                                        <img src="{{ asset('images/emoji/2.png')}}" alt="" class="img-responsive">
+                                                    @elseif($feedback->value<=7)
+                                                        <img src="{{ asset('images/emoji/3.png')}}" alt="" class="img-responsive">
+                                                    @else
+                                                        <img src="{{ asset('images/emoji/4.png')}}" alt="" class="img-responsive">
+                                                    @endif
+                                                </div>
+                                            </div>
+                                            {{-- <div class="reply-button">
+                                                <button type="button" name="button" class="c-b-shadow">Reply on feedback</button>
+                                                <button type="button" name="button" class="c-b-shadow">Send personal voucher</button>
+                                            </div> --}}
+                                        </div>
+                                        <div class="col-md-7">
+                                            <div class="positive-negative-comment">
+                                                <textarea name="name" rows="2" class="positive">{{$feedback->comment}}</textarea>
+                                                <textarea name="name" rows="2" class="negative">{{$feedback->suggestion}}</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                            </div>
+                                </div>
+                            @endif
                         @endforeach
                     </div>
                     <a href="#" class="show-more-button" data-more-title="Show More" data-less-title="Show Less"><i class="fa fa-angle-down"></i></a>

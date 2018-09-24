@@ -14,6 +14,14 @@
 Auth::routes();
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
+//System_Admin
+Route::get('/settings', 'SettingsController@index')->name('settings');
+Route::post('/settings/update', 'SettingsController@update')->name('settings.update');
+
+//Payment
+Route::get('/payment/{code}', 'PaymentController@preparePayment')->name('payment');
+Route::get('/payment/check/{order_id}', 'PaymentController@paymentCheck')->name('payment_check');
+
 //Home_Dashboard
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');

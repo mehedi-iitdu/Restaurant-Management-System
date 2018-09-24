@@ -91,13 +91,17 @@ class HomeController extends Controller
         foreach ($restaurant_ids as $key => $restaurant_id) {
             $positive += count(Feedback::where('restaurant_id', $restaurant_id)->where('comment', '!=', null)->get());
         }
-        $positive = $positive/$total_feedback;
+        if($total_feedback > 0){
+            $positive = $positive/$total_feedback;
+        }
 
         $negative = 0;
         foreach ($restaurant_ids as $key => $restaurant_id) {
             $negative += count(Feedback::where('restaurant_id', $restaurant_id)->where('suggestion', '!=', null)->get());
         }
-        $negative = $negative/$total_feedback;
+        if($total_feedback > 0){
+            $negative = $negative/$total_feedback;
+        }
 
         $service = 0;
         foreach ($restaurant_ids as $key => $restaurant_id) {

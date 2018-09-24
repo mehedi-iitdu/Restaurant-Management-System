@@ -88,6 +88,8 @@
                     @include('inc.customer_sidenav')
                 @elseif(Auth::user()->user_type == "Admin")
                     @include('inc.admin_sidenav')
+                @elseif(Auth::user()->user_type == "SystemAdmin")
+                    @include('inc.systemadmin_sidenav')
                 @endif
             @endauth
 
