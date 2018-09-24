@@ -5,7 +5,7 @@
     <div id="titlebar">
         <div class="row">
             <div class="col-md-12">
-                <h2>Howdy, Tom!</h2>
+                <h2>Hello, {{Auth::user()->name}}!</h2>
                 <!-- Breadcrumbs -->
                 <nav id="breadcrumbs">
                     <ul>
@@ -28,10 +28,10 @@
     </div> -->
 
     <!-- Content -->
-    {{-- <div class="row">
+    <div class="row">
 
         <!-- Item -->
-        <div class="col-lg-3 col-md-6">
+        <div class="col-lg-4 col-md-4">
             <div class="dashboard-stat color-1">
                 <div class="dashboard-stat-content"><h4>{{ count(\App\Restaurant::where('user_id', Auth::user()->id)->where('status', 'Active')->get()) }}</h4> <span>Active Listings</span></div>
                 <div class="dashboard-stat-icon"><i class="im im-icon-Map2"></i></div>
@@ -39,30 +39,30 @@
         </div>
 
         <!-- Item -->
-        <div class="col-lg-3 col-md-6">
+        {{-- <div class="col-lg-3 col-md-6">
             <div class="dashboard-stat color-2">
                 <div class="dashboard-stat-content"><h4>726</h4> <span>Total Views</span></div>
                 <div class="dashboard-stat-icon"><i class="im im-icon-Line-Chart"></i></div>
             </div>
-        </div>
+        </div> --}}
 
         
         <!-- Item -->
-        <div class="col-lg-3 col-md-6">
+        <div class="col-lg-4 col-md-4">
             <div class="dashboard-stat color-3">
-                <div class="dashboard-stat-content"><h4>95</h4> <span>Total Reviews</span></div>
+                <div class="dashboard-stat-content"><h4>{{$total_review}}</h4> <span>Total Reviews</span></div>
                 <div class="dashboard-stat-icon"><i class="im im-icon-Add-UserStar"></i></div>
             </div>
         </div>
 
         <!-- Item -->
-        <div class="col-lg-3 col-md-6">
+        <div class="col-lg-4 col-md-4">
             <div class="dashboard-stat color-4">
-                <div class="dashboard-stat-content"><h4>126</h4> <span>Times Bookmarked</span></div>
+                <div class="dashboard-stat-content"><h4>{{$total_bookmark}}</h4> <span>Times Bookmarked</span></div>
                 <div class="dashboard-stat-icon"><i class="im im-icon-Heart"></i></div>
             </div>
         </div>
-    </div> --}}
+    </div>
 
 
     <div class="row">
@@ -75,7 +75,7 @@
                     <div class="col-md-3">
                         <div class="your-rating text-center">
                             <div class="heading">Your Rating</div>
-                            <div class="round-circle-large" data-value="0.9">
+                            <div class="round-circle-large" data-value="{{($service+$waiting_time+$meal+$value)/(4*10)}}">
                                 <strong></strong>
                             </div>
                         </div>
@@ -87,25 +87,25 @@
                                     <div class="heading">Ratings</div>
                                     <div class="knob-box">
                                         <div class="title">Service</div>
-                                        <div class="round-circle" data-value="0.75">
+                                        <div class="round-circle" data-value="{{$service/10}}">
                                             <strong></strong>
                                         </div>
                                     </div>
                                     <div class="knob-box">
                                         <div class="title">Waiting time</div>
-                                        <div class="round-circle" data-value="0.75">
+                                        <div class="round-circle" data-value="{{$waiting_time/10}}">
                                             <strong></strong>
                                         </div>
                                     </div>
                                     <div class="knob-box">
                                         <div class="title">Meal</div>
-                                        <div class="round-circle" data-value="0.75">
+                                        <div class="round-circle" data-value="{{$meal/10}}">
                                             <strong></strong>
                                         </div>
                                     </div>
                                     <div class="knob-box">
                                         <div class="title">Money</div>
-                                        <div class="round-circle" data-value="0.75">
+                                        <div class="round-circle" data-value="{{$value/10}}">
                                             <strong></strong>
                                         </div>
                                     </div>
@@ -114,28 +114,26 @@
                             <div class="col-md-5 border-l">
                                 <div class="overview-box">
                                     <div class="heading">Overview</div>
-                                    <div class="sub-heading">Watch month list</div>
+                                    <div class="sub-heading">Last 3 months</div>
 
                                     <div class="knob-box">
-                                        <div class="title">Sept</div>
-                                        <div class="round-circle" data-value="0.75">
+                                        <div class="title">{{date('M', strtotime('-3 month'))}}</div>
+                                        <div class="round-circle" data-value="{{$rating_month3/10}}">
                                             <strong></strong>
                                         </div>
                                     </div>
                                     <div class="knob-box">
-                                        <div class="title">Oct</div>
-                                        <div class="round-circle" data-value="0.75">
+                                        <div class="title">{{date('M', strtotime('-2 month'))}}</div>
+                                        <div class="round-circle" data-value="{{$rating_month2/10}}">
                                             <strong></strong>
                                         </div>
                                     </div>
                                     <div class="knob-box">
-                                        <div class="title">Nov</div>
-                                        <div class="round-circle" data-value="0.75">
+                                        <div class="title">{{date('M', strtotime('-1 month'))}}</div>
+                                        <div class="round-circle" data-value="{{$rating_month1/10}}">
                                             <strong></strong>
                                         </div>
                                     </div>
-
-                                    <div class="overview-corner">142 days</div>
                                 </div>
                             </div>
                         </div>
@@ -144,13 +142,13 @@
                             <div class="heading">Feedback</div>
                             <div class="knob-box">
                                 <div class="title">Positive</div>
-                                <div class="round-circle-100" data-value="0.75">
+                                <div class="round-circle-100" data-value="{{$positive}}">
                                     <strong></strong>
                                 </div>
                             </div>
                             <div class="knob-box">
                                 <div class="title">Negative</div>
-                                <div class="round-circle-100" data-value="0.75">
+                                <div class="round-circle-100" data-value="{{$negative}}">
                                     <strong></strong>
                                 </div>
                             </div>
@@ -160,7 +158,7 @@
             </div>
 
 
-            <div class="day-bar">
+            {{-- <div class="day-bar">
                 <div class="day-box">
                     <button type="button" name="button" class="c-b-shadow active">Today</button>
                 </div>
@@ -176,103 +174,92 @@
                 <div class="day-box">
                     <button type="button" name="button" class="c-b-shadow">More days</button>
                 </div>
-            </div>
+            </div> --}}
 
             <div class="feedback-list-wrap">
                 <div class="feedback-list c-b-shadow">
-                    <div class="single-feedback">
-                        <div class="clearfix title c-b-shadow">
-                            <div class="pull-left">
-                                Feedback from <strong>guest 2151</strong> on <strong>Tuesday</strong> at <strong>18:15</strong>
-                            </div>
-                            <div class="pull-right">
-                                <button type="button" name="button" class="c-b-shadow">Delete</button>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-5">
-                                <div class="emoji-box">
-                                    <div class="text-center">
-                                        <div class="name">Service</div>
-                                        <img src="images/emoji/1.png" alt="" class="img-responsive">
+                    <div class="show-more">
+                        @foreach(\App\Feedback::all() as $feedback)
+                            <div class="single-feedback">
+                                <div class="clearfix title c-b-shadow">
+                                    <div class="pull-left">
+                                        Feedback from <strong>{{max($feedback->email, 'guest')}}</strong> on <strong>{{date('d-m-Y', $feedback->date)}}</strong> at <strong>{{date('H:i', $feedback->date)}}</strong>
                                     </div>
-                                    <div class="text-center">
-                                        <div class="name">Waiting time</div>
-                                        <img src="images/emoji/2.png" alt="" class="img-responsive">
-                                    </div>
-                                    <div class="text-center">
-                                        <div class="name">Meal</div>
-                                        <img src="images/emoji/3.png" alt="" class="img-responsive">
-                                    </div>
-                                    <div class="text-center">
-                                        <div class="name">Money</div>
-                                        <img src="images/emoji/4.png" alt="" class="img-responsive">
+                                    <div class="pull-right">
+                                        <button type="button" name="button" class="c-b-shadow" onclick="delete_feedback({{$feedback->id}})">Delete</button>
                                     </div>
                                 </div>
-                                <div class="reply-button">
-                                    <button type="button" name="button" class="c-b-shadow">Reply on feedback</button>
-                                    <button type="button" name="button" class="c-b-shadow">Send personal voucher</button>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <div class="emoji-box">
+                                            <div class="text-center">
+                                                <div class="name">Service</div>
+                                                @if($feedback->service<3)
+                                                    <img src="{{ asset('images/emoji/1.png')}}" alt="" class="img-responsive">    
+                                                @elseif($feedback->service<=5)
+                                                    <img src="{{ asset('images/emoji/2.png')}}" alt="" class="img-responsive">
+                                                @elseif($feedback->service<=7)
+                                                    <img src="{{ asset('images/emoji/3.png')}}" alt="" class="img-responsive">
+                                                @else
+                                                    <img src="{{ asset('images/emoji/4.png')}}" alt="" class="img-responsive">
+                                                @endif
+                                            </div>
+                                            <div class="text-center">
+                                                <div class="name">Waiting time</div>
+                                                @if($feedback->waiting_time<3)
+                                                    <img src="{{ asset('images/emoji/1.png')}}" alt="" class="img-responsive">    
+                                                @elseif($feedback->waiting_time<=5)
+                                                    <img src="{{ asset('images/emoji/2.png')}}" alt="" class="img-responsive">
+                                                @elseif($feedback->waiting_time<=7)
+                                                    <img src="{{ asset('images/emoji/3.png')}}" alt="" class="img-responsive">
+                                                @else
+                                                    <img src="{{ asset('images/emoji/4.png')}}" alt="" class="img-responsive">
+                                                @endif
+                                            </div>
+                                            <div class="text-center">
+                                                <div class="name">Meal</div>
+                                                @if($feedback->meal<=2)
+                                                    <img src="{{ asset('images/emoji/1.png')}}" alt="" class="img-responsive">    
+                                                @elseif($feedback->meal<=5)
+                                                    <img src="{{ asset('images/emoji/2.png')}}" alt="" class="img-responsive">
+                                                @elseif($feedback->meal<=7)
+                                                    <img src="{{ asset('images/emoji/3.png')}}" alt="" class="img-responsive">
+                                                @else
+                                                    <img src="{{ asset('images/emoji/4.png')}}" alt="" class="img-responsive">
+                                                @endif
+                                            </div>
+                                            <div class="text-center">
+                                                <div class="name">Value for Money</div>
+                                                @if($feedback->value<3)
+                                                    <img src="{{ asset('images/emoji/1.png')}}" alt="" class="img-responsive">    
+                                                @elseif($feedback->value<=5)
+                                                    <img src="{{ asset('images/emoji/2.png')}}" alt="" class="img-responsive">
+                                                @elseif($feedback->value<=7)
+                                                    <img src="{{ asset('images/emoji/3.png')}}" alt="" class="img-responsive">
+                                                @else
+                                                    <img src="{{ asset('images/emoji/4.png')}}" alt="" class="img-responsive">
+                                                @endif
+                                            </div>
+                                        </div>
+                                        {{-- <div class="reply-button">
+                                            <button type="button" name="button" class="c-b-shadow">Reply on feedback</button>
+                                            <button type="button" name="button" class="c-b-shadow">Send personal voucher</button>
+                                        </div> --}}
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="positive-negative-comment">
+                                            <textarea name="name" rows="2" class="positive">{{$feedback->comment}}</textarea>
+                                            <textarea name="name" rows="2" class="negative">{{$feedback->suggestion}}</textarea>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-7">
-                                <div class="positive-negative-comment">
-                                    <textarea name="name" rows="2" class="positive">I really enjoy it.</textarea>
-                                    <textarea name="name" rows="2" class="negative">No improvements  :)</textarea>
-                                </div>
-                            </div>
-                        </div>
 
+                            </div>
+                        @endforeach
                     </div>
-                    <div class="single-feedback">
-                        <div class="clearfix title c-b-shadow">
-                            <div class="pull-left">
-                                Feedback from <strong>guest 2151</strong> on <strong>Tuesday</strong> at <strong>18:15</strong>
-                            </div>
-                            <div class="pull-right">
-                                <button type="button" name="button" class="c-b-shadow">Delete</button>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-5">
-                                <div class="emoji-box">
-                                    <div class="text-center">
-                                        <div class="name">Service</div>
-                                        <img src="images/emoji/1.png" alt="" class="img-responsive">
-                                    </div>
-                                    <div class="text-center">
-                                        <div class="name">Waiting time</div>
-                                        <img src="images/emoji/2.png" alt="" class="img-responsive">
-                                    </div>
-                                    <div class="text-center">
-                                        <div class="name">Meal</div>
-                                        <img src="images/emoji/3.png" alt="" class="img-responsive">
-                                    </div>
-                                    <div class="text-center">
-                                        <div class="name">Money</div>
-                                        <img src="images/emoji/4.png" alt="" class="img-responsive">
-                                    </div>
-                                </div>
-                                <div class="reply-button">
-                                    <button type="button" name="button" class="c-b-shadow">Reply on feedback</button>
-                                    <button type="button" name="button" class="c-b-shadow">Send personal voucher</button>
-                                </div>
-                            </div>
-                            <div class="col-md-7">
-                                <div class="positive-negative-comment">
-                                    <textarea name="name" rows="2" class="positive">I really enjoy it.</textarea>
-                                    <textarea name="name" rows="2" class="negative">No improvements  :)</textarea>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="load-more-button text-center">
-                    <button type="button" name="button" class="c-b-shadow">Load more</button>
+                    <a href="#" class="show-more-button" data-more-title="Show More" data-less-title="Show Less"><i class="fa fa-angle-down"></i></a>
                 </div>
             </div>
-        </div>
 
 
         <!-- Copyrights -->
@@ -287,6 +274,23 @@
 @section('script')
 
         <script>
+            function delete_feedback(id){
+                $.ajax({
+                    type: "POST",
+                    headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    url: "{{ route('feedback.delete') }}",
+                    data: {
+                     _token : $('meta[name="csrf-token"]').attr('content'), 
+                     id : id
+                    },
+                    dataType: "text",
+                    success: function(resultData) {
+                        location.reload();
+                    }
+                });
+            }
             $('.round-circle').circleProgress({
                 startAngle: -1.55,
                 size: 70,

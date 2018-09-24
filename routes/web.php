@@ -115,6 +115,7 @@ Route::post('/voucher/update', 'VoucherController@updateVoucher')->name('voucher
 //Feedback
 Route::get('/feedback/{code}', 'FeedbackController@index');
 Route::post('/feedback/submit', 'FeedbackController@store')->name('feedback.store');
+Route::post('/feedback/delete', 'FeedbackController@delete')->name('feedback.delete');
 
 //Widget
 Route::prefix('widget')->group(function () {

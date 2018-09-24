@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 19, 2018 at 11:52 AM
+-- Generation Time: Sep 24, 2018 at 09:41 AM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -55,11 +55,13 @@ CREATE TABLE `feedbacks` (
   `service` int(2) NOT NULL,
   `waiting_time` int(2) NOT NULL,
   `meal` int(2) NOT NULL,
+  `value` int(2) NOT NULL,
   `comment` varchar(500) DEFAULT NULL,
   `suggestion` varchar(500) DEFAULT NULL,
   `email` varchar(30) DEFAULT NULL,
   `sub_1` int(1) NOT NULL DEFAULT '0',
   `sub_2` int(1) NOT NULL DEFAULT '0',
+  `date` int(15) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -68,13 +70,14 @@ CREATE TABLE `feedbacks` (
 -- Dumping data for table `feedbacks`
 --
 
-INSERT INTO `feedbacks` (`id`, `restaurant_id`, `service`, `waiting_time`, `meal`, `comment`, `suggestion`, `email`, `sub_1`, `sub_2`, `created_at`, `updated_at`) VALUES
-(1, 11, 10, 5, 6, '', '', 'mehedi.iitdu@gmail.com', 1, 1, '2018-09-12 08:40:34', '2018-09-12 08:40:34'),
-(3, 11, 5, 5, 8, 'Nice food', 'Reduce waiting time', 'mehedi@gmail.com', 1, 1, '2018-09-17 03:38:58', '2018-09-17 03:38:58'),
-(4, 11, 5, 5, 5, NULL, NULL, NULL, 0, 0, '2018-09-17 04:35:56', '2018-09-17 04:35:56'),
-(5, 11, 5, 5, 5, NULL, NULL, NULL, 0, 0, '2018-09-17 04:39:13', '2018-09-17 04:39:13'),
-(6, 11, 5, 5, 5, NULL, NULL, NULL, 0, 0, '2018-09-17 04:39:54', '2018-09-17 04:39:54'),
-(7, 11, 5, 5, 5, NULL, NULL, NULL, 0, 0, '2018-09-18 01:59:43', '2018-09-18 01:59:43');
+INSERT INTO `feedbacks` (`id`, `restaurant_id`, `service`, `waiting_time`, `meal`, `value`, `comment`, `suggestion`, `email`, `sub_1`, `sub_2`, `date`, `created_at`, `updated_at`) VALUES
+(3, 11, 7, 5, 8, 5, 'Nice food', 'Reduce waiting time', 'mehedi@gmail.com', 1, 1, 1537767360, '2018-09-24 07:27:39', '2018-09-17 03:38:58'),
+(4, 11, 5, 5, 5, 9, NULL, NULL, NULL, 0, 0, 1537767360, '2018-09-24 07:19:41', '2018-09-17 04:35:56'),
+(5, 11, 8, 10, 5, 8, NULL, NULL, NULL, 0, 0, 1537767360, '2018-09-24 07:27:45', '2018-09-17 04:39:13'),
+(6, 11, 2, 5, 5, 8, NULL, NULL, NULL, 0, 0, 1537767360, '2018-09-24 07:27:49', '2018-09-17 04:39:54'),
+(7, 11, 5, 5, 5, 10, NULL, NULL, NULL, 0, 0, 1537767360, '2018-09-24 07:19:34', '2018-09-18 01:59:43'),
+(8, 11, 5, 10, 5, 5, NULL, NULL, NULL, 0, 0, 1537767360, '2018-09-24 07:19:32', '2018-09-23 05:26:14'),
+(9, 11, 5, 5, 5, 5, NULL, NULL, NULL, 0, 0, 1537767360, '2018-09-23 23:36:27', '2018-09-23 23:36:27');
 
 -- --------------------------------------------------------
 
@@ -218,8 +221,12 @@ CREATE TABLE `reservation` (
 INSERT INTO `reservation` (`id`, `restaurant_id`, `reservation_request_id`, `restaurant_table_id`, `number_of_people`, `date`, `start_time`, `end_time`, `color`, `created_at`, `updated_at`) VALUES
 (16, 11, 30, 7, 8, 1537315200, '01:00:00', '03:00:00', 'ff3601', '2018-09-19 06:47:26', '2018-09-19 00:47:26'),
 (17, 11, 30, 13, 4, 1537315200, '01:00:00', '03:00:00', '35c496', '2018-09-19 09:35:58', '2018-09-19 03:35:58'),
-(18, 11, 31, 7, 8, 1537315200, '03:00:00', '04:00:00', '00bbda', '2018-09-19 09:36:05', '2018-09-19 03:36:05'),
-(20, 11, 32, 13, 6, 1537315200, '04:00:00', '05:00:00', '35c496', '2018-09-19 09:40:08', '2018-09-19 03:40:08');
+(18, 11, 31, 7, 8, 1537315200, '03:00:00', '04:00:00', 'be6b7f', '2018-09-20 11:54:17', '2018-09-20 05:54:17'),
+(20, 11, 32, 13, 6, 1537315200, '04:00:00', '05:00:00', '35c496', '2018-09-19 09:40:08', '2018-09-19 03:40:08'),
+(21, 11, 33, 7, 5, 1537401600, '01:00:00', '02:00:00', '00bbda', '2018-09-20 11:35:14', '2018-09-20 05:35:14'),
+(22, 11, 34, 13, 2, 1537401600, '01:00:00', '02:15:00', 'ff3601', '2018-09-20 05:36:22', '2018-09-20 05:36:22'),
+(23, 11, 35, 7, 3, 1537401600, '03:00:00', '06:30:00', '00bbda', '2018-09-20 11:37:39', '2018-09-20 05:37:39'),
+(24, 11, 36, 7, 2, 1537488000, '01:00:00', '02:00:00', 'aa85ef', '2018-09-20 05:48:38', '2018-09-20 05:48:38');
 
 -- --------------------------------------------------------
 
@@ -252,7 +259,11 @@ CREATE TABLE `reservation_requests` (
 INSERT INTO `reservation_requests` (`id`, `restaurant_id`, `status`, `number_of_people`, `date`, `time`, `title`, `company`, `first_name`, `last_name`, `note`, `email`, `telephone`, `created_at`, `updated_at`) VALUES
 (30, 11, 1, 12, 1537315200, '01:00:00', 'MALE', NULL, 'Mehedi', 'Hasan', 'No, Thanks', 'mehedi@gmail.com', '01642954885', '2018-09-19 06:37:54', '2018-09-19 00:37:54'),
 (31, 11, 1, 15, 1537315200, '02:00:00', 'MALE', NULL, 'Santu', 'Roy', NULL, 'santu@gmail.com', '01642954885', '2018-09-19 09:34:46', '2018-09-19 03:34:46'),
-(32, 11, 1, 6, 1537315200, '04:00:00', 'MALE', NULL, 'Hoimoni', NULL, 'Thanks', 'hoimonti@gmail.com', '01642954885', '2018-09-19 09:38:08', '2018-09-19 03:38:08');
+(32, 11, 1, 6, 1537315200, '04:00:00', 'MALE', NULL, 'Hoimoni', NULL, 'Thanks', 'hoimonti@gmail.com', '01642954885', '2018-09-19 09:38:08', '2018-09-19 03:38:08'),
+(33, 11, 1, 5, 1537401600, '01:00:00', 'MALE', NULL, 'Mehedi', NULL, NULL, NULL, NULL, '2018-09-20 11:31:55', '2018-09-20 05:31:55'),
+(34, 11, 1, 2, 1537401600, '01:00:00', 'MALE', NULL, 'Santu', NULL, NULL, NULL, NULL, '2018-09-20 11:36:22', '2018-09-20 05:36:22'),
+(35, 11, 1, 3, 1537401600, '03:00:00', 'MALE', NULL, 'Mobin', NULL, NULL, NULL, NULL, '2018-09-20 11:37:18', '2018-09-20 05:37:18'),
+(36, 11, 1, 2, 1537488000, '01:00:00', 'MALE', NULL, 'Mehedi', NULL, NULL, NULL, NULL, '2018-09-20 11:48:38', '2018-09-20 05:48:38');
 
 -- --------------------------------------------------------
 
@@ -384,8 +395,8 @@ INSERT INTO `time_config` (`id`, `restaurant_id`, `day`, `opening_time`, `closin
 (1, 11, 'Monday', '14:00:00', '18:00:00', '2018-07-23 10:54:19', '2018-07-16 01:35:33'),
 (2, 11, 'Tuesday', '11:00:00', '23:00:00', '2018-06-12 08:38:04', '2018-06-12 02:38:04'),
 (3, 11, 'Wednesday', '01:00:00', '22:00:00', '2018-09-18 11:31:11', '2018-06-12 02:36:06'),
-(4, 11, 'Thursday', 'Closed', 'Closed', '2018-05-28 04:20:19', '2018-05-28 04:20:19'),
-(5, 11, 'Friday', 'Closed', 'Closed', '2018-05-28 04:20:19', '2018-05-28 04:20:19'),
+(4, 11, 'Thursday', '01:00:00', '23:00:00', '2018-09-20 11:31:34', '2018-09-20 05:31:34'),
+(5, 11, 'Friday', '01:00:00', '05:00:00', '2018-09-20 11:48:13', '2018-09-20 05:48:13'),
 (6, 11, 'Saturday', 'Closed', 'Closed', '2018-05-28 04:20:19', '2018-05-28 04:20:19'),
 (7, 11, 'Sunday', 'Closed', 'Closed', '2018-05-28 04:20:19', '2018-05-28 04:20:19');
 
@@ -442,7 +453,7 @@ CREATE TABLE `vouchers` (
 --
 
 INSERT INTO `vouchers` (`id`, `restaurant_id`, `title`, `description`, `price`, `photo`, `status`, `created_at`, `updated_at`) VALUES
-(1, 11, '4 course dinner all-in', 'This package includes 4 matching wines, water and coffee or tea. For the Gift vouchers our chef curated an extra festive menu with amuse bouches following a 4-course festive surprise menu.', 65.00, 'uploads/x6Eolt2JMOiklH41Esg6WmrEdmFrqea3YN0yrRvg.jpeg', 1, '2018-08-16 11:42:15', '2018-08-16 11:42:15');
+(1, 11, '4 course dinner all-in', 'This package includes 4 matching wines, water and coffee or tea. For the Gift vouchers our chef curated an extra festive menu with amuse bouches following a 4-course festive surprise menu.', 65.00, 'uploads/8xCw9JkwQOqHkvkFTib9uC56h1QygZuEc43T6WUF.png', 1, '2018-08-16 11:42:15', '2018-09-19 05:28:01');
 
 --
 -- Indexes for dumped tables
@@ -570,7 +581,7 @@ ALTER TABLE `bookmarks`
 -- AUTO_INCREMENT for table `feedbacks`
 --
 ALTER TABLE `feedbacks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `food_category`
@@ -600,13 +611,13 @@ ALTER TABLE `photos`
 -- AUTO_INCREMENT for table `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `reservation_requests`
 --
 ALTER TABLE `reservation_requests`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `restaurant`
