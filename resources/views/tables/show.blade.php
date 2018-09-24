@@ -66,11 +66,10 @@
                             </tbody>
                         </table>
 
-                        <a href="{{ route('tables.add', $code) }}" class="button">Add Table</a>
-
                     </div>
                 </div>
             @endif
+            <a href="{{ route('tables.add', $code) }}" class="button">Add Table</a>
         </div>
     </div>
     @endif

@@ -55,7 +55,7 @@ class RestaurantController extends Controller
             flash('Restaurant inserted')->success();
     	}
         
-    	return redirect()->route('mylistings');
+    	return redirect()->route('mylistings', 'Pending');
     }
 
     public function showEditRestaurantForm($code){
