@@ -1,0 +1,10 @@
+#logo{
+    margin-top: 0;
+    
+}
+#logo a{
+    display: block;
+}
+#logo img{
+	max-height: 48px;
+}
