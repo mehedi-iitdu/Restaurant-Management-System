@@ -28,7 +28,7 @@
                     <ul id="responsive">
                         <li><a href="{{ route('home') }}">Home</a>
                         </li>
-                        <li><a href="{{ route('listings') }}">Listings</a>
+                        <li><a href="{{ route('listings') }}">Restaurants</a>
                         </li>
                     </ul>
                 </nav>
@@ -41,31 +41,34 @@
             <!-- Right Side Content / End -->
             <div class="right-side">
                 <div class="header-widget">
+                    @auth
                     <div class="user-menu">
-                        @auth
-                            <div class="user-name">
-                                <span>
-                                    @if(!empty(Auth::user()->photo))
-                                        <img src="{{ asset(Auth::user()->photo) }}" alt="">
-                                    @else
-                                        <img src="{{ asset('images/user-avatar.jpg') }}" alt="">
-                                    @endif    
-                                </span>
-                                {{ Auth::user()->name }}</div>
-                            <ul>
-                                @if(Auth::user()->user_type == 'Admin')
-                                    <li><a href="{{ route('dashboard') }}"><i class="sl sl-icon-settings"></i> Dashboard</a></li>
-                                @endif
-                                
-                                @if(Auth::user()->user_type == 'SystemAdmin')
-                                    <li><a href="{{ route('settings')}}"><i class="sl sl-icon-settings"></i> Settings</a></li>
-                                @endif
-                                <li><a href="{{route('logout')}}"><i class="sl sl-icon-power"></i> Logout</a></li>
-                            </ul>
-                        @endauth
+                        <div class="user-name">
+                            <span>
+                                @if(!empty(Auth::user()->photo))
+                                    <img src="{{ asset(Auth::user()->photo) }}" alt="">
+                                @else
+                                    <img src="{{ asset('images/user-avatar.jpg') }}" alt="">
+                                @endif    
+                            </span>
+                            {{ Auth::user()->name }}</div>
+                        <ul>
+                            @if(Auth::user()->user_type == 'Admin')
+                                <li><a href="{{ route('dashboard') }}"><i class="sl sl-icon-settings"></i> Dashboard</a></li>
+                            @endif
+                            
+                            @if(Auth::user()->user_type == 'SystemAdmin')
+                                <li><a href="{{ route('settings')}}"><i class="sl sl-icon-settings"></i> Settings</a></li>
+                            @endif
+                            <li><a href="{{route('logout')}}"><i class="sl sl-icon-power"></i> Logout</a></li>
+                        </ul>
                     </div>
+                    @endauth
                     @guest
-                        <a href="#sign-in-dialog" class="sign-in popup-with-zoom-anim"><i class="sl sl-icon-login"></i> Sign In</a>
+                        <a href="#sign-in-dialog" class="sign-in popup-with-zoom-anim">
+                            <i class="sl sl-icon-login"></i>
+                            <span class="d-none d-lg-inline-block">Sign In</span>
+                        </a>
                     @endguest
                 </div>
             </div>

@@ -4,14 +4,14 @@
 ================================================== -->
 @section('title')
 
-<div class="main-search-container dark-overlay text-center" data-background-image="images/main-search-background-01.jpg">
+<div class="main-search-container dark-overlay text-center" data-background-image="https://d3nn873nee648n.cloudfront.net/900x600/17444/220-SM772880.jpg">
     <div class="main-search-inner">
 
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h2>Find Nearby <span class="typed-words"></span></h2>
-                    <h4>Expolore top-rated attractions, activities and more</h4>
+                    <h2>Reserve your favourite place in your restaurant</h2>
+                    <h4>Discover and book the best restaurant </h4>
 
                     <div class="main-search-input">
 
@@ -76,8 +76,8 @@
             <div class="category-box-container">
                 <a href="listings-half-screen-map-grid-1.html" class="category-box" data-background-image="images/category-box-01.jpg">
                     <div class="category-box-content">
-                        <h3>Hotels</h3>
-                        <span>64 listings</span>
+                        <h3>Chinese</h3>
+                        <span>64 restaurants</span>
                     </div>
                     <span class="category-box-btn">Browse</span>
                 </a>
@@ -89,8 +89,8 @@
             <div class="category-box-container">
                 <a href="listings-half-screen-map-grid-1.html" class="category-box" data-background-image="images/category-box-03.jpg">
                     <div class="category-box-content">
-                        <h3>Events</h3>
-                        <span>67 listings</span>
+                        <h3>Mexican</h3>
+                        <span>67 restaurants</span>
                     </div>
                     <span class="category-box-btn">Browse</span>
                 </a>
@@ -102,8 +102,8 @@
             <div class="category-box-container">
                 <a href="listings-half-screen-map-grid-1.html" class="category-box" data-background-image="images/category-box-04.jpg">
                     <div class="category-box-content">
-                        <h3>Fitness</h3>
-                        <span>27 listings</span>
+                        <h3>Italian</h3>
+                        <span>27 restaurants</span>
                     </div>
                     <span class="category-box-btn">Browse</span>
                 </a>
@@ -115,8 +115,8 @@
             <div class="category-box-container">
                 <a href="listings-half-screen-map-list.html" class="category-box" data-background-image="images/category-box-05.jpg">
                     <div class="category-box-content">
-                        <h3>Nightlife</h3>
-                        <span>22 listings</span>
+                        <h3>Fast food</h3>
+                        <span>22 restaurants</span>
                     </div>
                     <span class="category-box-btn">Browse</span>
                 </a>
@@ -128,8 +128,8 @@
             <div class="category-box-container">
                 <a href="listings-half-screen-map-list.html" class="category-box" data-background-image="images/category-box-06.jpg">
                     <div class="category-box-content">
-                        <h3>Eat & Drink</h3>
-                        <span>130 listings</span>
+                        <h3>Biriyani</h3>
+                        <span>130 restaurants</span>
                     </div>
                     <span class="category-box-btn">Browse</span>
                 </a>
@@ -148,146 +148,158 @@
 
             <div class="col-md-12">
                 <h3 class="headline centered margin-bottom-45">
-                    Most Visited Places
-                    <span>Discover top-rated local businesses</span>
+                    Most Visited Restaurants
+                    <span>Discover top-rated local Restaurants</span>
                 </h3>
             </div>
 
             <div class="col-md-12">
-                <div class="simple-slick-carousel dots-nav">
+                <div class="row">
 
-                <!-- Listing Item -->
-                <div class="carousel-item">
-                    <a href="listings-single-page.html" class="listing-item-container">
-                        <div class="listing-item">
-                            <img src="images/listing-item-01.jpg" alt="">
+                    <div class="col-lg-4 col-md-6">
+                        <!-- Listing Item -->
+                        <div class="carousel-item">
+                            <a href="listings-single-page.html" class="listing-item-container">
+                                <div class="listing-item">
+                                    <img src="images/listing-item-01.jpg" alt="">
 
-                            <div class="listing-badge now-open">Now Open</div>
-                            
-                            <div class="listing-item-content">
-                                <span class="tag">Eat & Drink</span>
-                                <h3>Tom's Restaurant <i class="verified-icon"></i></h3>
-                                <span>964 School Street, New York</span>
-                            </div>
-                            <span class="like-icon"></span>
+                                    <div class="listing-badge now-open">Now Open</div>
+                                    
+                                    <div class="listing-item-content">
+                                        <span class="tag">Eat & Drink</span>
+                                        <h3>Tom's Restaurant <i class="verified-icon"></i></h3>
+                                        <span>964 School Street, New York</span>
+                                    </div>
+                                    <span class="like-icon"></span>
+                                </div>
+                                <div class="star-rating" data-rating="3.5">
+                                    <div class="rating-counter">(12 reviews)</div>
+                                </div>
+                            </a>
                         </div>
-                        <div class="star-rating" data-rating="3.5">
-                            <div class="rating-counter">(12 reviews)</div>
-                        </div>
-                    </a>
-                </div>
-                <!-- Listing Item / End -->
+                        <!-- Listing Item / End -->
+                    </div>
 
-                <!-- Listing Item -->
-                <div class="carousel-item">
-                    <a href="listings-single-page.html" class="listing-item-container">
-                        <div class="listing-item">
-                            <img src="images/listing-item-02.jpg" alt="">
-                            <div class="listing-item-details">
-                                <ul>
-                                    <li>Friday, August 10</li>
-                                </ul>
-                            </div>
-                            <div class="listing-item-content">
-                                <span class="tag">Events</span>
-                                <h3>Sticky Band</h3>
-                                <span>Bishop Avenue, New York</span>
-                            </div>
-                            <span class="like-icon"></span>
+                    <div class="col-lg-4 col-md-6">
+                        <!-- Listing Item -->
+                        <div class="carousel-item">
+                            <a href="listings-single-page.html" class="listing-item-container">
+                                <div class="listing-item">
+                                    <img src="images/listing-item-02.jpg" alt="">
+                                    <div class="listing-item-details">
+                                        <ul>
+                                            <li>Friday, August 10</li>
+                                        </ul>
+                                    </div>
+                                    <div class="listing-item-content">
+                                        <span class="tag">Events</span>
+                                        <h3>Sticky Band</h3>
+                                        <span>Bishop Avenue, New York</span>
+                                    </div>
+                                    <span class="like-icon"></span>
+                                </div>
+                                <div class="star-rating" data-rating="5.0">
+                                    <div class="rating-counter">(23 reviews)</div>
+                                </div>
+                            </a>
                         </div>
-                        <div class="star-rating" data-rating="5.0">
-                            <div class="rating-counter">(23 reviews)</div>
-                        </div>
-                    </a>
-                </div>
-                <!-- Listing Item / End -->     
+                        <!-- Listing Item / End --> 
+                    </div>
 
-                <!-- Listing Item -->
-                <div class="carousel-item">
-                    <a href="listings-single-page.html" class="listing-item-container">
-                        <div class="listing-item">
-                            <img src="images/listing-item-03.jpg" alt="">
-                            <div class="listing-item-details">
-                                <ul>
-                                    <li>Starting from $59 per night</li>
-                                </ul>
-                            </div>
-                            <div class="listing-item-content">
-                                <span class="tag">Hotels</span>
-                                <h3>Hotel Govendor</h3>
-                                <span>778 Country Street, New York</span>
-                            </div>
-                            <span class="like-icon"></span>
+                    <div class="col-lg-4 col-md-6">
+                        <!-- Listing Item -->
+                        <div class="carousel-item">
+                            <a href="listings-single-page.html" class="listing-item-container">
+                                <div class="listing-item">
+                                    <img src="images/listing-item-03.jpg" alt="">
+                                    <div class="listing-item-details">
+                                        <ul>
+                                            <li>Starting from $59 per night</li>
+                                        </ul>
+                                    </div>
+                                    <div class="listing-item-content">
+                                        <span class="tag">Hotels</span>
+                                        <h3>Hotel Govendor</h3>
+                                        <span>778 Country Street, New York</span>
+                                    </div>
+                                    <span class="like-icon"></span>
+                                </div>
+                                <div class="star-rating" data-rating="2.0">
+                                    <div class="rating-counter">(17 reviews)</div>
+                                </div>
+                            </a>
                         </div>
-                        <div class="star-rating" data-rating="2.0">
-                            <div class="rating-counter">(17 reviews)</div>
-                        </div>
-                    </a>
-                </div>
-                <!-- Listing Item / End -->
+                        <!-- Listing Item / End -->
+                    </div>
 
-                <!-- Listing Item -->
-                <div class="carousel-item">
-                    <a href="listings-single-page.html" class="listing-item-container">
-                        <div class="listing-item">
-                            <img src="images/listing-item-04.jpg" alt="">
+                    <div class="col-lg-4 col-md-6">
+                        <!-- Listing Item -->
+                        <div class="carousel-item">
+                            <a href="listings-single-page.html" class="listing-item-container">
+                                <div class="listing-item">
+                                    <img src="images/listing-item-04.jpg" alt="">
 
-                            <div class="listing-badge now-open">Now Open</div>
+                                    <div class="listing-badge now-open">Now Open</div>
 
-                            <div class="listing-item-content">
-                                <span class="tag">Eat & Drink</span>
-                                <h3>Burger House <i class="verified-icon"></i></h3>
-                                <span>2726 Shinn Street, New York</span>
-                            </div>
-                            <span class="like-icon"></span>
+                                    <div class="listing-item-content">
+                                        <span class="tag">Eat & Drink</span>
+                                        <h3>Burger House <i class="verified-icon"></i></h3>
+                                        <span>2726 Shinn Street, New York</span>
+                                    </div>
+                                    <span class="like-icon"></span>
+                                </div>
+                                <div class="star-rating" data-rating="5.0">
+                                    <div class="rating-counter">(31 reviews)</div>
+                                </div>
+                            </a>
                         </div>
-                        <div class="star-rating" data-rating="5.0">
-                            <div class="rating-counter">(31 reviews)</div>
-                        </div>
-                    </a>
-                </div>
-                <!-- Listing Item / End -->
+                        <!-- Listing Item / End -->
+                    </div>
 
-                <!-- Listing Item -->
-                <div class="carousel-item">
-                    <a href="listings-single-page.html" class="listing-item-container">
-                        <div class="listing-item">
-                            <img src="images/listing-item-05.jpg" alt="">
-                            <div class="listing-item-content">
-                                <span class="tag">Other</span>
-                                <h3>Airport</h3>
-                                <span>1512 Duncan Avenue, New York</span>
-                            </div>
-                            <span class="like-icon"></span>
+                    <div class="col-lg-4 col-md-6">
+                        <!-- Listing Item -->
+                        <div class="carousel-item">
+                            <a href="listings-single-page.html" class="listing-item-container">
+                                <div class="listing-item">
+                                    <img src="images/listing-item-05.jpg" alt="">
+                                    <div class="listing-item-content">
+                                        <span class="tag">Other</span>
+                                        <h3>Airport</h3>
+                                        <span>1512 Duncan Avenue, New York</span>
+                                    </div>
+                                    <span class="like-icon"></span>
+                                </div>
+                                <div class="star-rating" data-rating="3.5">
+                                    <div class="rating-counter">(46 reviews)</div>
+                                </div>
+                            </a>
                         </div>
-                        <div class="star-rating" data-rating="3.5">
-                            <div class="rating-counter">(46 reviews)</div>
-                        </div>
-                    </a>
-                </div>
-                <!-- Listing Item / End -->
+                        <!-- Listing Item / End -->
+                    </div>
 
-                <!-- Listing Item -->
-                <div class="carousel-item">
-                    <a href="listings-single-page.html" class="listing-item-container">
-                        <div class="listing-item">
-                            <img src="images/listing-item-06.jpg" alt="">
+                    <div class="col-lg-4 col-md-6">
+                        <!-- Listing Item -->
+                        <div class="carousel-item">
+                            <a href="listings-single-page.html" class="listing-item-container">
+                                <div class="listing-item">
+                                    <img src="images/listing-item-06.jpg" alt="">
 
-                            <div class="listing-badge now-closed">Now Closed</div>
+                                    <div class="listing-badge now-closed">Now Closed</div>
 
-                            <div class="listing-item-content">
-                                <span class="tag">Eat & Drink</span>
-                                <h3>Think Coffee</h3>
-                                <span>215 Terry Lane, New York</span>
-                            </div>
-                            <span class="like-icon"></span>
+                                    <div class="listing-item-content">
+                                        <span class="tag">Eat & Drink</span>
+                                        <h3>Think Coffee</h3>
+                                        <span>215 Terry Lane, New York</span>
+                                    </div>
+                                    <span class="like-icon"></span>
+                                </div>
+                                <div class="star-rating" data-rating="4.5">
+                                    <div class="rating-counter">(15 reviews)</div>
+                                </div>
+                            </a>
                         </div>
-                        <div class="star-rating" data-rating="4.5">
-                            <div class="rating-counter">(15 reviews)</div>
-                        </div>
-                    </a>
-                </div>
-                <!-- Listing Item / End -->
+                        <!-- Listing Item / End -->
+                    </div>
                 </div>
                 
             </div>
@@ -307,7 +319,7 @@
         <div class="row">
             <div class="col-md-12">
                 <h3 class="headline centered margin-bottom-50">
-                    Get an Exposure For Your Listing
+                    Promote your restaurant
                 </h3>
             </div>
         </div>
@@ -350,7 +362,7 @@
 
                         <div class="plan-price">
                             <h3>Extended</h3>
-                            <span class="value">$9.99</span>
+                            <span class="value">200 Tk</span>
                             <span class="period">One time fee for one listing, highlighted in the search results</span>
                         </div>
                         <div class="plan-features">
@@ -370,7 +382,7 @@
 
                         <div class="plan-price">
                             <h3>Professional</h3>
-                            <span class="value">$19.99</span>
+                            <span class="value">400 Tk</span>
                             <span class="period">Monthly subscription for unlimited listings and availability</span>
                         </div>
 
@@ -450,7 +462,7 @@
 
 <!-- Parallax -->
 <div class="parallax"
-    data-background="images/slider-bg-02.jpg"
+    data-background="https://d3nn873nee648n.cloudfront.net/900x600/11503/20-SM341758.jpg"
     data-color="#36383e"
     data-color-opacity="0.6"
     data-img-width="800"
@@ -462,7 +474,7 @@
 
             <div class="row">
                 <div class="col-lg-6 col-sm-8 col-lg-offset-3 col-sm-offset-2">
-                    <h2>Streamline Your Business</h2>
+                    <h2>Grow your restaurant business</h2>
                     <p>We’re full-service, local agents who know how to find people and home each together. We use online tools with an unmatched search capability to make you smarter and faster.</p>
                     <a href="listings-list-with-sidebar.html" class="button margin-top-25">Join With Us</a>
                 </div>
@@ -483,7 +495,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-5 col-sm-6">
-                <img class="footer-logo" src="images/logo.png" alt="">
+                <img class="footer-logo" src="images/logo2.png" alt="">
                 <br><br>
                 <p>Morbi convallis bibendum urna ut viverra. Maecenas quis consequat libero, a feugiat eros. Nunc ut lacinia tortor morbi ultricies laoreet ullamcorper phasellus semper.</p>
             </div>
