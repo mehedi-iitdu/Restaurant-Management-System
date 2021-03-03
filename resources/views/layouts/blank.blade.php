@@ -16,21 +16,7 @@
     <link rel="stylesheet" href="{{ asset('css/custom-style.css') }}" id="colors">
 
 
-    <!-- Scripts -->
-    <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
-
-    <script type="text/javascript" src="{{ asset('js/jquery-2.2.0.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/mmenu.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/chosen.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/slick.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/rangeslider.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/magnific-popup.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/waypoints.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/counterup.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/jquery-ui.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/tooltips.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/custom.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/switcher.js') }}"></script>
+    
 
 <!-- <div id="style-switcher">
     <h2>Color Switcher <a href="#"><i class="sl sl-icon-settings"></i></a></h2>
@@ -83,47 +69,63 @@
 
     </div>
 
-</body>
+    <!-- Scripts -->
+    <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
 
-<script type="text/javascript">
+    <script type="text/javascript" src="{{ asset('js/jquery-2.2.0.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/mmenu.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/chosen.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/slick.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/rangeslider.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/magnific-popup.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/waypoints.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/counterup.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery-ui.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/tooltips.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/custom.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/switcher.js') }}"></script>
 
-$( document ).ready(function() {
-    $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
-    $('.nav-link').each(function(){
-        var url = window.location.pathname,
-        urlRegExp = new RegExp(url.replace(/\/$/,''));
-        if(urlRegExp.test(this.href)){
-            $(this).parent().addClass('active');
-        }  
+
+    <script type="text/javascript">
+
+    $( document ).ready(function() {
+        $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
+        $('.nav-link').each(function(){
+            var url = window.location.pathname,
+            urlRegExp = new RegExp(url.replace(/\/$/,''));
+            if(urlRegExp.test(this.href)){
+                $(this).parent().addClass('active');
+            }  
+        });
     });
-});
 
-</script>
+    </script>
 
-<script>
-  function initAutocomplete() {
-    var input = document.getElementById('autocomplete-input');
-    var autocomplete = new google.maps.places.Autocomplete(input);
+    <script>
+      function initAutocomplete() {
+        var input = document.getElementById('autocomplete-input');
+        var autocomplete = new google.maps.places.Autocomplete(input);
 
-    autocomplete.addListener('place_changed', function() {
-      var place = autocomplete.getPlace();
-      console.log(place);
-      if (!place.geometry) {
-        window.alert("No details available for input: '" + place.name + "'");
-        return;
-      }
-    });
+        autocomplete.addListener('place_changed', function() {
+          var place = autocomplete.getPlace();
+          console.log(place);
+          if (!place.geometry) {
+            window.alert("No details available for input: '" + place.name + "'");
+            return;
+          }
+        });
 
-    if ($('.main-search-input-item')[0]) {
-        setTimeout(function(){ 
-            $(".pac-container").prependTo("#autocomplete-container");
-        }, 300);
+        if ($('.main-search-input-item')[0]) {
+            setTimeout(function(){ 
+                $(".pac-container").prependTo("#autocomplete-container");
+            }, 300);
+        }
     }
-}
-</script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvqs8yr7xpLK7yXT7I2lDMpgGtor6KR8w&libraries=places&callback=initAutocomplete"></script>
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAvqs8yr7xpLK7yXT7I2lDMpgGtor6KR8w&libraries=places&callback=initAutocomplete"></script>
 
 
-@yield('script')
+    @yield('script')
 
+</body>
 </html>

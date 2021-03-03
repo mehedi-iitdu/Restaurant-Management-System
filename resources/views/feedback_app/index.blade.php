@@ -171,13 +171,13 @@
                                     <div class="col">
                                         <div class="box">
                                             <div class="subscribe-box">
-                                                <p>Please confirm the review/feedback with your email address and win free Scooper Vouchers</p>
+                                                <p>Please confirm the review/feedback with your email address and win free Rizervo Vouchers</p>
                                                 <div class="email-form">
-                                                    <input type="email" name="email" value="" placeholder="guest@scooper.eu" id="email">
+                                                    <input type="email" name="email" value="" placeholder="guest@rizervo.com" id="email">
                                                 </div>
                                                 <div class="checkbox">
                                                     <label>
-                                                        <span class="text">Yes, I would like to be informed about promotions and free vouchers from Scoopers.eu</span>
+                                                        <span class="text">Yes, I would like to be informed about promotions and free vouchers from rizervo.com</span>
                                                         <input type="checkbox" name="sub_1">
                                                         <span class="checkmark"></span>
                                                     </label>
@@ -189,7 +189,7 @@
                                                     </label>
                                                 </div>
                                                 <div class="privacy-link text-center">
-                                                    <a href="" class="">Scooper respects your privacy</a>
+                                                    <a href="" class="">Rizervo respects your privacy</a>
                                                 </div>
                                             </div>
                                         </div>

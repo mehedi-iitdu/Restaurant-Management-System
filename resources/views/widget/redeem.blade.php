@@ -14,7 +14,7 @@
         <div class="redeem-intro">
             <h2>Redeem your voucher here</h2>
             <p class="redeem-help">
-                Did you receive a gift voucher for Scooper? Enter your voucher code below to make a reservation.
+                Did you receive a gift voucher for Rizervo? Enter your voucher code below to make a reservation.
             </p>
         </div>
         <div class="redeem-box">

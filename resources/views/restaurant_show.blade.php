@@ -257,12 +257,10 @@
 				<h3><i class="fa fa-calendar-check-o "></i> Book a Table</h3>
 				<div class="row with-forms  margin-top-0">
 
-					<!-- Date Picker - docs: http://www.vasterad.com/docs/listeo/#!/date_picker -->
 					<div class="col-lg-6 col-md-12">
 						<input type="text" id="booking-date" data-lang="en" data-large-mode="true" data-large-default="true" data-min-year="2017" data-max-year="2020" data-lock="from">
 					</div>
 
-					<!-- Time Picker - docs: http://www.vasterad.com/docs/listeo/#!/time_picker -->
 					<div class="col-lg-6 col-md-12">
 						<input type="text" id="booking-time" value="9:00 am">
 					</div>
@@ -447,7 +445,7 @@
 		<!-- Copyright -->
 		<div class="row">
 			<div class="col-md-12">
-				<div class="copyrights">© 2017 Listeo. All Rights Reserved.</div>
+				<div class="copyrights">© 2021 Rizervo. All Rights Reserved.</div>
 			</div>
 		</div>
 
@@ -472,12 +470,10 @@
 <script type="text/javascript" src="{{ asset('js/maps.js')}}"></script>	
 
 
-<!-- Date Picker - docs: http://www.vasterad.com/docs/listeo/#!/date_picker -->
 <link href="{{asset('css/plugins/datedropper.css')}}" rel="stylesheet" type="text/css">
 <script src="{{asset('js/datedropper.js')}}"></script>
 <script>$('#booking-date').dateDropper();</script> 
 
-<!-- Time Picker - docs: http://www.vasterad.com/docs/listeo/#!/time_picker -->
 <script src="{{asset('js/timedropper.js')}}"></script>
 <link rel="stylesheet" type="text/css" href="{{ asset('css/plugins/timedropper.css') }}"> 
 <script>

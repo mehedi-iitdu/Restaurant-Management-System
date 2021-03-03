@@ -8,3 +8,6 @@
 #logo img{
 	max-height: 48px;
 }
+.main-search-container.dark-overlay:before {
+    background: rgba(46,47,50,0.85);
+}
